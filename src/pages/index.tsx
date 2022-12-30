@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Filter from "../components/Filter";
-import Main from "../components/Main";
+import Filter from "../components/Browse/Filter";
+import Main from "../components/Browse/Main";
 
 const Home: NextPage = () => {
   return (

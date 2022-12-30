@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import Account from "./Account";
-import CartToggle from "./CartToggle";
+import CartToggle from "./Cart/CartToggle";
 import Logo from "./Logo";
-import Nav from "./Nav";
-import NavToggle from "./NavToggle";
+import Nav from "./Nav/Nav";
+import NavToggle from "./Nav/NavToggle";
 import Search from "./Search";
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
