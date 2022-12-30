@@ -22,13 +22,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         transition={{ type: "spring", damping: 27, stiffness: 150 }}
         className="absolute z-10 h-full w-full bg-slate-100 elevation-4"
       >
-        <div className="grid h-[5rem] grid-cols-[1fr,2fr,15fr,1fr,1fr]">
+        <header className="grid h-[5rem] grid-cols-[1fr,2fr,15fr,1fr,1fr]">
           <NavToggle isOpen={isNavOpen} setIsOpen={setIsNavOpen} />
           <Logo />
           <Search />
           <CartToggle isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
           <Account />
-        </div>
+        </header>
         <div className="h-[calc(100vh-5rem)]">{children}</div>
       </motion.div>
       <Cart isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
