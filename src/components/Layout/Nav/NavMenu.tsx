@@ -16,7 +16,7 @@ const NavMenu = ({
   setSubMenu: (submenu: Category[] | null) => void;
 }) => {
   const handleMouseEnter = () => {
-    setSubMenu(category.subCategories || null);
+    setSubMenu(category.subCategories ? [...category.subCategories] : null);
   };
 
   return (
