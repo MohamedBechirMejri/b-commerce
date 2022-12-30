@@ -32,7 +32,8 @@ const NavMenu = ({
         onClick={() => setIsOpen(false)}
         style={{
           backgroundColor:
-            submenu && submenu.toString() === category.subCategories?.toString()
+            submenu &&
+            JSON.stringify(submenu) === JSON.stringify(category.subCategories)
               ? "#ffffff27"
               : "transparent",
         }}
