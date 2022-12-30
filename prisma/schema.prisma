@@ -83,6 +83,7 @@ model Product {
   description        String               @db.Text
   technical_sheet    String               @db.Text
   images             String[]
+  videos             String[]
   model_3d           String
   Seller             Seller?              @relation(fields: [sellerId], references: [id])
   sellerId           String?
