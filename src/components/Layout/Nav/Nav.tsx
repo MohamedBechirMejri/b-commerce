@@ -269,26 +269,28 @@ const Nav = ({
       initial={{ x: "-20rem" }}
       animate={{ x: isOpen ? 0 : "-20rem" }}
       transition={{ type: "spring", damping: 27, stiffness: 150 }}
-      className="absolute top-0 z-50 flex h-screen w-[20rem] select-none flex-col overflow-scroll bg-slate-900 py-8 text-3xl font-bold text-slate-100 scrollbar-none"
+      className="absolute top-0 z-50 flex h-screen w-[20rem] select-none flex-col text-3xl font-bold text-slate-100"
       onMouseLeave={() => setSubMenu(null)}
     >
-      {categories.map((category) => {
-        return (
-          <NavMenu
-            key={category.name} // TODO: replace with id
-            category={category}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            submenu={submenu}
-            setSubMenu={setSubMenu}
-          />
-        );
-      })}
+      <div className="z-50 h-full w-full overflow-scroll bg-slate-900 py-8 scrollbar-none">
+        {categories.map((category) => {
+          return (
+            <NavMenu
+              key={category.name} // TODO: replace with id
+              category={category}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              submenu={submenu}
+              setSubMenu={setSubMenu}
+            />
+          );
+        })}
+      </div>
       <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: submenu ? 1 : 0 }}
+        initial={{ x: "-40rem" }}
+        animate={{ x: submenu ? 0 : "-40rem" }}
         transition={{ type: "spring", damping: 27, stiffness: 150 }}
-        className="fixed top-0 left-[20rem] grid h-screen w-[40rem] origin-left grid-cols-3 overflow-y-scroll bg-slate-800 p-8 scrollbar-none"
+        className="fixed top-0 left-[20rem] grid h-screen w-[40rem] origin-left grid-cols-3 overflow-y-scroll bg-slate-700 p-8 scrollbar-none"
       >
         {submenu &&
           submenu.map((category) => (
