@@ -3,33 +3,254 @@ import { useState } from "react";
 import type Category from "../../../types/Category";
 import NavMenu from "./NavMenu";
 
-const categories = Array(10).fill({
-  id: 0,
-  name: "Home",
-  url: "/",
-  subCategories: [
-    {
-      id: 1,
-      name: "Home",
-      url: "/",
-      subCategories: [
-        {
-          id: 2,
-          name: "Home",
-          url: "/",
-          subCategories: [
-            {
-              id: 3,
-              name: "Home",
-              url: "/",
-              subCategories: [],
-            },
-          ],
-        },
-      ],
-    },
-  ],
-});
+const categories = [
+  {
+    id: "0",
+    name: "Home1",
+    subCategories: [
+      {
+        id: "0-1",
+        name: "Home",
+        subCategories: [
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "0-1",
+        name: "Home",
+        subCategories: [
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "0-1",
+        name: "Home",
+        subCategories: [
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "0-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "0-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "1",
+    name: "Home",
+    subCategories: [
+      {
+        id: "1-1",
+        name: "Home",
+        subCategories: [
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "1-1",
+        name: "Home",
+        subCategories: [
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "1-1",
+        name: "Home",
+        subCategories: [
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+          {
+            id: "1-2",
+            name: "Home",
+            subCategories: [
+              {
+                id: "1-3",
+                name: "Home",
+                subCategories: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 
 const Nav = ({
   isOpen,
