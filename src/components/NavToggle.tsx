@@ -11,7 +11,7 @@ const NavToggle = ({
     <motion.button
       initial={{ scale: 0, x: "-50%", y: 25, backgroundColor: "#0f172a" }}
       animate={{
-        scale: isOpen ? 0 : 1,
+        scale: 1,
         y: 0,
         backgroundColor: isOpen ? "#f1f5f9" : "#0f172a",
       }}
