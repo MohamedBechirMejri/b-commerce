@@ -93,18 +93,41 @@ model Product {
   orders             Order[]
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
+  tags               Tag[]
 }
 
 model Category {
-  id          String     @id @default(cuid())
-  name        String
-  description String     @db.Text
-  parent      Category?  @relation("sub categories", fields: [categoryId], references: [id])
-  children    Category[] @relation("sub categories")
-  categoryId  String?
-  products    Product[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id              String          @id @default(cuid())
+  name            String
+  description     String          @db.Text
+  parent          Category?       @relation("sub categories", fields: [categoryId], references: [id])
+  children        Category[]      @relation("sub categories")
+  categoryId      String?
+  products        Product[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  tag_collections TagCollection[]
+}
+
+model Tag {
+  id              String         @id @default(cuid())
+  name            String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  TagCollection   TagCollection? @relation(fields: [tagCollectionId], references: [id])
+  tagCollectionId String?
+  Product         Product?       @relation(fields: [productId], references: [id])
+  productId       String?
+}
+
+model TagCollection {
+  id         String    @id @default(cuid())
+  name       String
+  tags       Tag[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
 }
 
 model Seller {
