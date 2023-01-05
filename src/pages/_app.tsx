@@ -4,7 +4,8 @@ import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import "../styles/globals.css";
-import Layout from "../components/Layout/Layout";
+import MainLayout from "../components/Layout/Layout";
+import AdminDashboardLayout from "../components/admin/dashboard/Layout/Layout";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,12 +15,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
 
   return (
     <SessionProvider session={session}>
-      {router.pathname.startsWith(`/admin`) ? (
-        <Component {...pageProps} />
-      ) : (
-        <Layout>
+      {router.pathname.startsWith(`/admin/dashboard`) ? (
+        <AdminDashboardLayout>
           <Component {...pageProps} />
-        </Layout>
+        </AdminDashboardLayout>
+      ) : (
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
       )}
     </SessionProvider>
   );

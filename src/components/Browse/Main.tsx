@@ -65,7 +65,7 @@ const products = [
 
 const Main = () => {
   return (
-    <main className="grid gap-4 overflow-y-scroll p-4 scrollbar-none xl:grid-cols-5">
+    <main className="grid min-h-full gap-4 overflow-y-scroll p-4 scrollbar-none xl:grid-cols-5">
       {products.map((product) => (
         <div
           key={product.id}
