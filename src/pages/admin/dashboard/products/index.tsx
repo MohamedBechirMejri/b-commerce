@@ -1,4 +1,4 @@
-import Main from "../../../components/Browse/Main";
+import Main from "../../../../components/Browse/Main";
 
 const Products = () => {
   return (
