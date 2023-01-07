@@ -33,7 +33,9 @@ const categories = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "DELETE") {
     const category = await prisma.category.delete({ where: { id } });
-    return res.status(200).json(category);
+    return res
+      .status(200)
+      .json({ message: `Manufacturer ${category.name} deleted.` });
   }
 };
 
