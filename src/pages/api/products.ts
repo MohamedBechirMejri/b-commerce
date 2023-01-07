@@ -37,6 +37,49 @@ const products = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(201).json(product);
   }
+
+  if (req.method === "PUT") {
+    const { body } = req;
+
+    const data = {
+      name: body.name,
+      price: body.price,
+      stock: body.stock,
+      discount_price: body.discount_price,
+      availability: body.availability,
+      related_products: body.related_products,
+      categories: body.categories,
+      tags: body.tags,
+      description: body.description,
+      technical_sheet: body.technical_sheet,
+      images: body.images,
+      videos: body.videos,
+      model_3d: body.model_3d,
+      sellerId: body.sellerId,
+      manufacturerId: body.manufacturerId,
+    };
+
+    const product = await prisma.product.update({
+      where: {
+        id: body.id,
+      },
+      data,
+    });
+
+    return res.status(201).json(product);
+  }
+
+  if (req.method === "DELETE") {
+    const { id } = req.body;
+
+    const product = await prisma.product.delete({
+      where: {
+        id,
+      },
+    });
+
+    return res.status(201).json(product);
+  }
 };
 
 export default products;
