@@ -45,7 +45,9 @@ const products = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "DELETE") {
     const product = await prisma.product.delete({ where: { id: body.id } });
-    return res.status(201).json(product);
+    return res
+      .status(200)
+      .json({ message: `Product ${product.name} deleted.` });
   }
 };
 
