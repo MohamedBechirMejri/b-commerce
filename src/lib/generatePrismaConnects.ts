@@ -1,7 +1,8 @@
 const generatePrismaConnects = (ids: string | string[] | undefined) => {
-  if (!ids) return ids;
+  if (!ids) return undefined;
 
-  if (typeof ids !== "string") return { connect: ids.map((id) => ({ id })) };
+  if (typeof ids !== "string")
+    return ids.length ? { connect: ids.map((id) => ({ id })) } : undefined;
   else return { connect: { id: ids } };
 };
 
