@@ -1,4 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
+import generatePrismaConnects from "../../../lib/generatePrismaConnects";
 
 import { prisma } from "../../../server/db/client";
 
@@ -35,9 +36,9 @@ const products = async (req: NextApiRequest, res: NextApiResponse) => {
       stock,
       discount_price,
       availability,
-      related_products,
-      categories,
-      tags,
+      related_products: generatePrismaConnects(related_products),
+      categories: generatePrismaConnects(categories),
+      tags: generatePrismaConnects(tags),
       description,
       technical_sheet,
       images,
