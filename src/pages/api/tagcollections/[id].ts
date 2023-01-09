@@ -1,4 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
+import generatePrismaConnects from "../../../lib/generatePrismaConnects";
 
 import { prisma } from "../../../server/db/client";
 
@@ -21,11 +22,15 @@ export default async function handler(
   }
 
   if (req.method === "PUT") {
-    const { name, tags, Category } = req.body;
+    const { name, tags, category } = req.body;
 
     const tagCollection = await prisma.tagCollection.update({
       where: { id },
-      data: { name, tags, Category: { connect: { id: Category } } },
+      data: {
+        name,
+        tags: generatePrismaConnects(tags),
+        Category: { connect: { id: category } },
+      },
     });
     return res.status(200).json(tagCollection);
   }

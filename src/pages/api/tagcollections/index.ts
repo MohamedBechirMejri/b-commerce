@@ -1,4 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
+import generatePrismaConnects from "../../../lib/generatePrismaConnects";
 
 import { prisma } from "../../../server/db/client";
 
@@ -11,10 +12,14 @@ const tagCollections = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "POST") {
-    const { name, tags, Category } = req.body;
+    const { name, tags, category } = req.body;
 
     const tagCollection = await prisma.tagCollection.create({
-      data: { name, tags, Category: { connect: { id: Category } } },
+      data: {
+        name,
+        tags: generatePrismaConnects(tags),
+        Category: { connect: { id: category } },
+      },
     });
     return res.status(201).json(tagCollection);
   }
