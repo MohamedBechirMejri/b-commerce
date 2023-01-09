@@ -45,7 +45,7 @@ const products = async (req: NextApiRequest, res: NextApiResponse) => {
         related_products: generatePrismaConnects(related_products),
         categories: generatePrismaConnects(categories),
         tags: generatePrismaConnects(tags),
-        Seller: { connect: { id: sellerId } },
+        Seller: sellerId ? { connect: { id: sellerId } } : undefined,
         Manufacturer: { connect: { id: manufacturerId } },
       },
     });
