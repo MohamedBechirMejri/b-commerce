@@ -11,10 +11,11 @@ const tags = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "POST") {
-    const { name, tagCollectionId, categoryId } = req.body;
-    const data = { name, tagCollectionId, categoryId };
+    const { name, tagCollectionId } = req.body;
 
-    const tag = await prisma.tag.create({ data });
+    const tag = await prisma.tag.create({
+      data: { name, TagCollection: { connect: { id: tagCollectionId } } },
+    });
     return res.status(201).json(tag);
   }
 };

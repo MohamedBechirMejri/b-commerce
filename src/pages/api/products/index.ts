@@ -18,37 +18,37 @@ const products = async (req: NextApiRequest, res: NextApiResponse) => {
       stock,
       discount_price,
       availability,
-      related_products,
-      categories,
-      tags,
       description,
       technical_sheet,
       images,
       videos,
       model_3d,
+      related_products,
+      categories,
+      tags,
       sellerId,
       manufacturerId,
     } = req.body;
 
-    const data = {
-      name,
-      price,
-      stock,
-      discount_price,
-      availability,
-      related_products: generatePrismaConnects(related_products),
-      categories: generatePrismaConnects(categories),
-      tags: generatePrismaConnects(tags),
-      description,
-      technical_sheet,
-      images,
-      videos,
-      model_3d,
-      sellerId,
-      manufacturerId,
-    };
-
-    const product = await prisma.product.create({ data });
+    const product = await prisma.product.create({
+      data: {
+        name,
+        price,
+        stock,
+        discount_price,
+        availability,
+        description,
+        technical_sheet,
+        images,
+        videos,
+        model_3d,
+        related_products: generatePrismaConnects(related_products),
+        categories: generatePrismaConnects(categories),
+        tags: generatePrismaConnects(tags),
+        Seller: { connect: { id: sellerId } },
+        Manufacturer: { connect: { id: manufacturerId } },
+      },
+    });
     return res.status(201).json(product);
   }
 };

@@ -12,9 +12,10 @@ const manufacturers = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "POST") {
     const { name, description } = req.body;
-    const data = { name, description };
 
-    const manufacturer = await prisma.manufacturer.create({ data });
+    const manufacturer = await prisma.manufacturer.create({
+      data: { name, description },
+    });
     return res.status(201).json(manufacturer);
   }
 };

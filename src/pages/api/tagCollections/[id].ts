@@ -21,12 +21,11 @@ export default async function handler(
   }
 
   if (req.method === "PUT") {
-    const { name, tags, categoryId } = req.body;
-    const data = { name, tags, categoryId };
+    const { name, tags, Category } = req.body;
 
     const tagCollection = await prisma.tagCollection.update({
       where: { id },
-      data,
+      data: { name, tags, Category: { connect: { id: Category } } },
     });
     return res.status(200).json(tagCollection);
   }

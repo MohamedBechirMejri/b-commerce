@@ -22,11 +22,10 @@ export default async function handler(
 
   if (req.method === "PUT") {
     const { name, description } = req.body;
-    const data = { name, description };
 
     const manufacturer = await prisma.manufacturer.update({
       where: { id },
-      data,
+      data: { name, description },
     });
     return res.status(200).json(manufacturer);
   }

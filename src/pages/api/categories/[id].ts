@@ -1,4 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
+import generatePrismaConnects from "../../../lib/generatePrismaConnects";
 
 import { prisma } from "../../../server/db/client";
 
@@ -21,15 +22,16 @@ export default async function handler(
   if (req.method === "PUT") {
     const { name, description, parentId, children, tag_collections } = req.body;
 
-    const data = {
-      name,
-      description,
-      categoryId: parentId,
-      children,
-      tag_collections,
-    };
-
-    const category = await prisma.category.update({ where: { id }, data });
+    const category = await prisma.category.update({
+      where: { id },
+      data: {
+        name,
+        description,
+        parent: parentId ? { connect: { id: parentId } } : undefined,
+        children: generatePrismaConnects(children),
+        tag_collections: generatePrismaConnects(tag_collections),
+      },
+    });
     return res.status(200).json(category);
   }
 

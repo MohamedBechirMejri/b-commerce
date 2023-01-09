@@ -14,19 +14,16 @@ export default async function handler(
   if (typeof id !== "string") id = id[0];
 
   if (req.method === "GET") {
-    const tag = await prisma.tag.findUnique({
-      where: { id },
-    });
+    const tag = await prisma.tag.findUnique({ where: { id } });
     return res.status(200).json(tag);
   }
 
   if (req.method === "PUT") {
-    const { name, tagCollectionId, categoryId } = req.body;
-    const data = { name, tagCollectionId, categoryId };
+    const { name, tagCollectionId } = req.body;
 
     const tag = await prisma.tag.update({
       where: { id },
-      data,
+      data: { name, TagCollection: { connect: { id: tagCollectionId } } },
     });
     return res.status(200).json(tag);
   }

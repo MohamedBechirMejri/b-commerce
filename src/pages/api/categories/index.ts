@@ -1,4 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
+import generatePrismaConnects from "../../../lib/generatePrismaConnects";
 
 import { prisma } from "../../../server/db/client";
 
@@ -13,15 +14,15 @@ const categories = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const { name, description, parentId, children, tag_collections } = req.body;
 
-    const data = {
-      name,
-      description,
-      categoryId: parentId,
-      children,
-      tag_collections,
-    };
-
-    const category = await prisma.category.create({ data });
+    const category = await prisma.category.create({
+      data: {
+        name,
+        description,
+        parent: parentId ? { connect: { id: parentId } } : undefined,
+        children: generatePrismaConnects(children),
+        tag_collections: generatePrismaConnects(tag_collections),
+      },
+    });
     return res.status(201).json(category);
   }
 };
