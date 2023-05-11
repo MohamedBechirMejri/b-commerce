@@ -1,5 +1,3 @@
-import { api } from "utils/api";
-
 import "~/styles/globals.css";
 
 export const metadata = {
@@ -20,4 +18,4 @@ function RootLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default api.withTRPC(RootLayout);
+export default RootLayout;

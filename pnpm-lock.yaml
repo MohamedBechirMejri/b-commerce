@@ -10,18 +10,6 @@ dependencies:
   '@tanstack/react-query':
     specifier: ^4.29.5
     version: 4.29.5(react-dom@18.2.0)(react@18.2.0)
-  '@trpc/client':
-    specifier: ^10.25.1
-    version: 10.25.1(@trpc/server@10.25.1)
-  '@trpc/next':
-    specifier: ^10.25.1
-    version: 10.25.1(@tanstack/react-query@4.29.5)(@trpc/client@10.25.1)(@trpc/react-query@10.25.1)(@trpc/server@10.25.1)(next@13.4.1)(react-dom@18.2.0)(react@18.2.0)
-  '@trpc/react-query':
-    specifier: ^10.25.1
-    version: 10.25.1(@tanstack/react-query@4.29.5)(@trpc/client@10.25.1)(@trpc/server@10.25.1)(react-dom@18.2.0)(react@18.2.0)
-  '@trpc/server':
-    specifier: ^10.25.1
-    version: 10.25.1
   next:
     specifier: ^13.4.1
     version: 13.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -386,55 +374,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: false
-
-  /@trpc/client@10.25.1(@trpc/server@10.25.1):
-    resolution: {integrity: sha512-6ymAOKrbUgi6H/MxDZiDXXiADCF0B2fsGewBe7yWSQGNl/MK1GTuIzltJ6WAUqjmMmzrCxE621uzUihdFZ4tow==}
-    peerDependencies:
-      '@trpc/server': 10.25.1
-    dependencies:
-      '@trpc/server': 10.25.1
-    dev: false
-
-  /@trpc/next@10.25.1(@tanstack/react-query@4.29.5)(@trpc/client@10.25.1)(@trpc/react-query@10.25.1)(@trpc/server@10.25.1)(next@13.4.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-a9TgzSfSQPUATHy/NuGsIC0man51RWmfo+PJEV3WJkdczXh6LBCWDX5gP19es1B1zSQttRhshVdr5y6ysbn4vw==}
-    peerDependencies:
-      '@tanstack/react-query': ^4.18.0
-      '@trpc/client': 10.25.1
-      '@trpc/react-query': 10.25.1
-      '@trpc/server': 10.25.1
-      next: '*'
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@tanstack/react-query': 4.29.5(react-dom@18.2.0)(react@18.2.0)
-      '@trpc/client': 10.25.1(@trpc/server@10.25.1)
-      '@trpc/react-query': 10.25.1(@tanstack/react-query@4.29.5)(@trpc/client@10.25.1)(@trpc/server@10.25.1)(react-dom@18.2.0)(react@18.2.0)
-      '@trpc/server': 10.25.1
-      next: 13.4.1(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-ssr-prepass: 1.5.0(react@18.2.0)
-    dev: false
-
-  /@trpc/react-query@10.25.1(@tanstack/react-query@4.29.5)(@trpc/client@10.25.1)(@trpc/server@10.25.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-2VFxD8qoULKzlWORU0l2cR0AmOHWNZC8AOpX7v1lZE/IllFzBH5KQGK6pGCQuSqLvxwJEBjSpw4bkFNMrMeg9g==}
-    peerDependencies:
-      '@tanstack/react-query': ^4.18.0
-      '@trpc/client': 10.25.1
-      '@trpc/server': 10.25.1
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@tanstack/react-query': 4.29.5(react-dom@18.2.0)(react@18.2.0)
-      '@trpc/client': 10.25.1(@trpc/server@10.25.1)
-      '@trpc/server': 10.25.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /@trpc/server@10.25.1:
-    resolution: {integrity: sha512-zi08QKVvWPK0EEGpEy7i5PlOK9CBlQb3LqiIdmaIpe27DzFNz6+yZ4qXwsLXTwDcDphELl/BNw+RzzQ2+Ou2vw==}
     dev: false
 
   /@types/eslint@8.37.0:
@@ -811,7 +750,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001486
-      electron-to-chromium: 1.4.391
+      electron-to-chromium: 1.4.392
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -1037,8 +976,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /electron-to-chromium@1.4.391:
-    resolution: {integrity: sha512-GqydVV1+kUWY5qlEzaw34/hyWTApuQrHiGrcGA2Kk/56nEK44i+YUW45VH43JuZT0Oo7uY8aVtpPhBBZXEWtSA==}
+  /electron-to-chromium@1.4.392:
+    resolution: {integrity: sha512-TXQOMW9tnhIms3jGy/lJctLjICOgyueZFJ1KUtm6DTQ+QpxX3p7ZBwB6syuZ9KBuT5S4XX7bgY1ECPgfxKUdOg==}
     dev: true
 
   /emoji-regex@9.2.2:
@@ -2568,14 +2507,6 @@ packages:
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
-
-  /react-ssr-prepass@1.5.0(react@18.2.0):
-    resolution: {integrity: sha512-yFNHrlVEReVYKsLI5lF05tZoHveA5pGzjFbFJY/3pOqqjGOmMmqx83N4hIjN2n6E1AOa+eQEUxs3CgRnPmT0RQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
