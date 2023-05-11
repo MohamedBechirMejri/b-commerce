@@ -1,5 +1,5 @@
-const Page = () => {
+const Root = () => {
   return <div></div>;
 };
 
-export default Page;
+export default Root;
