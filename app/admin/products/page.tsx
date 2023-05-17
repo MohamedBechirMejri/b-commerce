@@ -52,7 +52,7 @@ export default function () {
           </thead>
           <tbody className="bg-gray-900">
             {products.map((product) => (
-              <ProductLink product={product} />
+              <ProductLink key={"product" + product.id} product={product} />
             ))}
           </tbody>
         </table>
