@@ -36,3 +36,10 @@
   height: 0;
   display: none;
 }
+
+input,
+select,
+textarea,
+option {
+  background-color: transparent;
+}
