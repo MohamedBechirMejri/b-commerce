@@ -8,7 +8,7 @@ import Nav from "./(product)/Nav";
 const Details = dynamic(() => import("./(product)/Details"));
 const Pricing = dynamic(() => import("./(product)/Pricing"));
 const Images = dynamic(() => import("./(product)/Images"));
-const Variants = dynamic(() => import("./(product)/Variants"));
+// const Variants = dynamic(() => import("./(product)/Variants"));
 const Inventory = dynamic(() => import("./(product)/Inventory"));
 const Shipping = dynamic(() => import("./(product)/Shipping"));
 const SEO = dynamic(() => import("./(product)/SEO"));
@@ -29,9 +29,9 @@ export default function () {
         <Pricing />
       ) : currentTab === "images" ? (
         <Images />
-      ) : currentTab === "variants" ? (
-        <Variants />
-      ) : currentTab === "inventory" ? (
+      ) : // ) : currentTab === "variants" ? (
+      // <Variants />
+      currentTab === "inventory" ? (
         <Inventory />
       ) : currentTab === "shipping" ? (
         <Shipping />

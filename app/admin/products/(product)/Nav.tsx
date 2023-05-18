@@ -2,7 +2,7 @@ const tabs = [
   "details",
   "pricing",
   "images",
-  "variants",
+  // "variants",
   "inventory",
   "shipping",
   "seo",
