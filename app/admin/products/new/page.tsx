@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { IoArrowBackOutline } from "react-icons/io5";
-import Nav from "../Nav";
+import Product from "../Product";
 
 export default function () {
   return (
-    <div className="min-h-full">
+    <div className="grid h-full grid-rows-[auto,1fr]">
       <div className="flex items-center justify-between px-8 py-6">
         <Link
           href="/admin/products"
@@ -15,8 +15,7 @@ export default function () {
         </Link>
         <h1 className="text-2xl font-bold">New Product</h1>
       </div>
-      <Nav />
-      <div className="px-8 py-6"></div>
+      <Product />
     </div>
   );
 }

@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 const tabs = [
   "details",
   "pricing",
@@ -16,9 +12,13 @@ const tabs = [
   "activity",
 ];
 
-export default function () {
-  const [currentTab, setCurrentTab] = useState("details");
-
+export default function ({
+  currentTab,
+  setCurrentTab,
+}: {
+  currentTab: string;
+  setCurrentTab: (tab: string) => void;
+}) {
   return (
     <nav className="flex h-12 w-full overflow-x-scroll">
       {tabs.map((tab) => (
