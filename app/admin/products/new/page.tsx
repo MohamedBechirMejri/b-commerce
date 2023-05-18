@@ -14,6 +14,9 @@ export default function () {
           <span>Back</span>
         </Link>
         <h1 className="text-2xl font-bold">New Product</h1>
+        <button className="flex items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-gray-300">
+          <span>Add</span>
+        </button>
       </div>
       <Product />
     </div>
