@@ -12,7 +12,7 @@ const tabs = [
   "activity",
 ];
 
-export default function ({
+export default function Nav({
   currentTab,
   setCurrentTab,
 }: {
@@ -21,7 +21,7 @@ export default function ({
 }) {
   return (
     <nav className="flex h-12 w-full overflow-x-scroll">
-      {tabs.map((tab) => (
+      {tabs.map(tab => (
         <button
           key={tab}
           className={`flex w-32 items-center justify-center text-sm font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-600 ${
