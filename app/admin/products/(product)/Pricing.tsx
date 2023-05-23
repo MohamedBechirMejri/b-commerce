@@ -1,43 +1,30 @@
 export default function Pricing() {
+  // Define an array of objects with the properties for each input field
+  const fields = [
+    { id: "price", label: "Price", type: "number", min: 0 },
+    { id: "salePrice", label: "Sale Price", type: "number", min: 0 },
+    { id: "onSale", label: "On Sale", type: "checkbox" },
+  ];
+
+  // Use map to iterate over the array and render each input field
   return (
     <div className="grid grid-cols-2 auto-rows-min">
-      <div className="flex p-4 flex-col">
-        <label className="text-sm font-semibold text-gray-600" htmlFor="price">
-          Price
-        </label>
-        <input
-          type="number"
-          className="border border-gray-300 rounded-md px-4 py-2 mt-2"
-          id="price"
-          min={0}
-        />
-      </div>
-
-      <div className="flex p-4 flex-col">
-        <label
-          className="text-sm font-semibold text-gray-600"
-          htmlFor="salePrice"
-        >
-          Sale Price
-        </label>
-        <input
-          type="number"
-          className="border border-gray-300 rounded-md px-4 py-2 mt-2"
-          id="salePrice"
-          min={0}
-        />
-      </div>
-
-      <div className="flex p-4 flex-col">
-        <label className="text-sm font-semibold text-gray-600" htmlFor="onSale">
-          On Sale
-        </label>
-        <input
-          type="checkbox"
-          className="border border-gray-300 rounded-md px-4 py-2 mt-2"
-          id="onSale"
-        />
-      </div>
+      {fields.map(field => (
+        <div className="flex flex-col p-4" key={field.id}>
+          <label
+            className="text-sm font-semibold text-gray-600"
+            htmlFor={field.id}
+          >
+            {field.label}
+          </label>
+          <input
+            type={field.type}
+            className="px-4 py-2 mt-2 border border-gray-300 rounded-md"
+            id={field.id}
+            min={field.min}
+          />
+        </div>
+      ))}
     </div>
   );
 }
