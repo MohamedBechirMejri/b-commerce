@@ -10,3 +10,74 @@ datasource db {
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
+
+model Image {
+  id        String   @id @default(cuid())
+  name      String?
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Post      Post?    @relation(fields: [postId], references: [id])
+  postId    String?
+
+  @@index([postId])
+}
+
+model Brand {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Post      Post[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Post      Post[]
+}
+
+model Author {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Post      Post[]
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  reference   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  brand       Brand?     @relation(fields: [brandId], references: [id])
+  categories  Category[]
+  author      Author     @relation(fields: [authorId], references: [id])
+  isPublished Boolean    @default(false)
+  images      Image[]
+
+  // pricing
+  price     Float
+  salePrice Float?
+  onSale    Boolean @default(false)
+
+  // inventory
+  stock        Int
+  limitedStock Boolean @default(false)
+  soldout      Boolean @default(false)
+  minBuy       Int
+  maxBuy       Int
+
+  brandId  String?
+  authorId String
+
+  @@index([brandId])
+  @@index([authorId])
+}
