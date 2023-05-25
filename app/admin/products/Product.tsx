@@ -1,9 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
 
 import Nav from "./(product)/Nav";
+import useTabSwitcher from "~/lib/hooks/useTabSwitcher";
 
 const Details = dynamic(() => import("./(product)/Details"));
 const Pricing = dynamic(() => import("./(product)/Pricing"));
@@ -17,37 +17,33 @@ const Collections = dynamic(() => import("./(product)/Collections"));
 const Reviews = dynamic(() => import("./(product)/Reviews"));
 const Activity = dynamic(() => import("./(product)/Activity"));
 
+// An object to store the components for each tab
+const tabComponents = {
+  details: Details,
+  pricing: Pricing,
+  images: Images,
+  // variants: Variants,
+  inventory: Inventory,
+  shipping: Shipping,
+  seo: SEO,
+  related: Related,
+  collections: Collections,
+  reviews: Reviews,
+  activity: Activity,
+};
+
 export default function () {
-  const [currentTab, setCurrentTab] = useState("details");
+  // Use the custom hook to handle the state and logic of switching tabs
+  const { currentTab, product, setProduct, switchTab } = useTabSwitcher();
+
+  // @ts-ignore
+  const Tab = tabComponents[currentTab];
 
   return (
     <div className="h-full grid grid-rows-[auto,1fr]">
-      <Nav currentTab={currentTab} setCurrentTab={setCurrentTab} />
-      {currentTab === "details" ? (
-        <Details />
-      ) : currentTab === "pricing" ? (
-        <Pricing />
-      ) : currentTab === "images" ? (
-        <Images />
-      ) : // ) : currentTab === "variants" ? (
-      // <Variants />
-      currentTab === "inventory" ? (
-        <Inventory />
-      ) : currentTab === "shipping" ? (
-        <Shipping />
-      ) : currentTab === "seo" ? (
-        <SEO />
-      ) : currentTab === "related" ? (
-        <Related />
-      ) : currentTab === "collections" ? (
-        <Collections />
-      ) : currentTab === "reviews" ? (
-        <Reviews />
-      ) : currentTab === "activity" ? (
-        <Activity />
-      ) : (
-        <div></div>
-      )}
+      <Nav currentTab={currentTab} setCurrentTab={switchTab} />
+      {/* Use the object to render the component for the current tab */}
+      {<Tab product={product} setProduct={setProduct} />}
     </div>
   );
 }
