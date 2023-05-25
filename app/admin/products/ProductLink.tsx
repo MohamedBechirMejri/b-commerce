@@ -6,13 +6,7 @@ import { IoEye, IoPencil, IoTrash } from "react-icons/io5";
 export default function ProductLink({
   product,
 }: {
-  product: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    stock: number;
-  };
+  product: any; // TODO: type this properly
 }) {
   const deleteProduct = (id: number) => {
     console.log("Deleting product with id: ", id);
@@ -21,7 +15,7 @@ export default function ProductLink({
   return (
     <tr
       key={product.id}
-      className="border-b border-gray-600 text-sm text-gray-500"
+      className="text-sm text-gray-500 border-b border-gray-600"
     >
       <td className="px-4 py-3">{product.name}</td>
       <td className="px-4 py-3">{product.description}</td>
