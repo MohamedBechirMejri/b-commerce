@@ -17,6 +17,7 @@ model Image {
   url       String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   Product   Product? @relation(fields: [productId], references: [id])
   productId String?
 
@@ -28,7 +29,7 @@ model Brand {
   name      String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Product   Product[]
+  products  Product[]
 }
 
 model Category {
@@ -36,7 +37,7 @@ model Category {
   name      String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Product   Product[]
+  products  Product[]
 }
 
 model Author {
@@ -46,7 +47,7 @@ model Author {
   password  String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Product   Product[]
+  products  Product[]
 }
 
 model Product {
