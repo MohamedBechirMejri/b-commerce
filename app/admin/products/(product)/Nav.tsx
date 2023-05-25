@@ -14,10 +14,10 @@ const tabs = [
 
 export default function Nav({
   currentTab,
-  setCurrentTab,
+  switchTab,
 }: {
   currentTab: string;
-  setCurrentTab: (tab: string) => void;
+  switchTab: (tab: string) => void;
 }) {
   return (
     <nav className="flex h-12 w-full overflow-x-scroll">
@@ -27,7 +27,7 @@ export default function Nav({
           className={`flex w-32 items-center justify-center text-sm font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-600 ${
             currentTab === tab ? "text-gray-700" : ""
           }`}
-          onClick={() => setCurrentTab(tab)}
+          onClick={() => switchTab(tab)}
         >
           {tab}
         </button>
