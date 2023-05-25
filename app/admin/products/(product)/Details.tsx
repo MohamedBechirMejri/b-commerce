@@ -1,5 +1,13 @@
-export default function Details() {
-  // Define an array of objects with the properties for each input field
+import type { Product } from "~/types/Product";
+
+export default function Details({
+  product,
+  setProduct,
+}: {
+  product: Product;
+  setProduct: React.Dispatch<React.SetStateAction<Product>>;
+}) {
+  // an array of objects with the properties for each input field
   const fields = [
     { id: "name", label: "Name", type: "text" },
     { id: "reference", label: "Reference", type: "text" },
@@ -62,6 +70,10 @@ export default function Details() {
               type={field.type}
               className="px-4 py-2 mt-2 border border-gray-300 rounded-md"
               id={field.id}
+              value={product[field.id as keyof Product]}
+              onChange={e =>
+                setProduct({ ...product, [field.id]: e.target.value })
+              }
             />
           )}
         </div>
