@@ -43,7 +43,9 @@ export default function () {
     <div className="h-full grid grid-rows-[auto,1fr]">
       <Nav currentTab={currentTab} switchTab={switchTab} />
       {/* Use the object to render the component for the current tab */}
-      {<Tab product={product} setProduct={setProduct} />}
+      <div className="p-4">
+        {<Tab product={product} setProduct={setProduct} />}
+      </div>
     </div>
   );
 }
