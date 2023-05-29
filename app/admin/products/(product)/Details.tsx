@@ -1,4 +1,5 @@
 import type { Product } from "~/types/Product";
+import Input from "../../(ui)/Input";
 
 export default function Details({
   product,
@@ -36,48 +37,65 @@ export default function Details({
     { id: "published", label: "Published", type: "checkbox" },
   ];
 
-  // Use map to iterate over the array and render each input field
   return (
-    <div className="grid grid-cols-2 auto-rows-min">
-      {fields.map(field => (
-        <div className="flex flex-col p-4" key={field.id}>
-          <label
-            className="text-sm font-semibold text-gray-600"
-            htmlFor={field.id}
-          >
-            {field.label}
-          </label>
-          {field.type === "textarea" ? (
-            <textarea
-              className="px-4 py-2 mt-2 border border-gray-300 rounded-md"
-              rows={field.rows}
-              id={field.id}
-            />
-          ) : field.type === "select" ? (
-            <select
-              className="px-4 py-2 mt-2 border border-gray-300 rounded-md"
-              id={field.id}
-              multiple={field.multiple}
-            >
-              {field.options!.map(option => (
-                <option value={option.value} key={option.value}>
-                  {option.text}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <input
-              type={field.type}
-              className="px-4 py-2 mt-2 border border-gray-300 rounded-md"
-              id={field.id}
-              value={product[field.id as keyof Product]}
-              onChange={e =>
-                setProduct({ ...product, [field.id]: e.target.value })
-              }
-            />
-          )}
-        </div>
-      ))}
+    <div className="flex flex-col w-full min-h-full gap-4 p-8 mx-auto border rounded-md border-zinc-800 max-w-7xl">
+      <h2 className="-mb-2 font-semibold text-slate-400">Details</h2>
+      <p className="max-w-sm text-xs leading-4 text-zinc-500">
+        Give your product a short and clear name. 50-60 characters is the
+        recommended length for search engines.
+      </p>
+      <div className="grid grid-cols-2 gap-4">
+        <Input
+          type={"text"}
+          label={"Name"}
+          placeholder={"Jacket, Sunglasses..."}
+          value={product.name}
+          onChange={(e: { target: { value: any } }) =>
+            setProduct({ ...product, name: e.target.value })
+          }
+          autocomplete={false}
+          required
+        />
+        <Input
+          type={"text"}
+          label={"Reference"}
+          placeholder={"Jacket-001, Sunglasses-001..."}
+          value={product.reference}
+          onChange={(e: { target: { value: any } }) =>
+            setProduct({ ...product, reference: e.target.value })
+          }
+          autocomplete={false}
+          required
+        />
+      </div>
+      <p className="max-w-sm text-xs leading-4 text-zinc-500">
+        Give your product a short and clear description. 120-160 characters is
+        the recommended length for search engines.
+      </p>
+      <div className="grid grid-cols-2 gap-4">
+        <Input
+          type={"text"}
+          label={"Name"}
+          placeholder={"Jacket, Sunglasses..."}
+          value={product.name}
+          onChange={(e: { target: { value: any } }) =>
+            setProduct({ ...product, name: e.target.value })
+          }
+          autocomplete={false}
+          required
+        />
+        <Input
+          type={"text"}
+          label={"Reference"}
+          placeholder={"Jacket-001, Sunglasses-001..."}
+          value={product.reference}
+          onChange={(e: { target: { value: any } }) =>
+            setProduct({ ...product, reference: e.target.value })
+          }
+          autocomplete={false}
+          required
+        />
+      </div>
     </div>
   );
 }
