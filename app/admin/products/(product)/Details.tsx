@@ -1,5 +1,6 @@
 import type { Product } from "~/types/Product";
 import Input from "../../(ui)/Input";
+import Textarea from "../../(ui)/Textarea";
 
 export default function Details({
   product,
@@ -73,7 +74,7 @@ export default function Details({
         the recommended length for search engines.
       </p>
       <div className="grid grid-cols-2 gap-4">
-        <Input
+        <Textarea
           type={"text"}
           label={"Name"}
           placeholder={"Jacket, Sunglasses..."}
@@ -81,20 +82,44 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, name: e.target.value })
           }
-          autocomplete={false}
+          rows={10}
           required
-        />
-        <Input
-          type={"text"}
-          label={"Reference"}
-          placeholder={"Jacket-001, Sunglasses-001..."}
-          value={product.reference}
-          onChange={(e: { target: { value: any } }) =>
-            setProduct({ ...product, reference: e.target.value })
-          }
-          autocomplete={false}
-          required
-        />
+        />{" "}
+        <div className="grid grid-rows-3 gap-8">
+          <Input
+            type={"text"}
+            label={"Reference"}
+            placeholder={"Jacket-001, Sunglasses-001..."}
+            value={product.reference}
+            onChange={(e: { target: { value: any } }) =>
+              setProduct({ ...product, reference: e.target.value })
+            }
+            autocomplete={false}
+            required
+          />{" "}
+          <Input
+            type={"text"}
+            label={"Reference"}
+            placeholder={"Jacket-001, Sunglasses-001..."}
+            value={product.reference}
+            onChange={(e: { target: { value: any } }) =>
+              setProduct({ ...product, reference: e.target.value })
+            }
+            autocomplete={false}
+            required
+          />{" "}
+          <Input
+            type={"text"}
+            label={"Reference"}
+            placeholder={"Jacket-001, Sunglasses-001..."}
+            value={product.reference}
+            onChange={(e: { target: { value: any } }) =>
+              setProduct({ ...product, reference: e.target.value })
+            }
+            autocomplete={false}
+            required
+          />
+        </div>
       </div>
     </div>
   );
