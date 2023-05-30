@@ -2,6 +2,7 @@ import type { Product } from "~/types/Product";
 
 import Input from "../../(ui)/Input";
 import Textarea from "../../(ui)/Textarea";
+import Select from "../../(ui)/Select";
 
 export default function Details({
   product,
@@ -55,7 +56,7 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, name: e.target.value })
           }
-          autocomplete={false}
+          autoComplete='off'
           required
         />
         <Input
@@ -66,7 +67,7 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, reference: e.target.value })
           }
-          autocomplete={false}
+          autoComplete='off'
           required
         />
       </div>
@@ -87,15 +88,11 @@ export default function Details({
           required
         />
         <div className="grid grid-rows-3 gap-8">
-          <Input
-            type={"text"}
-            label={"Reference"}
-            placeholder={"Jacket-001, Sunglasses-001..."}
-            value={product.reference}
-            onChange={(e: { target: { value: any } }) =>
-              setProduct({ ...product, reference: e.target.value })
-            }
-            autocomplete={false}
+          <Select
+            label={"Categories"}
+            placeholder={"Search..."}
+            selected={product.categories}
+            onChange={categories => setProduct({ ...product, categories })}
             required
           />
           <Input
@@ -106,7 +103,7 @@ export default function Details({
             onChange={(e: { target: { value: any } }) =>
               setProduct({ ...product, reference: e.target.value })
             }
-            autocomplete={false}
+            autoComplete='off'
             required
           />
           <Input
@@ -117,7 +114,7 @@ export default function Details({
             onChange={(e: { target: { value: any } }) =>
               setProduct({ ...product, reference: e.target.value })
             }
-            autocomplete={false}
+            autoComplete='off'
             required
           />
         </div>
