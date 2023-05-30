@@ -1,4 +1,5 @@
 import type { Product } from "~/types/Product";
+
 import Input from "../../(ui)/Input";
 import Textarea from "../../(ui)/Textarea";
 
@@ -84,7 +85,7 @@ export default function Details({
           }
           rows={10}
           required
-        />{" "}
+        />
         <div className="grid grid-rows-3 gap-8">
           <Input
             type={"text"}
@@ -96,7 +97,7 @@ export default function Details({
             }
             autocomplete={false}
             required
-          />{" "}
+          />
           <Input
             type={"text"}
             label={"Reference"}
@@ -107,7 +108,7 @@ export default function Details({
             }
             autocomplete={false}
             required
-          />{" "}
+          />
           <Input
             type={"text"}
             label={"Reference"}
