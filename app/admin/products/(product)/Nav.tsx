@@ -20,7 +20,7 @@ export default function Nav({
   switchTab: (tab: string) => void;
 }) {
   return (
-    <nav className="flex h-12 w-full overflow-x-scroll">
+    <nav className="flex justify-center w-full h-12 overflow-x-scroll">
       {tabs.map(tab => (
         <button
           key={tab}
