@@ -49,7 +49,7 @@ export default function Select({
       onFocus={() => setIsFocused(true)}
       onBlur={handleBlur}
     >
-      <motion.div className="flex items-center w-full gap-2 p-3 pb-1">
+      <motion.div className="flex flex-wrap items-center w-full gap-2 p-3 pb-1">
         <label className="text-xs font-bold">{label}:</label>
         {selected.map(id => (
           <motion.div
