@@ -56,7 +56,7 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, name: e.target.value })
           }
-          autoComplete='off'
+          autoComplete="off"
           required
         />
         <Input
@@ -67,7 +67,7 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, reference: e.target.value })
           }
-          autoComplete='off'
+          autoComplete="off"
           required
         />
       </div>
@@ -90,9 +90,10 @@ export default function Details({
         <div className="grid grid-rows-3 gap-8">
           <Select
             label={"Categories"}
-            placeholder={"Search..."}
+            options={[{ id: "1", name: "sdcsdc" }]}
             selected={product.categories}
-            onChange={categories => setProduct({ ...product, categories })}
+            setSelected={categories => setProduct({ ...product, categories })}
+            placeholder={"Search..."}
             required
           />
           <Input
@@ -103,7 +104,7 @@ export default function Details({
             onChange={(e: { target: { value: any } }) =>
               setProduct({ ...product, reference: e.target.value })
             }
-            autoComplete='off'
+            autoComplete="off"
             required
           />
           <Input
@@ -114,7 +115,7 @@ export default function Details({
             onChange={(e: { target: { value: any } }) =>
               setProduct({ ...product, reference: e.target.value })
             }
-            autoComplete='off'
+            autoComplete="off"
             required
           />
         </div>
