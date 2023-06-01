@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { TbSquareRounded, TbSquareRoundedCheckFilled } from "react-icons/tb";
 
 export default function Select({
   options,
@@ -64,7 +65,7 @@ export default function Select({
               option.name.includes(search) ? (
                 <motion.li
                   key={option.id}
-                  className="flex items-center justify-between w-full px-4 py-2 text-sm font-semibold cursor-pointer"
+                  className="relative flex items-center justify-between w-full px-4 py-2 text-sm font-semibold cursor-pointer"
                   initial={{ backgroundColor: "#222" }}
                   animate={{ backgroundColor: "#222" }}
                   whileHover={{ backgroundColor: "#333" }}
@@ -75,12 +76,14 @@ export default function Select({
                   onClick={() => handleSelect(option)}
                 >
                   {option.name}
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                    checked={selected.includes(option.id)}
-                    readOnly
-                  />
+
+                  <i className="text-violet-400">
+                    {selected.includes(option.id) ? (
+                      <TbSquareRoundedCheckFilled />
+                    ) : (
+                      <TbSquareRounded className="block text-violet-400" />
+                    )}
+                  </i>
                 </motion.li>
               ) : null
             )}
