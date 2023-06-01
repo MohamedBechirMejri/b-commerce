@@ -56,7 +56,6 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, name: e.target.value })
           }
-          autoComplete="off"
           required
         />
         <Input
@@ -67,7 +66,6 @@ export default function Details({
           onChange={(e: { target: { value: any } }) =>
             setProduct({ ...product, reference: e.target.value })
           }
-          autoComplete="off"
           required
         />
       </div>
@@ -103,7 +101,6 @@ export default function Details({
             onChange={(e: { target: { value: any } }) =>
               setProduct({ ...product, reference: e.target.value })
             }
-            autoComplete="off"
             required
           />
           <Input
@@ -114,7 +111,6 @@ export default function Details({
             onChange={(e: { target: { value: any } }) =>
               setProduct({ ...product, reference: e.target.value })
             }
-            autoComplete="off"
             required
           />
         </div>

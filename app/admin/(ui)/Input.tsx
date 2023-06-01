@@ -19,6 +19,7 @@ export default function Input({ label = "", ...props }) {
         className="relative z-10 w-full h-full px-3 py-4 text-gray-400 bg-transparent border-none outline-none pt-9"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        autoComplete="off"
         {...props}
       />
     </motion.div>
