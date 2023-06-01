@@ -55,7 +55,7 @@ export default function Select({
       <AnimatePresence>
         {isFocused && (
           <motion.ul
-            className="absolute z-20 w-full overflow-y-scroll rounded-md shadow-md bg-violet-400 max-h-60 top-16"
+            className="absolute left-0 z-20 w-full overflow-y-scroll border rounded-md shadow-md bg-violet-500 max-h-60 top-16 border-violet-900"
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 20 }}
             exit={{ opacity: 0, y: 0 }}
@@ -69,6 +69,7 @@ export default function Select({
                   initial={{ backgroundColor: "#222" }}
                   animate={{ backgroundColor: "#222" }}
                   whileHover={{ backgroundColor: "#333" }}
+                  whileTap={{ backgroundColor: "#444" }}
                   transition={{ duration: 0.1 }}
                   tabIndex={0}
                   role="checkbox"
