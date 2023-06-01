@@ -1,6 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { TbSquareRounded, TbSquareRoundedCheckFilled } from "react-icons/tb";
+import {
+  TbSquareRounded,
+  TbSquareRoundedCheckFilled,
+  TbSquareRoundedXFilled,
+} from "react-icons/tb";
 
 export default function Select({
   options,
@@ -36,7 +40,7 @@ export default function Select({
 
   return (
     <motion.div
-      className="relative max-w-xl rounded-md shadow-sm"
+      className="relative max-w-xl rounded-md shadow-sm grid grid-rows-[1fr,1.25fr]"
       initial={{ border: "1px solid #303030" }}
       animate={{
         border: isFocused ? "1px solid #6d28d9" : "1px solid #303030",
@@ -45,10 +49,35 @@ export default function Select({
       onFocus={() => setIsFocused(true)}
       onBlur={handleBlur}
     >
-      <label className="absolute text-xs font-bold top-4 left-3">{label}</label>
+      <motion.div className="flex items-center w-full gap-2 p-3 pb-1">
+        <label className="text-xs font-bold">{label}:</label>
+        {selected.map(id => (
+          <motion.div
+            key={id}
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+              y: 5,
+              backgroundColor: "#6d28d9",
+            }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            whileHover={{ backgroundColor: "#6d28d9aa" }}
+            whileTap={{ backgroundColor: "#6d28d955" }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-1 p-1 px-2 text-sm font-semibold rounded-md cursor-pointer w-max"
+            onClick={() =>
+              setSelected(selected.filter(option => option !== id))
+            }
+          >
+            {options.find(option => option.id === id)?.name}
+            <TbSquareRoundedXFilled />
+          </motion.div>
+        ))}
+        <div className="w-0 py-4 opacity-0" />
+      </motion.div>
 
       <motion.input
-        className="relative z-10 w-full h-full px-3 py-4 text-gray-400 bg-transparent border-none outline-none pt-9"
+        className="relative z-10 w-full h-full px-3 text-gray-400 bg-transparent border-none outline-none"
         type="search"
         placeholder={placeholder}
         value={search}
@@ -57,9 +86,9 @@ export default function Select({
       <AnimatePresence>
         {isFocused && (
           <motion.ul
-            className="absolute left-0 z-20 w-full overflow-y-scroll border rounded-md shadow-md bg-violet-500 max-h-60 top-16 border-violet-900"
+            className="absolute left-0 z-20 w-full overflow-y-scroll border rounded-md shadow-md bg-violet-500 max-h-64 top-full border-violet-900"
             initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 20 }}
+            animate={{ opacity: 1, y: 15 }}
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.1 }}
           >
