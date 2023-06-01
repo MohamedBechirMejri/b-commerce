@@ -67,7 +67,6 @@ export default function Select({
                   key={option.id}
                   className="relative flex items-center justify-between w-full px-4 py-2 text-sm font-semibold cursor-pointer"
                   initial={{ backgroundColor: "#222" }}
-                  animate={{ backgroundColor: "#222" }}
                   whileHover={{ backgroundColor: "#333" }}
                   whileTap={{ backgroundColor: "#444" }}
                   transition={{ duration: 0.1 }}
