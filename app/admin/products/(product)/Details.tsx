@@ -3,6 +3,7 @@ import type { Product } from "~/types/Product";
 import Input from "../../(ui)/Input";
 import Textarea from "../../(ui)/Textarea";
 import Select from "../../(ui)/Select";
+import useCategories from "~/lib/hooks/useCategories";
 
 export default function Details({
   product,
@@ -11,6 +12,8 @@ export default function Details({
   product: Product;
   setProduct: React.Dispatch<React.SetStateAction<Product>>;
 }) {
+  const { categories, addCategory } = useCategories();
+
   // an array of objects with the properties for each input field
   const fields = [
     { id: "name", label: "Name", type: "text" },
@@ -88,16 +91,11 @@ export default function Details({
         <div className="grid grid-rows-3 gap-8">
           <Select
             label={"Categories"}
-            options={[
-              { id: "1", name: "sdcsdc" },
-              { id: "2", name: "helllo" },
-              { id: "3", name: "test" },
-              { id: "4", name: "boooo" },
-              { id: "5", name: "magic" },
-            ]}
+            options={categories}
             selected={product.categories}
             setSelected={categories => setProduct({ ...product, categories })}
             placeholder={"Search or Create a Category..."}
+            onCreate={addCategory}
           />
           <Input
             type={"text"}

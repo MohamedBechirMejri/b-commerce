@@ -8,12 +8,14 @@ export default function Select({
   setSelected,
   label = "",
   placeholder = "Search...",
+  onCreate = () => {},
 }: {
   options: { id: string; name: string }[];
   selected: string[];
   setSelected: (arg0: string[]) => void;
   label?: string;
   placeholder?: string;
+  onCreate?: (arg0: string) => void;
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
@@ -88,8 +90,14 @@ export default function Select({
               ) : null
             )}
             {search && !options.map(o => o.name).includes(search) && (
-              <button className="flex items-center justify-center w-full p-2">
-                Create "{search}" Category
+              <button
+                className="flex items-center justify-center w-full p-2"
+                onClick={() => {
+                  onCreate(search);
+                  setSearch("");
+                }}
+              >
+                Create "{search}"
               </button>
             )}
           </motion.ul>
