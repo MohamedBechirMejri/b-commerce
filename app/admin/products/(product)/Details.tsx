@@ -93,8 +93,7 @@ export default function Details({
             options={[{ id: "1", name: "sdcsdc" }]}
             selected={product.categories}
             setSelected={categories => setProduct({ ...product, categories })}
-            placeholder={"Search..."}
-            required
+            placeholder={"Search Categories..."}
           />
           <Input
             type={"text"}

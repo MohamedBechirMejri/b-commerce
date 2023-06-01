@@ -6,12 +6,13 @@ export default function Select({
   selected = [],
   setSelected,
   label = "",
-  ...props
+  placeholder = "Search...",
 }: {
   options: { id: string; name: string }[];
   selected: string[];
   setSelected: (arg0: string[]) => void;
   label?: string;
+  placeholder?: string;
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -45,7 +46,7 @@ export default function Select({
       <motion.input
         className="relative z-10 w-full h-full px-3 py-4 text-gray-400 bg-transparent border-none outline-none pt-9"
         type="search"
-        {...props}
+        placeholder={placeholder}
       />
       <AnimatePresence>
         {isFocused && (
