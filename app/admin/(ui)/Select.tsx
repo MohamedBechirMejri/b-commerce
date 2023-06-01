@@ -87,6 +87,11 @@ export default function Select({
                 </motion.li>
               ) : null
             )}
+            {search && !options.map(o => o.name).includes(search) && (
+              <button className="flex items-center justify-center w-full p-2">
+                Create "{search}" Category
+              </button>
+            )}
           </motion.ul>
         )}
       </AnimatePresence>

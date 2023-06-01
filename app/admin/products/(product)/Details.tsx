@@ -97,7 +97,7 @@ export default function Details({
             ]}
             selected={product.categories}
             setSelected={categories => setProduct({ ...product, categories })}
-            placeholder={"Search Categories..."}
+            placeholder={"Search or Create a Category..."}
           />
           <Input
             type={"text"}
