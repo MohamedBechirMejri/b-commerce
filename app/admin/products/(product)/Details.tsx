@@ -88,7 +88,13 @@ export default function Details({
         <div className="grid grid-rows-3 gap-8">
           <Select
             label={"Categories"}
-            options={[{ id: "1", name: "sdcsdc" }]}
+            options={[
+              { id: "1", name: "sdcsdc" },
+              { id: "2", name: "helllo" },
+              { id: "3", name: "test" },
+              { id: "4", name: "boooo" },
+              { id: "5", name: "magic" },
+            ]}
             selected={product.categories}
             setSelected={categories => setProduct({ ...product, categories })}
             placeholder={"Search Categories..."}

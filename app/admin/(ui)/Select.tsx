@@ -15,6 +15,7 @@ export default function Select({
   placeholder?: string;
 }) {
   const [isFocused, setIsFocused] = useState(false);
+  const [search, setSearch] = useState("");
 
   // only close the dropdown if the user clicks outside of it
   const handleBlur = (e: {
@@ -47,6 +48,8 @@ export default function Select({
         className="relative z-10 w-full h-full px-3 py-4 text-gray-400 bg-transparent border-none outline-none pt-9"
         type="search"
         placeholder={placeholder}
+        value={search}
+        onChange={e => setSearch(e.target.value)}
       />
       <AnimatePresence>
         {isFocused && (
@@ -57,28 +60,30 @@ export default function Select({
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.1 }}
           >
-            {options.map(option => (
-              <motion.li
-                key={option.id}
-                className="flex items-center justify-between w-full px-4 py-2 text-sm font-semibold cursor-pointer"
-                initial={{ backgroundColor: "#222" }}
-                animate={{ backgroundColor: "#222" }}
-                whileHover={{ backgroundColor: "#333" }}
-                transition={{ duration: 0.1 }}
-                tabIndex={0}
-                role="checkbox"
-                aria-checked={selected.includes(option.id)}
-                onClick={() => handleSelect(option)}
-              >
-                {option.name}
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                  checked={selected.includes(option.id)}
-                  readOnly
-                />
-              </motion.li>
-            ))}
+            {options.map(option =>
+              option.name.includes(search) ? (
+                <motion.li
+                  key={option.id}
+                  className="flex items-center justify-between w-full px-4 py-2 text-sm font-semibold cursor-pointer"
+                  initial={{ backgroundColor: "#222" }}
+                  animate={{ backgroundColor: "#222" }}
+                  whileHover={{ backgroundColor: "#333" }}
+                  transition={{ duration: 0.1 }}
+                  tabIndex={0}
+                  role="checkbox"
+                  aria-checked={selected.includes(option.id)}
+                  onClick={() => handleSelect(option)}
+                >
+                  {option.name}
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    checked={selected.includes(option.id)}
+                    readOnly
+                  />
+                </motion.li>
+              ) : null
+            )}
           </motion.ul>
         )}
       </AnimatePresence>
