@@ -3,4 +3,5 @@ export type Product = {
   reference: string;
   description: string;
   categories: string[];
+  brand: string;
 };
