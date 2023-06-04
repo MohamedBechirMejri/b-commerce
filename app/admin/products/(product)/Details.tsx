@@ -14,35 +14,6 @@ export default function Details({
 }) {
   const { categories, addCategory } = useCategories();
 
-  // an array of objects with the properties for each input field
-  const fields = [
-    { id: "name", label: "Name", type: "text" },
-    { id: "reference", label: "Reference", type: "text" },
-    { id: "description", label: "Description", type: "textarea", rows: 4 },
-    {
-      id: "categories",
-      label: "Categories",
-      type: "select",
-      multiple: true,
-      options: [
-        { value: "1", text: "Category 1" },
-        { value: "2", text: "Category 2" },
-        { value: "3", text: "Category 3" },
-      ],
-    },
-    {
-      id: "brand",
-      label: "Brand",
-      type: "select",
-      options: [
-        { value: "1", text: "Brand 1" },
-        { value: "2", text: "Brand 2" },
-        { value: "3", text: "Brand 3" },
-      ],
-    },
-    { id: "published", label: "Published", type: "checkbox" },
-  ];
-
   return (
     <div className="flex flex-col w-full min-h-full gap-4 p-8 mx-auto border rounded-md border-zinc-800 max-w-7xl">
       <h2 className="-mb-2 font-semibold text-slate-400">Details</h2>
@@ -79,11 +50,11 @@ export default function Details({
       <div className="grid grid-cols-2 gap-4">
         <Textarea
           type={"text"}
-          label={"Name"}
-          placeholder={"Jacket, Sunglasses..."}
-          value={product.name}
+          label={"Description"}
+          placeholder={"Short description of the product..."}
+          value={product.description}
           onChange={(e: { target: { value: any } }) =>
-            setProduct({ ...product, name: e.target.value })
+            setProduct({ ...product, description: e.target.value })
           }
           rows={10}
           required
@@ -96,26 +67,6 @@ export default function Details({
             setSelected={categories => setProduct({ ...product, categories })}
             placeholder={"Search or Create a Category..."}
             onCreate={addCategory}
-          />
-          <Input
-            type={"text"}
-            label={"Reference"}
-            placeholder={"Jacket-001, Sunglasses-001..."}
-            value={product.reference}
-            onChange={(e: { target: { value: any } }) =>
-              setProduct({ ...product, reference: e.target.value })
-            }
-            required
-          />
-          <Input
-            type={"text"}
-            label={"Reference"}
-            placeholder={"Jacket-001, Sunglasses-001..."}
-            value={product.reference}
-            onChange={(e: { target: { value: any } }) =>
-              setProduct({ ...product, reference: e.target.value })
-            }
-            required
           />
         </div>
       </div>
