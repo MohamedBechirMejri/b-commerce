@@ -1,9 +1,7 @@
 import type { Product } from "~/types/Product";
 
-import Input from "../../(ui)/Input";
-import Textarea from "../../(ui)/Textarea";
-import Select from "../../(ui)/Select";
 import useCategories from "~/lib/hooks/useCategories";
+import { Input, Textarea, Select, SelectMultiple } from "../../(ui)/index";
 
 export default function Details({
   product,
@@ -60,7 +58,7 @@ export default function Details({
           required
         />
         <div className="grid grid-rows-3 gap-8">
-          <Select
+          <SelectMultiple
             label={"Categories"}
             options={categories}
             selected={product.categories}
