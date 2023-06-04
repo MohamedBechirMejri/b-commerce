@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import {
+  TbListCheck,
   TbSquareRounded,
   TbSquareRoundedCheckFilled,
   TbSquareRoundedXFilled,
@@ -49,7 +50,7 @@ export default function SelectMultiple({
       onFocus={() => setIsFocused(true)}
       onBlur={handleBlur}
     >
-      <motion.div className="flex flex-wrap items-center w-full gap-2 p-3 pb-1">
+      <motion.div className="relative flex flex-wrap items-center w-full gap-2 p-3 pb-1">
         <label className="text-xs font-bold">{label}:</label>
         {selected.map(id => (
           <motion.div
@@ -74,6 +75,9 @@ export default function SelectMultiple({
           </motion.div>
         ))}
         <div className="w-0 py-4 opacity-0" />
+        <i className="absolute right-5 top-5">
+          <TbListCheck />
+        </i>
       </motion.div>
 
       <motion.input
