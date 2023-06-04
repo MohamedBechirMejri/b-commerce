@@ -1,6 +1,7 @@
 import type { Product } from "~/types/Product";
 
 import useCategories from "~/lib/hooks/useCategories";
+import useBrands from "~/lib/hooks/useBrands";
 import { Input, Textarea, Select, SelectMultiple } from "../../(ui)/index";
 
 export default function Details({
@@ -11,6 +12,7 @@ export default function Details({
   setProduct: React.Dispatch<React.SetStateAction<Product>>;
 }) {
   const { categories, addCategory } = useCategories();
+  const { brands, addBrand } = useBrands();
 
   return (
     <div className="flex flex-col w-full min-h-full gap-4 p-8 mx-auto border rounded-md border-zinc-800 max-w-7xl">
@@ -65,6 +67,14 @@ export default function Details({
             setSelected={categories => setProduct({ ...product, categories })}
             placeholder={"Search or Create a Category..."}
             onCreate={addCategory}
+          />
+          <Select
+            label={"Brand"}
+            options={brands}
+            selected={product.brand}
+            setSelected={brand => setProduct({ ...product, brand })}
+            placeholder={"Select Brand"}
+            onCreate={addBrand}
           />
         </div>
       </div>
