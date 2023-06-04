@@ -40,7 +40,7 @@ export default function Select({
 
   return (
     <motion.div
-      className="relative max-w-xl rounded-md shadow-sm grid grid-rows-[1fr,1.25fr]"
+      className="relative grid max-w-xl grid-rows-2 rounded-md shadow-sm"
       initial={{ border: "1px solid #303030" }}
       animate={{
         border: isFocused ? "1px solid #6d28d9" : "1px solid #303030",
