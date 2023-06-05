@@ -8,6 +8,7 @@ import {
   Select,
   SelectMultiple,
   Tags,
+  Toggle,
 } from "../../(ui)/index";
 
 export default function Details({
@@ -54,7 +55,7 @@ export default function Details({
         the recommended length for search engines.
       </p>
       <div className="grid grid-cols-2 grid-rows-1 gap-4">
-        <div className="">
+        <div className="flex flex-col gap-6">
           <Textarea
             type={"text"}
             label={"Description"}
@@ -66,8 +67,15 @@ export default function Details({
             rows={10}
             required
           />
+          <Toggle
+            label={"Publish"}
+            isToggled={product.isPublished}
+            setIsToggled={(isPublished: boolean) =>
+              setProduct({ ...product, isPublished })
+            }
+          />
         </div>
-        <div className="grid grid-rows-[repeat(3,auto)] gap-8">
+        <div className="grid grid-rows-[repeat(3,auto)] gap-8 h-max">
           <SelectMultiple
             label={"Categories"}
             options={categories}

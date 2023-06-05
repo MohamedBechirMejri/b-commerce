@@ -5,4 +5,5 @@ export type Product = {
   categories: string[];
   brand: string;
   tags: string;
+  isPublished: boolean;
 };
