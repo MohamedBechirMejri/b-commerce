@@ -53,18 +53,20 @@ export default function Details({
         Give your product a short and clear description. 120-160 characters is
         the recommended length for search engines.
       </p>
-      <div className="grid grid-cols-2 gap-4">
-        <Textarea
-          type={"text"}
-          label={"Description"}
-          placeholder={"Short description of the product..."}
-          value={product.description}
-          onChange={(e: { target: { value: any } }) =>
-            setProduct({ ...product, description: e.target.value })
-          }
-          rows={10}
-          required
-        />
+      <div className="grid grid-cols-2 grid-rows-1 gap-4">
+        <div className="">
+          <Textarea
+            type={"text"}
+            label={"Description"}
+            placeholder={"Short description of the product..."}
+            value={product.description}
+            onChange={(e: { target: { value: any } }) =>
+              setProduct({ ...product, description: e.target.value })
+            }
+            rows={10}
+            required
+          />
+        </div>
         <div className="grid grid-rows-[repeat(3,auto)] gap-8">
           <SelectMultiple
             label={"Categories"}
