@@ -4,4 +4,5 @@ export type Product = {
   description: string;
   categories: string[];
   brand: string;
+  tags: string;
 };

@@ -2,7 +2,13 @@ import type { Product } from "~/types/Product";
 
 import useCategories from "~/lib/hooks/useCategories";
 import useBrands from "~/lib/hooks/useBrands";
-import { Input, Textarea, Select, SelectMultiple } from "../../(ui)/index";
+import {
+  Input,
+  Textarea,
+  Select,
+  SelectMultiple,
+  Tags,
+} from "../../(ui)/index";
 
 export default function Details({
   product,
@@ -59,7 +65,7 @@ export default function Details({
           rows={10}
           required
         />
-        <div className="grid grid-rows-3 gap-8">
+        <div className="grid grid-rows-[repeat(3,auto)] gap-8">
           <SelectMultiple
             label={"Categories"}
             options={categories}
@@ -75,6 +81,12 @@ export default function Details({
             setSelected={brand => setProduct({ ...product, brand })}
             placeholder={"Select Brand"}
             onCreate={addBrand}
+          />
+          <Tags
+            label={"Tags"}
+            tags={product.tags}
+            setTags={tags => setProduct(product => ({ ...product, tags }))}
+            placeholder={"Comma separated tags..."}
           />
         </div>
       </div>
