@@ -50,14 +50,6 @@ model Author {
   products  Product[]
 }
 
-model Tag {
-  id        String    @id @default(cuid())
-  name      String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  products  Product[]
-}
-
 model Product {
   id          String   @id @default(cuid())
   name        String
@@ -71,7 +63,6 @@ model Product {
   author      Author     @relation(fields: [authorId], references: [id])
   isPublished Boolean    @default(false)
   images      Image[]
-  tags        Tag[]
 
   // pricing
   price     Float
