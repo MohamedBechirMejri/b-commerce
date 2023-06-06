@@ -30,20 +30,17 @@ export default function Nav({
           onClick={() => switchTab(tab)}
         >
           <motion.button
-            initial={{ opacity: 0, y: 10, backgroundColor: "#6d28d922" }}
+            initial={{ backgroundColor: "#222" }}
             animate={{
-              opacity: 1,
-              y: 0,
-              backgroundColor: currentTab === tab ? "#6d28d9" : "#6d28d922",
-              color: currentTab === tab ? "#fff" : "#6d28d9",
+              backgroundColor: currentTab === tab ? "#6d28d9aa" : "#222",
+              color: currentTab === tab ? "#fff" : "#aaa",
             }}
             whileHover={{
-              backgroundColor: currentTab === tab ? "#6d28d9" : "#6d28d933",
+              backgroundColor: currentTab === tab ? "#6d28d9aa" : "#333",
             }}
             whileTap={{
-              backgroundColor: currentTab === tab ? "#6d28d9" : "#6d28d944",
+              backgroundColor: currentTab === tab ? "#6d28d9aa" : "#444",
             }}
-            transition={{ duration: 0.2 }}
             className="p-3 text-sm font-semibold tracking-wide uppercase rounded-md"
           >
             {tab}
