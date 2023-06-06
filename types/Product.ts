@@ -6,4 +6,7 @@ export type Product = {
   brand: string;
   tags: string;
   isPublished: boolean;
+  price: number;
+  onSale: boolean;
+  salePrice?: number;
 };
