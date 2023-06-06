@@ -25,6 +25,7 @@ export default function Pricing({
             setProduct({ ...product, price: e.target.value })
           }
           required
+          min={0}
         />
         {product.onSale && (
           <Input
@@ -36,6 +37,7 @@ export default function Pricing({
               setProduct({ ...product, salePrice: e.target.value })
             }
             required
+            min={0}
           />
         )}
       </div>
