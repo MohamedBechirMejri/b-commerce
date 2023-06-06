@@ -9,4 +9,8 @@ export type Product = {
   price: number;
   onSale: boolean;
   salePrice?: number;
+  stock: number;
+  restockAlert: number;
+  minBuy: number;
+  maxBuy: number;
 };

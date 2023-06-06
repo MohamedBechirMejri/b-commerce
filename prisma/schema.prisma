@@ -71,8 +71,7 @@ model Product {
 
   // inventory
   stock        Int
-  limitedStock Boolean @default(false)
-  soldout      Boolean @default(false)
+  restockAlert Int?
   minBuy       Int
   maxBuy       Int
 
