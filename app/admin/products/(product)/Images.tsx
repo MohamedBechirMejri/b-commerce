@@ -1,6 +1,6 @@
 import type { Product } from "~/types/Product";
 
-import { ImageInput } from "../../(ui)/index";
+import { ImageInput } from "../../_ui/index";
 import { useEffect, useState } from "react";
 
 export default function Images({
