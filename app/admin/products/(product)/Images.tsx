@@ -1,37 +1,36 @@
-import { useState } from "react";
+import type { Product } from "~/types/Product";
 
-export default function Images() {
-  const [images, setImages] = useState<File[]>([]);
-  const [previewImages, setPreviewImages] = useState<string[]>([
-    "https://picsum.photos/seed/1/300",
-    "https://picsum.photos/seed/2/300",
-    "https://picsum.photos/seed/3/300",
-    "https://picsum.photos/seed/4/300",
-    "https://picsum.photos/seed/5/300",
-  ]);
+import { ImageInput } from "../../(ui)/index";
+import { useEffect, useState } from "react";
+
+export default function Images({
+  product,
+  setProduct,
+}: {
+  product: Product;
+  setProduct: React.Dispatch<React.SetStateAction<Product>>;
+}) {
+  useEffect(() => {
+    console.log(product.images);
+  }, [product.images]);
 
   return (
-    <div className="grid grid-cols-2 auto-rows-min">
-      <div className="flex p-4 flex-col">
-        <label className="text-sm font-semibold text-gray-600" htmlFor="images">
-          Images
-        </label>
-        <input
-          type="file"
-          className="border border-gray-300 rounded-md px-4 py-2 mt-2"
-          id="images"
-          multiple
+    <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col gap-4 rounded-md border border-zinc-800 p-8">
+      <h2 className="-mb-2 font-semibold text-slate-400">Images</h2>
+      <p className="max-w-sm text-xs leading-4 text-zinc-500">
+        Add up to 10 images to your product
+      </p>
+      <div className="grid grid-cols-1 gap-4">
+        <ImageInput
+          setImages={(images: string[]) => {
+            setProduct({ ...product, images });
+          }}
         />
-      </div>
 
-      <div className="flex p-4 flex-col">
-        <label className="text-sm font-semibold text-gray-600" htmlFor="images">
-          Previews
-        </label>
-        <div className="flex flex-wrap mt-2">
-          {previewImages.map(image => (
-            <div className="w-1/3 p-2">
-              <img src={image} alt="" className="w-full h-full object-cover" />
+        <div className="mt-2 flex flex-wrap rounded-md border border-zinc-800 p-8">
+          {product.images?.map(image => (
+            <div key={image} className="w-1/3 p-2">
+              <img src={image} alt="" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>

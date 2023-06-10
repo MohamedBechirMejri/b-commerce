@@ -13,4 +13,5 @@ export type Product = {
   restockAlert: number;
   minBuy: number;
   maxBuy: number;
+  images: string[];
 };
