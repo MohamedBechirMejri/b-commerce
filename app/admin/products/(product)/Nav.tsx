@@ -23,7 +23,7 @@ export default function Nav({
 }) {
   return (
     <nav className="flex h-12 w-full justify-center gap-4 overflow-x-scroll">
-      {tabs.map((tab) => (
+      {tabs.map(tab => (
         <div
           key={tab}
           className="flex items-center justify-center"

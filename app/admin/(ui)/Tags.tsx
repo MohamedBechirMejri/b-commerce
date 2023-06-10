@@ -68,8 +68,8 @@ export default function Tags({
           type="search"
           placeholder={placeholder}
           value={tag}
-          onChange={(e) => setTag(e.target.value)}
-          onKeyDown={(e) => {
+          onChange={e => setTag(e.target.value)}
+          onKeyDown={e => {
             if (e.key === "Enter" || e.key === ",") {
               if (tag === "" || tag.includes(",")) return;
               e.preventDefault();

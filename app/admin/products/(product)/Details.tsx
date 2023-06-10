@@ -80,7 +80,7 @@ export default function Details({
             label={"Categories"}
             options={categories}
             selected={product.categories}
-            setSelected={(categories) => setProduct({ ...product, categories })}
+            setSelected={categories => setProduct({ ...product, categories })}
             placeholder={"Search or Create a Category..."}
             onCreate={addCategory}
           />
@@ -88,14 +88,14 @@ export default function Details({
             label={"Brand"}
             options={brands}
             selected={product.brand}
-            setSelected={(brand) => setProduct({ ...product, brand })}
+            setSelected={brand => setProduct({ ...product, brand })}
             placeholder={"Select Brand"}
             onCreate={addBrand}
           />
           <Tags
             label={"Tags"}
             tags={product.tags}
-            setTags={(tags) => setProduct((product) => ({ ...product, tags }))}
+            setTags={tags => setProduct(product => ({ ...product, tags }))}
             placeholder={"Comma separated tags..."}
           />
         </div>

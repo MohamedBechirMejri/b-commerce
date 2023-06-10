@@ -45,11 +45,9 @@ export default function Select({
       <motion.input
         className="relative z-10 h-full w-full border-none bg-transparent px-3 text-gray-400 outline-none"
         type="search"
-        placeholder={
-          options.find((x) => x.id === selected)?.name || placeholder
-        }
+        placeholder={options.find(x => x.id === selected)?.name || placeholder}
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={e => setSearch(e.target.value)}
       />
       <AnimatePresence>
         {isFocused && (
@@ -60,7 +58,7 @@ export default function Select({
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {options.map((option) =>
+            {options.map(option =>
               option.name.includes(search) ? (
                 <motion.li
                   key={option.id}
@@ -75,7 +73,7 @@ export default function Select({
                 </motion.li>
               ) : null
             )}
-            {search && !options.map((o) => o.name).includes(search) && (
+            {search && !options.map(o => o.name).includes(search) && (
               <button
                 className="flex w-full items-center justify-center p-2"
                 onClick={() => {

@@ -35,7 +35,7 @@ export default function SelectMultiple({
 
   const handleSelect = (option: { id: string; name: string }) => {
     if (selected.includes(option.id))
-      setSelected(selected.filter((id) => id !== option.id));
+      setSelected(selected.filter(id => id !== option.id));
     else setSelected([...selected, option.id]);
   };
 
@@ -52,7 +52,7 @@ export default function SelectMultiple({
     >
       <motion.div className="relative flex w-full flex-wrap items-center gap-2 p-3 pb-1">
         <label className="text-xs font-bold">{label}:</label>
-        {selected.map((id) => (
+        {selected.map(id => (
           <motion.div
             key={id}
             initial={{
@@ -67,10 +67,10 @@ export default function SelectMultiple({
             transition={{ duration: 0.2 }}
             className="flex w-max cursor-pointer items-center gap-1 rounded-md p-1 px-2 text-sm font-semibold"
             onClick={() =>
-              setSelected(selected.filter((option) => option !== id))
+              setSelected(selected.filter(option => option !== id))
             }
           >
-            {options.find((option) => option.id === id)?.name}
+            {options.find(option => option.id === id)?.name}
             <TbSquareRoundedXFilled />
           </motion.div>
         ))}
@@ -85,7 +85,7 @@ export default function SelectMultiple({
         type="search"
         placeholder={placeholder}
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={e => setSearch(e.target.value)}
       />
       <AnimatePresence>
         {isFocused && (
@@ -96,7 +96,7 @@ export default function SelectMultiple({
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.1 }}
           >
-            {options.map((option) =>
+            {options.map(option =>
               option.name.includes(search) ? (
                 <motion.li
                   key={option.id}
@@ -122,7 +122,7 @@ export default function SelectMultiple({
                 </motion.li>
               ) : null
             )}
-            {search && !options.map((o) => o.name).includes(search) && (
+            {search && !options.map(o => o.name).includes(search) && (
               <button
                 className="flex w-full items-center justify-center p-2"
                 onClick={() => {

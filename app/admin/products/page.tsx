@@ -30,7 +30,7 @@ export default async function () {
             </tr>
           </thead>
           <tbody className="bg-gray-900">
-            {products.map((product) => (
+            {products.map(product => (
               <ProductLink key={"product" + product.id} product={product} />
             ))}
           </tbody>
