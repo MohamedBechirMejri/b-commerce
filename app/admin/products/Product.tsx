@@ -40,7 +40,7 @@ export default function () {
   const Tab = tabComponents[currentTab];
 
   return (
-    <div className="h-full grid grid-rows-[auto,1fr]">
+    <div className="grid h-full grid-rows-[auto,1fr]">
       <Nav currentTab={currentTab} switchTab={switchTab} />
       {/* Use the object to render the component for the current tab */}
       <div className="p-4">

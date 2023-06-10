@@ -45,7 +45,7 @@ export default function Nav() {
         </Link>
 
         <div className="flex flex-col rounded-br-3xl rounded-tr-3xl border-b border-t border-[#222] py-6">
-          {links.map(link => (
+          {links.map((link) => (
             <Link
               href={link.href}
               className={

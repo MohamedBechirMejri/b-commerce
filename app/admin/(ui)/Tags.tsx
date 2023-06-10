@@ -27,7 +27,7 @@ export default function Tags({
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
-      <motion.div className="flex flex-wrap items-center justify-between w-full gap-2 p-3 pb-0 pr-4">
+      <motion.div className="flex w-full flex-wrap items-center justify-between gap-2 p-3 pb-0 pr-4">
         <label className="text-xs font-bold">{label}</label>
         <TbTags />
       </motion.div>
@@ -38,7 +38,7 @@ export default function Tags({
             tag ? (
               <motion.div
                 key={"tag#" + i}
-                className="flex items-center justify-center h-8 px-3 text-xs text-white rounded-md cursor-pointer bg-violet-900 w-max"
+                className="flex h-8 w-max cursor-pointer items-center justify-center rounded-md bg-violet-900 px-3 text-xs text-white"
                 initial={{
                   opacity: 0,
                   backgroundColor: "#6d28d999",
@@ -64,12 +64,12 @@ export default function Tags({
         </AnimatePresence>
 
         <motion.input
-          className="relative z-10 w-full h-8 max-w-full px-3 text-gray-400 bg-transparent border-none outline-none"
+          className="relative z-10 h-8 w-full max-w-full border-none bg-transparent px-3 text-gray-400 outline-none"
           type="search"
           placeholder={placeholder}
           value={tag}
-          onChange={e => setTag(e.target.value)}
-          onKeyDown={e => {
+          onChange={(e) => setTag(e.target.value)}
+          onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === ",") {
               if (tag === "" || tag.includes(",")) return;
               e.preventDefault();

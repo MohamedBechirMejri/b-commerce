@@ -10,14 +10,14 @@ export default function Toggle({
   setIsToggled: (isToggled: boolean) => void;
 }) {
   return (
-    <motion.div className="flex items-center justify-between max-w-xl p-3 py-4 overflow-hidden rounded-md shadow-sm">
-      <label className="text-xs font-bold top-4 left-3">{label}</label>
+    <motion.div className="flex max-w-xl items-center justify-between overflow-hidden rounded-md p-3 py-4 shadow-sm">
+      <label className="left-3 top-4 text-xs font-bold">{label}</label>
       <motion.button
-        className="p-5 px-9 rounded-full bg-[#303030] relative"
+        className="relative rounded-full bg-[#303030] p-5 px-9"
         onClick={() => setIsToggled(!isToggled)}
       >
         <motion.div
-          className="absolute p-4 rounded-full left-1 top-1/2"
+          className="absolute left-1 top-1/2 rounded-full p-4"
           initial={{
             y: "-50%",
             x: isToggled ? "100%" : "0%",

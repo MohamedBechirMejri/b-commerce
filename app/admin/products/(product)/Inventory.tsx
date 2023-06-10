@@ -28,7 +28,7 @@ export default function Inventory({
   const { brands, addBrand } = useBrands();
 
   return (
-    <div className="flex flex-col w-full min-h-full gap-4 p-8 mx-auto border rounded-md border-zinc-800 max-w-7xl">
+    <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col gap-4 rounded-md border border-zinc-800 p-8">
       <h2 className="-mb-2 font-semibold text-slate-400">Inventory</h2>
       <p className="max-w-sm text-xs leading-4 text-zinc-500">
         To start selling, all you need is a name, price, and image
@@ -74,7 +74,7 @@ export default function Inventory({
             min={1}
           />
         </div>
-        <div className="grid grid-rows-[repeat(3,auto)] gap-8 h-max">
+        <div className="grid h-max grid-rows-[repeat(3,auto)] gap-8">
           <Input
             type={"number"}
             label={"Maximum amount"}

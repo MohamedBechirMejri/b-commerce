@@ -13,10 +13,10 @@ export default function Textarea({ label = "", ...props }) {
       }}
       transition={{ duration: 0.1 }}
     >
-      <label className="absolute text-xs font-bold top-4 left-3">{label}</label>
+      <label className="absolute left-3 top-4 text-xs font-bold">{label}</label>
 
       <motion.textarea
-        className="relative z-10 w-full h-full px-3 py-4 text-gray-400 bg-transparent border-none outline-none resize-none pt-9"
+        className="relative z-10 h-full w-full resize-none border-none bg-transparent px-3 py-4 pt-9 text-gray-400 outline-none"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         {...props}

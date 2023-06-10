@@ -22,8 +22,8 @@ export default function Nav({
   switchTab: (tab: string) => void;
 }) {
   return (
-    <nav className="flex justify-center w-full h-12 gap-4 overflow-x-scroll">
-      {tabs.map(tab => (
+    <nav className="flex h-12 w-full justify-center gap-4 overflow-x-scroll">
+      {tabs.map((tab) => (
         <div
           key={tab}
           className="flex items-center justify-center"
@@ -41,7 +41,7 @@ export default function Nav({
             whileTap={{
               backgroundColor: currentTab === tab ? "#6d28d9aa" : "#444",
             }}
-            className="p-3 text-sm font-semibold tracking-wide uppercase rounded-md"
+            className="rounded-md p-3 text-sm font-semibold uppercase tracking-wide"
           >
             {tab}
           </motion.button>

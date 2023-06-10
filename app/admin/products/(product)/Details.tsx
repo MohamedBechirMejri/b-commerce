@@ -22,7 +22,7 @@ export default function Details({
   const { brands, addBrand } = useBrands();
 
   return (
-    <div className="flex flex-col w-full min-h-full gap-4 p-8 mx-auto border rounded-md border-zinc-800 max-w-7xl">
+    <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col gap-4 rounded-md border border-zinc-800 p-8">
       <h2 className="-mb-2 font-semibold text-slate-400">Details</h2>
       <p className="max-w-sm text-xs leading-4 text-zinc-500">
         Give your product a short and clear name. 50-60 characters is the
@@ -75,12 +75,12 @@ export default function Details({
             }
           />
         </div>
-        <div className="grid grid-rows-[repeat(3,auto)] gap-8 h-max">
+        <div className="grid h-max grid-rows-[repeat(3,auto)] gap-8">
           <SelectMultiple
             label={"Categories"}
             options={categories}
             selected={product.categories}
-            setSelected={categories => setProduct({ ...product, categories })}
+            setSelected={(categories) => setProduct({ ...product, categories })}
             placeholder={"Search or Create a Category..."}
             onCreate={addCategory}
           />
@@ -88,14 +88,14 @@ export default function Details({
             label={"Brand"}
             options={brands}
             selected={product.brand}
-            setSelected={brand => setProduct({ ...product, brand })}
+            setSelected={(brand) => setProduct({ ...product, brand })}
             placeholder={"Select Brand"}
             onCreate={addBrand}
           />
           <Tags
             label={"Tags"}
             tags={product.tags}
-            setTags={tags => setProduct(product => ({ ...product, tags }))}
+            setTags={(tags) => setProduct((product) => ({ ...product, tags }))}
             placeholder={"Comma separated tags..."}
           />
         </div>

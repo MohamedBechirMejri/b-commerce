@@ -15,7 +15,7 @@ export default function ProductLink({
   return (
     <tr
       key={product.id}
-      className="text-sm text-gray-500 border-b border-gray-600"
+      className="border-b border-gray-600 text-sm text-gray-500"
     >
       <td className="px-4 py-3">{product.name}</td>
       <td className="px-4 py-3">{product.description}</td>
