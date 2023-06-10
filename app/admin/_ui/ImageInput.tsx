@@ -1,31 +1,24 @@
 import { motion } from "framer-motion";
 
+import { useUploadThing } from "~/lib/hooks/useUploadThing";
+
 export default function ImageInput({
   setImages,
   ...props
 }: {
   setImages: (images: string[]) => void;
 }) {
-  const handleDrop = (e: React.DragEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const files = e.dataTransfer.files;
-
-    if (files.length > 0) {
-      const images = Array.from(files).map(file => URL.createObjectURL(file));
-      setImages(images);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-
-    if (files) {
-      const images = Array.from(files).map(file => URL.createObjectURL(file));
-      setImages(images);
-    }
-  };
+  const { startUpload } = useUploadThing({
+    endpoint: "imageUploader",
+    onClientUploadComplete: res => {
+      console.log(res);
+      if (res) setImages(res?.map(r => r.fileUrl));
+    },
+    onUploadError: err => {
+      console.log(err);
+      alert("error occurred while uploading");
+    },
+  });
 
   return (
     <motion.div
@@ -46,8 +39,14 @@ export default function ImageInput({
         type="file"
         accept="image/*"
         multiple
-        onDrop={handleDrop}
-        onChange={handleChange}
+        onChange={e => {
+          const files = e.target.files;
+          if (!files) return;
+
+          const fileArray = Array.from(files);
+
+          startUpload(fileArray);
+        }}
         {...props}
       />
     </motion.div>
