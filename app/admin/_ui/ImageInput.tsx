@@ -3,16 +3,18 @@ import { motion } from "framer-motion";
 import { useUploadThing } from "~/lib/hooks/useUploadThing";
 
 export default function ImageInput({
+  images,
   setImages,
   ...props
 }: {
+  images: string[];
   setImages: (images: string[]) => void;
 }) {
   const { startUpload } = useUploadThing({
     endpoint: "imageUploader",
     onClientUploadComplete: res => {
       console.log(res);
-      if (res) setImages(res?.map(r => r.fileUrl));
+      if (res) setImages([...images, ...res?.map(r => r.fileUrl)]);
     },
     onUploadError: err => {
       console.log(err);

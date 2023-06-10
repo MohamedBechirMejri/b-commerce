@@ -22,6 +22,7 @@ export default function Images({
       </p>
       <div className="grid grid-cols-1 gap-4">
         <ImageInput
+          images={product.images}
           setImages={(images: string[]) => {
             setProduct({ ...product, images });
           }}
