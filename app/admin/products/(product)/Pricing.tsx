@@ -1,6 +1,6 @@
 import type { Product } from "~/types/Product";
 
-import { Input, Toggle } from "../../(ui)/index";
+import { Input, Toggle } from "../../_ui/index";
 
 export default function Pricing({
   product,

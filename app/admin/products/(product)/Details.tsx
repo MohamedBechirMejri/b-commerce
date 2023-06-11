@@ -9,7 +9,7 @@ import {
   SelectMultiple,
   Tags,
   Toggle,
-} from "../../(ui)/index";
+} from "../../_ui/index";
 
 export default function Details({
   product,

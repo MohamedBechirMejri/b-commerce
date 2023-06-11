@@ -1,7 +1,8 @@
 import type { Product } from "~/types/Product";
 
-import { ImageInput } from "../../(ui)/index";
+import { ImageInput } from "../../_ui/index";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Images({
   product,
@@ -20,20 +21,24 @@ export default function Images({
       <p className="max-w-sm text-xs leading-4 text-zinc-500">
         Add up to 10 images to your product
       </p>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-4 gap-4 mt-2 rounded-md border border-zinc-800 p-8">
+        {product.images?.map(image => (
+          <div key={image} className="">
+            <Image
+              src={image}
+              alt=""
+              className="h-full w-full object-cover rounded-md"
+              width={100}
+              height={100}
+            />
+          </div>
+        ))}
         <ImageInput
+          images={product.images}
           setImages={(images: string[]) => {
             setProduct({ ...product, images });
           }}
         />
-
-        <div className="mt-2 flex flex-wrap rounded-md border border-zinc-800 p-8">
-          {product.images?.map(image => (
-            <div key={image} className="w-1/3 p-2">
-              <img src={image} alt="" className="h-full w-full object-cover" />
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
