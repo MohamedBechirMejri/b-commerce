@@ -14,7 +14,7 @@ export default function ImageInput({
     endpoint: "imageUploader",
     onClientUploadComplete: res => {
       console.log(res);
-      if (res) setImages([...images, ...res?.map(r => r.fileUrl)]);
+      if (res) setImages([...(images || []), ...res?.map(r => r.fileUrl)]);
     },
     onUploadError: err => {
       console.log(err);
