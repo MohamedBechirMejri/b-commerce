@@ -5,39 +5,22 @@ export default function useBrands() {
   const [brands, setBrands] = useState([]) as any[];
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      setBrands([
-        { id: "1", name: "sdcsdc" },
-        { id: "2", name: "helllo" },
-        { id: "3", name: "test" },
-        { id: "4", name: "boooo" },
-        { id: "5", name: "magic" },
-      ]);
-
-      return;
-
+    const fetchBrands = async () => {
       try {
         const { data } = await axios.get("/api/brands");
-        setBrands(data);
+        setBrands(data.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchCategories();
+    fetchBrands();
   }, []);
 
-  const addBrand = async (brand: SetStateAction<string>) => {
-    setBrands((c: any) => [
-      ...c,
-      { id: (c.length + 1).toString(), name: brand },
-    ]);
-
-    return;
-
+  const addBrand = async (brand: string) => {
     try {
       const { data } = await axios.post("/api/brands", { brand });
-      setBrands([...brands, data]);
+      setBrands([...brands, data.data]);
     } catch (error) {
       console.error(error);
     }

@@ -59,7 +59,7 @@ export default function Select({
             transition={{ duration: 0.2 }}
           >
             {options.map(option =>
-              option.name.includes(search) ? (
+              option.name && option.name.includes(search) ? (
                 <motion.li
                   key={option.id}
                   className="relative flex w-full cursor-pointer items-center justify-between px-4 py-2 text-sm font-semibold"
