@@ -5,13 +5,13 @@ const tabs = [
   "pricing",
   "images",
   // "variants",
-  "inventory",
-  "shipping",
-  "seo",
-  "related",
-  "collections",
-  "reviews",
-  "activity",
+  // "inventory",
+  // "shipping",
+  // "seo",
+  // "related",
+  // "collections",
+  // "reviews",
+  // "activity",
 ];
 
 export default function Nav({
