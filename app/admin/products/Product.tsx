@@ -1,6 +1,11 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
+import { IoArrowBackOutline } from "react-icons/io5";
 
 import Nav from "./(product)/Nav";
 import useTabSwitcher from "~/lib/hooks/useTabSwitcher";
@@ -39,8 +44,29 @@ export default function () {
   // @ts-ignore
   const Tab = tabComponents[currentTab];
 
+  const router = useRouter();
+
   return (
-    <div className="grid h-full grid-rows-[auto,1fr]">
+    <div className="grid h-full grid-rows-[auto,auto,1fr]">
+      <div className="flex items-center justify-between px-8 py-6">
+        <Link
+          href="/admin/products"
+          className="flex items-center justify-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800"
+        >
+          <IoArrowBackOutline />
+          <span>Back</span>
+        </Link>
+        <h1 className="text-2xl font-bold">New Product</h1>
+        <button
+          className="flex items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-gray-300"
+          onClick={async () => {
+            const id = (await submitProduct(product))
+            router.push(`/admin/products/${id}`);
+          }}
+        >
+          <span>Add</span>
+        </button>
+      </div>
       <Nav currentTab={currentTab} switchTab={switchTab} />
       {/* Use the object to render the component for the current tab */}
       <div className="p-4">
@@ -49,3 +75,10 @@ export default function () {
     </div>
   );
 }
+
+const submitProduct = async (product: any) => {
+  const res = await axios.post("/api/products", product);
+  console.log(res);
+
+  return res.data.data.id
+};

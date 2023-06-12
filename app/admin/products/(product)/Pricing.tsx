@@ -22,7 +22,7 @@ export default function Pricing({
           placeholder={"0.00"}
           value={product.price}
           onChange={(e: { target: { value: number } }) =>
-            setProduct({ ...product, price: e.target.value })
+            setProduct({ ...product, price: +e.target.value })
           }
           required
           min={0}
@@ -34,7 +34,7 @@ export default function Pricing({
             placeholder={"0.00"}
             value={product.salePrice}
             onChange={(e: { target: { value: number } }) =>
-              setProduct({ ...product, salePrice: e.target.value })
+              setProduct({ ...product, salePrice: +e.target.value })
             }
             required
             min={0}

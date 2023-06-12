@@ -6,16 +6,7 @@
 
 import type { Product } from "~/types/Product";
 
-import useCategories from "~/lib/hooks/useCategories";
-import useBrands from "~/lib/hooks/useBrands";
-import {
-  Input,
-  Textarea,
-  Select,
-  SelectMultiple,
-  Tags,
-  Toggle,
-} from "../../_ui/index";
+import { Input } from "../../_ui/index";
 
 export default function Inventory({
   product,
@@ -24,9 +15,6 @@ export default function Inventory({
   product: Product;
   setProduct: React.Dispatch<React.SetStateAction<Product>>;
 }) {
-  const { categories, addCategory } = useCategories();
-  const { brands, addBrand } = useBrands();
-
   return (
     <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col gap-4 rounded-md border border-zinc-800 p-8">
       <h2 className="-mb-2 font-semibold text-slate-400">Inventory</h2>
@@ -40,7 +28,7 @@ export default function Inventory({
           placeholder={"0"}
           value={product.stock}
           onChange={(e: { target: { value: number } }) =>
-            setProduct({ ...product, stock: e.target.value })
+            setProduct({ ...product, stock: +e.target.value })
           }
           required
           min={0}
@@ -68,7 +56,7 @@ export default function Inventory({
             placeholder={"1"}
             value={product.minBuy}
             onChange={(e: { target: { value: number } }) =>
-              setProduct({ ...product, minBuy: e.target.value })
+              setProduct({ ...product, minBuy: +e.target.value })
             }
             required
             min={1}
@@ -81,7 +69,7 @@ export default function Inventory({
             placeholder={"1"}
             value={product.maxBuy}
             onChange={(e: { target: { value: number } }) =>
-              setProduct({ ...product, maxBuy: e.target.value })
+              setProduct({ ...product, maxBuy: +e.target.value })
             }
             required
             min={1}
