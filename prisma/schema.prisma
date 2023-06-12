@@ -60,9 +60,10 @@ model Product {
 
   brand       Brand?     @relation(fields: [brandId], references: [id])
   categories  Category[]
-  author      Author     @relation(fields: [authorId], references: [id])
+  author      Author?    @relation(fields: [authorId], references: [id])
   isPublished Boolean    @default(false)
   images      Image[]
+  tags        String
 
   // pricing
   price     Float
@@ -70,13 +71,13 @@ model Product {
   onSale    Boolean @default(false)
 
   // inventory
-  stock        Int
+  stock        Int  @default(0)
   restockAlert Int?
-  minBuy       Int
-  maxBuy       Int
+  minBuy       Int  @default(1)
+  maxBuy       Int  @default(10)
 
   brandId  String?
-  authorId String
+  authorId String?
 
   @@index([brandId])
   @@index([authorId])
