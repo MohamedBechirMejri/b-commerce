@@ -11,9 +11,13 @@ export default function Images({
   product: Product;
   setProduct: React.Dispatch<React.SetStateAction<Product>>;
 }) {
-  useEffect(() => {
-    console.log(product.images);
-  }, [product.images]);
+  const [previews, setPreviews] = useState({
+    old: product.images || [], // loaded from db
+    new: {
+      raw: [],
+      preview: [],
+    }, // uploaded by user
+  });
 
   return (
     <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col gap-4 rounded-md border border-zinc-800 p-8">
@@ -22,7 +26,7 @@ export default function Images({
         Add up to 10 images to your product
       </p>
       <div className="grid grid-cols-4 gap-4 mt-2 rounded-md border border-zinc-800 p-8">
-        {product.images?.map(image => (
+        {previews.old?.map(image => (
           <div key={image} className="">
             <Image
               src={image}
@@ -33,12 +37,20 @@ export default function Images({
             />
           </div>
         ))}
-        <ImageInput
-          images={product.images}
-          setImages={(images: string[]) => {
-            setProduct({ ...product, images });
-          }}
-        />
+        {previews.new.preview?.map(image => (
+          <div key={image} className="">
+            <Image
+              src={image}
+              alt=""
+              className="h-full w-full object-cover rounded-md"
+              width={100}
+              height={100}
+            />
+          </div>
+        ))}
+        {previews.old?.length + previews.new?.preview.length <= 10 && (
+          <ImageInput setPreviews={setPreviews} />
+        )}
       </div>
     </div>
   );

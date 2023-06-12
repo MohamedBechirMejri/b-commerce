@@ -3,24 +3,48 @@ import { motion } from "framer-motion";
 import { useUploadThing } from "~/lib/hooks/useUploadThing";
 
 export default function ImageInput({
-  images,
-  setImages,
+  setPreviews,
   ...props
 }: {
-  images: string[];
-  setImages: (images: string[]) => void;
+  setPreviews: any;
 }) {
-  const { startUpload } = useUploadThing({
-    endpoint: "imageUploader",
-    onClientUploadComplete: res => {
-      console.log(res);
-      if (res) setImages([...(images || []), ...res?.map(r => r.fileUrl)]);
-    },
-    onUploadError: err => {
-      console.log(err);
-      alert("error occurred while uploading");
-    },
-  });
+  // const { startUpload } = useUploadThing({
+  //   endpoint: "imageUploader",
+  //   onClientUploadComplete: res => {
+  //     console.log(res);
+  //     if (res) setImages([...(images || []), ...res?.map(r => r.fileUrl)]);
+  //   },
+  //   onUploadError: err => {
+  //     console.log(err);
+  //     alert("error occurred while uploading");
+  //   },
+  // });
+
+  // display new previews in File form and upload them after user confirms
+  const handleChange = (e: any) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    const fileArray = Array.from(files);
+    const fileUrlArray = fileArray.map((file: any) =>
+      URL.createObjectURL(file)
+    );
+
+    setPreviews(
+      (previews: {
+        new: {
+          raw: File[];
+          preview: string[];
+        };
+      }) => ({
+        ...previews,
+        new: {
+          raw: [...previews.new.raw, ...fileArray],
+          preview: [...previews.new.preview, ...fileUrlArray],
+        },
+      })
+    );
+  };
 
   return (
     <motion.div
@@ -41,14 +65,7 @@ export default function ImageInput({
         type="file"
         accept="image/*"
         multiple
-        onChange={e => {
-          const files = e.target.files;
-          if (!files) return;
-
-          const fileArray = Array.from(files);
-
-          startUpload(fileArray);
-        }}
+        onChange={handleChange}
         {...props}
       />
     </motion.div>
