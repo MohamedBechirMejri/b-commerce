@@ -1,7 +1,7 @@
 import type { Product } from "~/types/Product";
 
 import { ImageInput } from "../../_ui/index";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Images({
