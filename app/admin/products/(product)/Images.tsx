@@ -30,7 +30,7 @@ export default function Images({
         setIsUploading(false);
         setProduct(product => ({
           ...product,
-          images: [...(product.images || []), ...res?.map(r => r.fileUrl)],
+          images: [...previews.old, ...res?.map(r => r.fileUrl)],
         }));
       }
     },
@@ -95,7 +95,7 @@ export default function Images({
 
       <div className="grid grid-cols-4 gap-4 mt-2 rounded-md border border-zinc-800 p-8">
         {previews.old?.map(image => (
-          <div key={image} className="">
+          <div key={image} className="relative group">
             <Image
               src={image}
               alt=""
@@ -103,10 +103,35 @@ export default function Images({
               width={100}
               height={100}
             />
+            <div className="absolute bottom-0 w-full flex justify-center gap-4 bg-white p-2 bg-opacity-20 backdrop-blur-md group-hover:opacity-100 opacity-0 transition-all rounded-md">
+              <button
+                className="rounded-md p-2 bg-rose-700 bg-opacity-80 hover:bg-opacity-100 transition-all active:opacity-80"
+                onClick={() =>
+                  setPreviews({
+                    ...previews,
+                    old: previews.old.filter(img => img !== image),
+                  })
+                }
+              >
+                Remove
+              </button>
+
+              <button
+                className="rounded-md p-2 bg-violet-700 bg-opacity-80 hover:bg-opacity-100 transition-all active:opacity-80"
+                onClick={() =>
+                  setPreviews({
+                    ...previews,
+                    old: [image, ...previews.old.filter(img => img !== image)],
+                  })
+                }
+              >
+                Set as Default
+              </button>
+            </div>
           </div>
         ))}
-        {previews.new.preview?.map(image => (
-          <div key={image} className="">
+        {previews.new.preview?.map((image, i) => (
+          <div key={image} className="relative group">
             <Image
               src={image}
               alt=""
@@ -114,6 +139,25 @@ export default function Images({
               width={100}
               height={100}
             />
+
+            <div className="absolute bottom-0 w-full flex justify-center gap-4 bg-white p-2 bg-opacity-20 backdrop-blur-md group-hover:opacity-100 opacity-0 transition-all rounded-md">
+              <button
+                className="rounded-md p-2 bg-rose-700 bg-opacity-80 hover:bg-opacity-100 transition-all active:opacity-80"
+                onClick={() =>
+                  setPreviews({
+                    ...previews,
+                    new: {
+                      raw: [...previews.new.raw.filter((_, i) => i !== i)],
+                      preview: [
+                        ...previews.new.preview.filter((_, i) => i !== i),
+                      ],
+                    },
+                  })
+                }
+              >
+                Remove
+              </button>
+            </div>
           </div>
         ))}
         {previews.old?.length + previews.new?.preview.length <= 10 && (
