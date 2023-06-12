@@ -37,9 +37,9 @@ const tabComponents = {
   activity: Activity,
 };
 
-export default function () {
+export default function (id?: string) {
   // Use the custom hook to handle the state and logic of switching tabs
-  const { currentTab, product, setProduct, switchTab } = useTabSwitcher();
+  const { currentTab, product, setProduct, switchTab } = useTabSwitcher(id);
 
   // @ts-ignore
   const Tab = tabComponents[currentTab];
