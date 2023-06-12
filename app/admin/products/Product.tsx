@@ -60,7 +60,7 @@ export default function () {
         <button
           className="flex items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-gray-300"
           onClick={async () => {
-            const id = (await submitProduct(product))
+            const id = await submitProduct(product);
             router.push(`/admin/products/${id}`);
           }}
         >
@@ -77,7 +77,6 @@ export default function () {
 
 const submitProduct = async (product: any) => {
   const res = await axios.post("/api/products", product);
-  console.log(res);
 
-  return res.data.data.id
+  return res.data.data.id;
 };
