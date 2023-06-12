@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TbArrowNarrowDown } from "react-icons/tb";
 
 export default function Select({
