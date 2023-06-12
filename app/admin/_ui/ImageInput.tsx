@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TbPlus } from "react-icons/tb";
 
 export default function ImageInput({
   setPreviews,
@@ -38,12 +39,12 @@ export default function ImageInput({
       initial={{ border: "1px dashed #303030" }}
       whileHover={{ border: "1px dashed #6d28d9" }}
     >
-      <div className="flex flex-col items-center text-gray-400">
+      <div className="flex flex-col items-center text-gray-400 text-center gap-2">
+        <TbPlus className="font-bold text-5xl" />
         <p>
-          Drop your images here, or{" "}
-          <span className="text-violet-300">click to browse</span>
+          <span className="text-violet-300">click to browse images</span>
         </p>
-        1200 x 1600 (3:4) recommended, up to 10MB each
+        up to 10MB each
       </div>
 
       <motion.input
