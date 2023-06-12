@@ -1,25 +1,11 @@
 import { motion } from "framer-motion";
 
-import { useUploadThing } from "~/lib/hooks/useUploadThing";
-
 export default function ImageInput({
   setPreviews,
   ...props
 }: {
   setPreviews: any;
 }) {
-  // const { startUpload } = useUploadThing({
-  //   endpoint: "imageUploader",
-  //   onClientUploadComplete: res => {
-  //     console.log(res);
-  //     if (res) setImages([...(images || []), ...res?.map(r => r.fileUrl)]);
-  //   },
-  //   onUploadError: err => {
-  //     console.log(err);
-  //     alert("error occurred while uploading");
-  //   },
-  // });
-
   // display new previews in File form and upload them after user confirms
   const handleChange = (e: any) => {
     const files = e.target.files;
