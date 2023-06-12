@@ -25,7 +25,7 @@ export default function ImageInput({
     const files = e.target.files;
     if (!files) return;
 
-    const fileArray = Array.from(files);
+    const fileArray = Array.from(files).filter((_, i) => i < 10);
     const fileUrlArray = fileArray.map((file: any) =>
       URL.createObjectURL(file)
     );
@@ -66,6 +66,7 @@ export default function ImageInput({
         accept="image/*"
         multiple
         onChange={handleChange}
+        max={10}
         {...props}
       />
     </motion.div>
