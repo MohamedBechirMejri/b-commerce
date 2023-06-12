@@ -1,4 +1,4 @@
-import type { Product } from "~/types/Product";
+import type { Product } from "~/types";
 
 import useCategories from "~/lib/hooks/useCategories";
 import useBrands from "~/lib/hooks/useBrands";
@@ -87,8 +87,8 @@ export default function Details({
           <Select
             label={"Brand"}
             options={brands}
-            selected={product.brand}
-            setSelected={brand => setProduct({ ...product, brand })}
+            selected={product.brandId}
+            setSelected={brandId => setProduct({ ...product, brandId })}
             placeholder={"Select Brand"}
             onCreate={addBrand}
           />
