@@ -68,7 +68,6 @@ export default function () {
         </button>
       </div>
       <Nav currentTab={currentTab} switchTab={switchTab} />
-      {/* Use the object to render the component for the current tab */}
       <div className="p-4">
         {<Tab product={product} setProduct={setProduct} />}
       </div>
