@@ -7,7 +7,10 @@
     "build": "next build",
     "postinstall": "prisma generate",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pg": "prisma generate",
+    "ps": "prisma studio",
+    "pp": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
@@ -19,7 +22,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.9.0",
     "uploadthing": "^4.1.2",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zod-prisma-types": "^2.7.3"
   },
   "devDependencies": {
     "@types/node": "20.3.0",

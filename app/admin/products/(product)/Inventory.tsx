@@ -4,7 +4,7 @@
 //     { id: "maxAmount", label: "Maximum amount", min: 1 },
 //   ];
 
-import type { Product } from "~/types/Product";
+import type { Product } from "~/types";
 
 import { Input } from "../../_ui/index";
 

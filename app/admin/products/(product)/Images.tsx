@@ -1,4 +1,4 @@
-import type { Product } from "~/types/Product";
+import type { Product } from "~/types";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";

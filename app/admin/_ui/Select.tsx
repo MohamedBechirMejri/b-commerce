@@ -11,7 +11,7 @@ export default function Select({
   onCreate = () => {},
 }: {
   options: { id: string; name: string }[];
-  selected: string;
+  selected: string | null;
   setSelected: (arg0: string) => void;
   label?: string;
   placeholder?: string;

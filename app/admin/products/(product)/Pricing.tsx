@@ -1,4 +1,4 @@
-import type { Product } from "~/types/Product";
+import type { Product } from "~/types";
 
 import { Input, Toggle } from "../../_ui/index";
 
