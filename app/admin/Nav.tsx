@@ -29,7 +29,7 @@ export default function Nav() {
 
   // Use map to iterate over the array and render each link
   return (
-    <nav className="py-8 text-gray-400">
+    <nav className="py-8 text-gray-400 overflow-scroll">
       <div className="grid h-full w-[22svw] max-w-[14rem] grid-rows-[auto,1fr,auto] border-r border-[#222] pl-8">
         <Link
           href={"/"}
