@@ -6,7 +6,15 @@ export default function useTabSwitcher(id?: string) {
   // The state for the current tab
   const [currentTab, setCurrentTab] = useState("details");
   // The state for the product data
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({
+    id: "",
+    name: "",
+    description: "",
+    reference: "",
+    categories: [],
+    brandId: "",
+    tags: "",
+  });
 
   // A function to switch the current tab
   const switchTab = (tab: SetStateAction<string>) => setCurrentTab(tab);
