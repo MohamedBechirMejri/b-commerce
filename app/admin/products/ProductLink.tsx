@@ -43,10 +43,12 @@ export default function ProductLink({ product }: { product: Product }) {
           <TbTrash />
         </button>
       </td>
-      <Link
-        href={`/admin/products/${product.id}`}
-        className="text-blue-600 hover:text-blue-400 absolute inset-0 hover:bg-white hover:bg-opacity-10 rounded-md transition-all"
-      />
+      <td>
+        <Link
+          href={`/admin/products/${product.id}`}
+          className="text-blue-600 hover:text-blue-400 absolute inset-0 hover:bg-white hover:bg-opacity-10 rounded-md transition-all"
+        />
+      </td>
     </tr>
   );
 }
