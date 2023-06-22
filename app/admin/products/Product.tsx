@@ -56,15 +56,16 @@ export default function ({ id }: { id?: string }) {
           <IoArrowBackOutline />
           <span>Back</span>
         </Link>
-        <h1 className="text-2xl font-bold">New Product</h1>
+        <h1 className="text-2xl font-bold">{product.name || "New Product"}</h1>
         <button
           className="flex items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-gray-300"
-          onClick={async () => {
-            const id = await submitProduct(product);
-            router.push(`/admin/products/${id}`);
+          onClick={() => {
+            submitProduct(product, id)
+              .then(() => router.push(`/admin/products/`))
+              .catch(err => console.log(err));
           }}
         >
-          <span>Add</span>
+          <span>Save</span>
         </button>
       </div>
       <Nav currentTab={currentTab} switchTab={switchTab} />
@@ -75,8 +76,10 @@ export default function ({ id }: { id?: string }) {
   );
 }
 
-const submitProduct = async (product: any) => {
-  const res = await axios.post("/api/products", product);
+const submitProduct = async (product: any, id?: string) => {
+  const res = await (id
+    ? axios.post(`/api/products/${id}`, product)
+    : axios.post("/api/products", product));
 
   return res.data.data.id;
 };
