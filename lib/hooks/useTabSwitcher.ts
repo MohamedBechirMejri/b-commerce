@@ -19,7 +19,7 @@ export default function useTabSwitcher(id?: string) {
         // Use axios to get the product data
         const { data } = await axios.get(`/api/products/${id}`);
         // Set the product state with the data
-        setProduct(data);
+        setProduct(data.data);
       } catch (error) {
         // Handle any errors
         console.error(error);
