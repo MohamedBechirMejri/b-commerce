@@ -10,19 +10,21 @@ import type { Prisma } from '@prisma/client';
 // ENUMS
 /////////////////////////////////////////
 
-export const AuthorScalarFieldEnumSchema = z.enum(['id','name','email','password','createdAt','updatedAt']);
+export const TransactionIsolationLevelSchema = z.enum(['ReadUncommitted','ReadCommitted','RepeatableRead','Serializable']);
+
+export const ImageScalarFieldEnumSchema = z.enum(['id','name','url','createdAt','updatedAt','productId']);
 
 export const BrandScalarFieldEnumSchema = z.enum(['id','name','createdAt','updatedAt']);
 
 export const CategoryScalarFieldEnumSchema = z.enum(['id','name','createdAt','updatedAt']);
 
-export const ImageScalarFieldEnumSchema = z.enum(['id','name','url','createdAt','updatedAt','productId']);
+export const AuthorScalarFieldEnumSchema = z.enum(['id','name','email','password','createdAt','updatedAt']);
 
 export const ProductScalarFieldEnumSchema = z.enum(['id','name','description','reference','createdAt','updatedAt','isPublished','tags','price','salePrice','onSale','stock','restockAlert','minBuy','maxBuy','brandId','authorId']);
 
 export const SortOrderSchema = z.enum(['asc','desc']);
 
-export const TransactionIsolationLevelSchema = z.enum(['ReadUncommitted','ReadCommitted','RepeatableRead','Serializable']);
+export const NullsOrderSchema = z.enum(['first','last']);
 /////////////////////////////////////////
 // MODELS
 /////////////////////////////////////////
@@ -297,11 +299,11 @@ export const ImageWhereInputSchema: z.ZodType<Prisma.ImageWhereInput> = z.object
 
 export const ImageOrderByWithRelationInputSchema: z.ZodType<Prisma.ImageOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
-  name: z.lazy(() => SortOrderSchema).optional(),
+  name: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   url: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  productId: z.lazy(() => SortOrderSchema).optional(),
+  productId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   Product: z.lazy(() => ProductOrderByWithRelationInputSchema).optional()
 }).strict();
 
@@ -311,11 +313,11 @@ export const ImageWhereUniqueInputSchema: z.ZodType<Prisma.ImageWhereUniqueInput
 
 export const ImageOrderByWithAggregationInputSchema: z.ZodType<Prisma.ImageOrderByWithAggregationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
-  name: z.lazy(() => SortOrderSchema).optional(),
+  name: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   url: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  productId: z.lazy(() => SortOrderSchema).optional(),
+  productId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   _count: z.lazy(() => ImageCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => ImageMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => ImageMinOrderByAggregateInputSchema).optional()
@@ -508,14 +510,14 @@ export const ProductOrderByWithRelationInputSchema: z.ZodType<Prisma.ProductOrde
   isPublished: z.lazy(() => SortOrderSchema).optional(),
   tags: z.lazy(() => SortOrderSchema).optional(),
   price: z.lazy(() => SortOrderSchema).optional(),
-  salePrice: z.lazy(() => SortOrderSchema).optional(),
+  salePrice: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   onSale: z.lazy(() => SortOrderSchema).optional(),
   stock: z.lazy(() => SortOrderSchema).optional(),
-  restockAlert: z.lazy(() => SortOrderSchema).optional(),
+  restockAlert: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   minBuy: z.lazy(() => SortOrderSchema).optional(),
   maxBuy: z.lazy(() => SortOrderSchema).optional(),
-  brandId: z.lazy(() => SortOrderSchema).optional(),
-  authorId: z.lazy(() => SortOrderSchema).optional(),
+  brandId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
+  authorId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   brand: z.lazy(() => BrandOrderByWithRelationInputSchema).optional(),
   categories: z.lazy(() => CategoryOrderByRelationAggregateInputSchema).optional(),
   author: z.lazy(() => AuthorOrderByWithRelationInputSchema).optional(),
@@ -537,14 +539,14 @@ export const ProductOrderByWithAggregationInputSchema: z.ZodType<Prisma.ProductO
   isPublished: z.lazy(() => SortOrderSchema).optional(),
   tags: z.lazy(() => SortOrderSchema).optional(),
   price: z.lazy(() => SortOrderSchema).optional(),
-  salePrice: z.lazy(() => SortOrderSchema).optional(),
+  salePrice: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   onSale: z.lazy(() => SortOrderSchema).optional(),
   stock: z.lazy(() => SortOrderSchema).optional(),
-  restockAlert: z.lazy(() => SortOrderSchema).optional(),
+  restockAlert: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   minBuy: z.lazy(() => SortOrderSchema).optional(),
   maxBuy: z.lazy(() => SortOrderSchema).optional(),
-  brandId: z.lazy(() => SortOrderSchema).optional(),
-  authorId: z.lazy(() => SortOrderSchema).optional(),
+  brandId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
+  authorId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   _count: z.lazy(() => ProductCountOrderByAggregateInputSchema).optional(),
   _avg: z.lazy(() => ProductAvgOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => ProductMaxOrderByAggregateInputSchema).optional(),
@@ -998,6 +1000,11 @@ export const DateTimeFilterSchema: z.ZodType<Prisma.DateTimeFilter> = z.object({
 export const ProductRelationFilterSchema: z.ZodType<Prisma.ProductRelationFilter> = z.object({
   is: z.lazy(() => ProductWhereInputSchema).optional().nullable(),
   isNot: z.lazy(() => ProductWhereInputSchema).optional().nullable()
+}).strict();
+
+export const SortOrderInputSchema: z.ZodType<Prisma.SortOrderInput> = z.object({
+  sort: z.lazy(() => SortOrderSchema),
+  nulls: z.lazy(() => NullsOrderSchema).optional()
 }).strict();
 
 export const ImageCountOrderByAggregateInputSchema: z.ZodType<Prisma.ImageCountOrderByAggregateInput> = z.object({
@@ -2636,7 +2643,7 @@ export const ImageFindFirstArgsSchema: z.ZodType<Prisma.ImageFindFirstArgs> = z.
   cursor: ImageWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: ImageScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ ImageScalarFieldEnumSchema,ImageScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const ImageFindFirstOrThrowArgsSchema: z.ZodType<Prisma.ImageFindFirstOrThrowArgs> = z.object({
@@ -2647,7 +2654,7 @@ export const ImageFindFirstOrThrowArgsSchema: z.ZodType<Prisma.ImageFindFirstOrT
   cursor: ImageWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: ImageScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ ImageScalarFieldEnumSchema,ImageScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const ImageFindManyArgsSchema: z.ZodType<Prisma.ImageFindManyArgs> = z.object({
@@ -2658,7 +2665,7 @@ export const ImageFindManyArgsSchema: z.ZodType<Prisma.ImageFindManyArgs> = z.ob
   cursor: ImageWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: ImageScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ ImageScalarFieldEnumSchema,ImageScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const ImageAggregateArgsSchema: z.ZodType<Prisma.ImageAggregateArgs> = z.object({
@@ -2698,7 +2705,7 @@ export const BrandFindFirstArgsSchema: z.ZodType<Prisma.BrandFindFirstArgs> = z.
   cursor: BrandWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: BrandScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ BrandScalarFieldEnumSchema,BrandScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const BrandFindFirstOrThrowArgsSchema: z.ZodType<Prisma.BrandFindFirstOrThrowArgs> = z.object({
@@ -2709,7 +2716,7 @@ export const BrandFindFirstOrThrowArgsSchema: z.ZodType<Prisma.BrandFindFirstOrT
   cursor: BrandWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: BrandScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ BrandScalarFieldEnumSchema,BrandScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const BrandFindManyArgsSchema: z.ZodType<Prisma.BrandFindManyArgs> = z.object({
@@ -2720,7 +2727,7 @@ export const BrandFindManyArgsSchema: z.ZodType<Prisma.BrandFindManyArgs> = z.ob
   cursor: BrandWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: BrandScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ BrandScalarFieldEnumSchema,BrandScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const BrandAggregateArgsSchema: z.ZodType<Prisma.BrandAggregateArgs> = z.object({
@@ -2760,7 +2767,7 @@ export const CategoryFindFirstArgsSchema: z.ZodType<Prisma.CategoryFindFirstArgs
   cursor: CategoryWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: CategoryScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ CategoryScalarFieldEnumSchema,CategoryScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const CategoryFindFirstOrThrowArgsSchema: z.ZodType<Prisma.CategoryFindFirstOrThrowArgs> = z.object({
@@ -2771,7 +2778,7 @@ export const CategoryFindFirstOrThrowArgsSchema: z.ZodType<Prisma.CategoryFindFi
   cursor: CategoryWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: CategoryScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ CategoryScalarFieldEnumSchema,CategoryScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const CategoryFindManyArgsSchema: z.ZodType<Prisma.CategoryFindManyArgs> = z.object({
@@ -2782,7 +2789,7 @@ export const CategoryFindManyArgsSchema: z.ZodType<Prisma.CategoryFindManyArgs> 
   cursor: CategoryWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: CategoryScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ CategoryScalarFieldEnumSchema,CategoryScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const CategoryAggregateArgsSchema: z.ZodType<Prisma.CategoryAggregateArgs> = z.object({
@@ -2822,7 +2829,7 @@ export const AuthorFindFirstArgsSchema: z.ZodType<Prisma.AuthorFindFirstArgs> = 
   cursor: AuthorWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: AuthorScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ AuthorScalarFieldEnumSchema,AuthorScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const AuthorFindFirstOrThrowArgsSchema: z.ZodType<Prisma.AuthorFindFirstOrThrowArgs> = z.object({
@@ -2833,7 +2840,7 @@ export const AuthorFindFirstOrThrowArgsSchema: z.ZodType<Prisma.AuthorFindFirstO
   cursor: AuthorWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: AuthorScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ AuthorScalarFieldEnumSchema,AuthorScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const AuthorFindManyArgsSchema: z.ZodType<Prisma.AuthorFindManyArgs> = z.object({
@@ -2844,7 +2851,7 @@ export const AuthorFindManyArgsSchema: z.ZodType<Prisma.AuthorFindManyArgs> = z.
   cursor: AuthorWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: AuthorScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ AuthorScalarFieldEnumSchema,AuthorScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const AuthorAggregateArgsSchema: z.ZodType<Prisma.AuthorAggregateArgs> = z.object({
@@ -2884,7 +2891,7 @@ export const ProductFindFirstArgsSchema: z.ZodType<Prisma.ProductFindFirstArgs> 
   cursor: ProductWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: ProductScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ ProductScalarFieldEnumSchema,ProductScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const ProductFindFirstOrThrowArgsSchema: z.ZodType<Prisma.ProductFindFirstOrThrowArgs> = z.object({
@@ -2895,7 +2902,7 @@ export const ProductFindFirstOrThrowArgsSchema: z.ZodType<Prisma.ProductFindFirs
   cursor: ProductWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: ProductScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ ProductScalarFieldEnumSchema,ProductScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const ProductFindManyArgsSchema: z.ZodType<Prisma.ProductFindManyArgs> = z.object({
@@ -2906,7 +2913,7 @@ export const ProductFindManyArgsSchema: z.ZodType<Prisma.ProductFindManyArgs> = 
   cursor: ProductWhereUniqueInputSchema.optional(),
   take: z.number().optional(),
   skip: z.number().optional(),
-  distinct: ProductScalarFieldEnumSchema.array().optional(),
+  distinct: z.union([ ProductScalarFieldEnumSchema,ProductScalarFieldEnumSchema.array() ]).optional(),
 }).strict()
 
 export const ProductAggregateArgsSchema: z.ZodType<Prisma.ProductAggregateArgs> = z.object({
