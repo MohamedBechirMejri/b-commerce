@@ -33,9 +33,12 @@ export default function ProductLink({ product }: { product: Product }) {
       <td className="px-4 py-2">{product.reference}</td>
       <td className="px-4 py-2">{product.isPublished ? "P" : "Unp"}ublished</td>
       <td className="flex gap-4 px-4 py-2 relative items-center h-[3.25rem]">
-        <button className="text-gray-400 hover:text-white relative z-10 text-xl">
+        <Link
+          href={`/admin/products/${product.id}`}
+          className="text-gray-400 hover:text-white relative z-10 text-xl"
+        >
           <TbEdit />
-        </button>
+        </Link>
         <button className="text-gray-400 hover:text-white relative z-10 text-xl">
           <TbTrash />
         </button>
