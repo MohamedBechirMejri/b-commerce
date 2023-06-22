@@ -23,21 +23,20 @@ export default async function () {
           <table className="w-full">
             <thead>
               <tr className="border-b border-zinc-800 text-left text-sm font-semibold uppercase tracking-wide text-gray-500">
-                <th className="px-4 py-3 ">
+                <th className="px-4 py-2">
                   <input type="checkbox" />
                 </th>
-                <th className="px-4 py-3">Image</th>
-                <th className="px-4 py-3">ID</th>
-                <th className="px-4 py-3">Published</th>
-                <th className="px-4 py-3">Stock</th>
-                <th className="px-4 py-3">Name</th>
-                <th className="px-4 py-3">Reference</th>
-                <th className="px-4 py-3">Brand</th>
-                <th className="px-4 py-3">Actions</th>
+                <th className="px-4 py-2">Image</th>
+                <th className="px-4 py-2">Name</th>
+                <th className="px-4 py-2">Stock</th>
+                <th className="px-4 py-2">Reference</th>
+                <th className="px-4 py-2">Published</th>
+                <th className="px-4 py-2">Actions</th>
               </tr>
             </thead>
             <tbody>
               {products.map(product => (
+                // @ts-ignore
                 <ProductLink key={"product" + product.id} product={product} />
               ))}
             </tbody>
