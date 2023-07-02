@@ -18,7 +18,7 @@ export default function ProductLink({ product }: { product: Product }) {
       <td className="px-4 py-2">
         <Image
           src={
-            product.images
+            product.images[0]
               ? product.images[0]
               : "https://via.placeholder.com/150"
           }
