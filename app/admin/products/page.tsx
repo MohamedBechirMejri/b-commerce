@@ -2,7 +2,6 @@ import Link from "next/link";
 import { IoAddCircleOutline } from "react-icons/io5";
 import ProductLink from "./ProductLink";
 import { getAllProducts } from "~/lib/db/product";
-import { Product } from "~/types";
 
 export default async function () {
   const products = await getAllProducts().then(res =>
@@ -38,7 +37,7 @@ export default async function () {
               </tr>
             </thead>
             <tbody>
-              {products.map((product: Product) => (
+              {products.map(product => (
                 <ProductLink key={"product" + product.id} product={product} />
               ))}
             </tbody>

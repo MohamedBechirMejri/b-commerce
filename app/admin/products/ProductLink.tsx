@@ -1,10 +1,17 @@
 "use client";
 
-import type { Product } from "~/types";
-
 import Link from "next/link";
 import Image from "next/image";
 import { TbEdit, TbTrash } from "react-icons/tb";
+
+type Product = {
+  id: string;
+  name: string;
+  images: string[];
+  stock: number;
+  reference: string;
+  isPublished: boolean;
+};
 
 export default function ProductLink({ product }: { product: Product }) {
   return (

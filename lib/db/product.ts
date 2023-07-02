@@ -4,10 +4,13 @@ import prisma from "./prisma";
 
 export const getAllProducts = async () =>
   await prisma.product.findMany({
-    include: {
-      categories: {
-        select: { id: true },
-      },
+    select: {
+      id: true,
+      name: true,
+      images: true,
+      stock: true,
+      reference: true,
+      isPublished: true,
     },
   });
 
