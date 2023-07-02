@@ -1,9 +1,3 @@
-//     { id: "stock", label: "Stock", min: 0 },
-//     { id: "restockAlert", label: "Restock alert (-1 means no alert)", min: -1 },
-//     { id: "minAmount", label: "Minimum amount", min: 1 },
-//     { id: "maxAmount", label: "Maximum amount", min: 1 },
-//   ];
-
 import type { Product } from "~/types";
 
 import { Input } from "../../_ui/index";
@@ -39,7 +33,7 @@ export default function Inventory({
           placeholder={"-1"}
           value={product.restockAlert}
           onChange={(e: { target: { value: number } }) =>
-            setProduct({ ...product, restockAlert: e.target.value })
+            setProduct({ ...product, restockAlert: +e.target.value })
           }
           required
           min={-1}
