@@ -14,6 +14,8 @@ export default function useTabSwitcher(id?: string) {
     categories: [],
     brandId: "",
     tags: "",
+    isPublished: false,
+    images: [],
   });
 
   // A function to switch the current tab
@@ -27,7 +29,13 @@ export default function useTabSwitcher(id?: string) {
         // Use axios to get the product data
         const { data } = await axios.get(`/api/products/${id}`);
         // Set the product state with the data
-        setProduct(data.data);
+        const product = {
+          ...data.data,
+          images: JSON.parse(data.data.images),
+          categories: data.data.categories.map((category: any) => category.id),
+        };
+
+        setProduct(product);
       } catch (error) {
         // Handle any errors
         console.error(error);
