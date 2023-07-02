@@ -5,7 +5,9 @@ import { getAllProducts } from "~/lib/db/product";
 import { Product } from "~/types";
 
 export default async function () {
-  const products = await getAllProducts();
+  const products = await getAllProducts().then(res =>
+    res.map(p => ({ ...p, images: JSON.parse(p.images) }))
+  );
 
   return (
     <div className="grid grid-rows-[auto,1fr] h-full pb-6">
