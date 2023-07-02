@@ -28,7 +28,7 @@ export const createProduct = async (body: any) => {
       description,
       reference,
       isPublished,
-      images: { create: images.map((image: string) => ({ url: image })) },
+      images,
       tags,
       price,
       stock,

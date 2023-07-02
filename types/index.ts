@@ -2,14 +2,11 @@ import { z } from "zod";
 
 import { Product as P, ProductSchema } from "./zod";
 
-type Product = P & {
-  categories: string[];
-  images: string[];
-};
+type Product = P & { categories: string[]; images: string[] };
 
 export const ZProduct = ProductSchema.extend({
   categories: z.array(z.string()),
-  images: z.array(z.string()),
+  images: z.string(), // stringified array of strings to save to db
 });
 
 export type { Product };
