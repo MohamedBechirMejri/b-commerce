@@ -9,6 +9,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 import Nav from "./(product)/Nav";
 import useTabSwitcher from "~/lib/hooks/useTabSwitcher";
+import { ZProduct } from "~/types";
 
 const Details = dynamic(() => import("./(product)/Details"));
 const Pricing = dynamic(() => import("./(product)/Pricing"));
@@ -59,11 +60,7 @@ export default function ({ id }: { id?: string }) {
         <h1 className="text-2xl font-bold">{product.name || "New Product"}</h1>
         <button
           className="flex items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-gray-300"
-          onClick={() => {
-            submitProduct(product, id)
-              .then(() => router.push(`/admin/products/`))
-              .catch(err => console.log(err));
-          }}
+          onClick={() => submitProduct(product, router, id)}
         >
           <span>Save</span>
         </button>
@@ -76,10 +73,18 @@ export default function ({ id }: { id?: string }) {
   );
 }
 
-const submitProduct = async (product: any, id?: string) => {
+const submitProduct = async (product: any, router: any, id?: string) => {
+  product = {
+    ...product,
+    images: JSON.stringify(product.images),
+  };
+
+  const z = ZProduct.safeParse(product);
+  if (!z.success) return alert(z.error);
+
   const res = await (id
     ? axios.post(`/api/products/${id}`, product)
     : axios.post("/api/products", product));
 
-  return res.data.data.id;
+  return router.push(`/admin/products/`);
 };
