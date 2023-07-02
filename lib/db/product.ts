@@ -2,10 +2,20 @@ import type { Product } from "@prisma/client";
 
 import prisma from "./prisma";
 
-export const getAllProducts = async () => await prisma.product.findMany();
+export const getAllProducts = async () =>
+  await prisma.product.findMany({
+    include: {
+      categories: {
+        select: { id: true },
+      },
+    },
+  });
 
 export const getProductById = async (id: string) =>
-  await prisma.product.findUnique({ where: { id } });
+  await prisma.product.findUnique({
+    where: { id },
+    include: { categories: { select: { id: true } } },
+  });
 
 export const createProduct = async (body: any) => {
   const {
