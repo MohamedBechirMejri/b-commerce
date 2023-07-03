@@ -100,7 +100,15 @@ model Order {
   product   Product @relation(fields: [productId], references: [id])
   productId String
 
-  // user
+  // customer
+  // shippingAddress
+  // shippingMethod
+  // paymentMethod
+  // shippingCost
+  // tax
+  // discount
+  // total
+  // payment
 
   @@index([productId])
 }
