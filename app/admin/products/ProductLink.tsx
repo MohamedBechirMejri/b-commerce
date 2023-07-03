@@ -32,7 +32,7 @@ export default function ProductLink({ product }: { product: Product }) {
           alt={product.name}
           width={40}
           height={150}
-          className="rounded-md"
+          className="rounded-md w-auto h-auto"
         />
       </td>
       <td className="px-4 py-2">{product.name}</td>
