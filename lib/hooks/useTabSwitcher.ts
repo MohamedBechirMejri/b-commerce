@@ -16,6 +16,13 @@ export default function useTabSwitcher(id?: string) {
     tags: "",
     isPublished: false,
     images: [],
+    onSale: false,
+    salePrice: 0,
+    price: 0,
+    stock: 0,
+    restockAlert: -1,
+    minBuy: 1,
+    maxBuy: 1,
   });
 
   // A function to switch the current tab
