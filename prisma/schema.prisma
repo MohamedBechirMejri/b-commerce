@@ -85,7 +85,30 @@ model Product {
 
   brandId  String?
   authorId String?
+  Order    Order[]
 
   @@index([brandId])
   @@index([authorId])
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  status    OrderStatus @default(PLACED)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  // user
+
+  @@index([productId])
+}
+
+enum OrderStatus {
+  PLACED
+  CONFIRMED
+  PENDING
+  COMPLETED
+  CANCELLED
 }
