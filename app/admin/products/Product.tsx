@@ -80,7 +80,7 @@ const submitProduct = async (product: any, router: any, id?: string) => {
   };
 
   const z = ZProduct.safeParse(product);
-  if (!z.success) return alert(z.error);
+  if (!z.success) return console.log(z.error);
 
   const res = await (id
     ? axios.post(`/api/products/${id}`, product)
