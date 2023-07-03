@@ -69,7 +69,7 @@ model Product {
   categories  Category[]
   author      Author?    @relation(fields: [authorId], references: [id])
   isPublished Boolean    @default(false)
-  images      String
+  images      String     @db.VarChar(5000)
   tags        String
 
   // pricing
