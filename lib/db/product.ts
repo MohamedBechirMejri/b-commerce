@@ -52,8 +52,17 @@ export const createProduct = async (body: any) => {
   });
 };
 
-export const updateProduct = async (id: string, data: Product) =>
-  await prisma.product.update({ where: { id }, data });
+export const updateProduct = async (
+  id: string,
+  data: Product & { categories: string[] }
+) =>
+  await prisma.product.update({
+    where: { id },
+    data: {
+      ...data,
+      categories: { connect: data.categories.map((id: string) => ({ id })) },
+    },
+  });
 
 export const deleteProduct = async (id: string) =>
   await prisma.product.delete({ where: { id } });
