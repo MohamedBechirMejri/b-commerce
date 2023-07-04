@@ -1,5 +1,8 @@
 import "./globals.css";
+
 import { Lato } from "next/font/google";
+
+import Header from "./Header";
 
 const lato = Lato({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -15,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={lato.className}>{children}</body>
+      <body className={lato.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
