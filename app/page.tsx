@@ -1,11 +1,11 @@
 import Hero from "./Hero";
-import TopProducts from "./TopProducts";
+import LatestProducts from "./LatestProducts";
 
 export default function Home() {
   return (
     <main className="">
       <Hero />
-      <TopProducts />
+      <LatestProducts />
     </main>
   );
 }
