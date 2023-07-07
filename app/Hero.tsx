@@ -19,17 +19,17 @@ export default function Hero() {
   ]);
 
   return (
-    <div className="px-8">
-      <style>
-        {` .embla { overflow: hidden; }
-           .embla__container { display: flex; }
-           .embla__slide { flex: 0 0 100%; min-width: 0; }
-        `}
-      </style>
-      <div className="embla relative rounded-xl overflow-hidden" ref={emblaRef}>
-        <div className="embla__container h-[calc(70svh-4rem)]">
+    <div className="px-8 p-2">
+      <div
+        className="embla overflow-hidden relative max-w-6xl mx-auto"
+        ref={emblaRef}
+      >
+        <div className="embla__container flex h-[calc(70svh-5rem)]">
           {slides.map(slide => (
-            <div className="embla__slide" key={"slideid" + slide.id}>
+            <div
+              className="embla__slide min-w-0 flex-[0_0_100%]"
+              key={"slideid" + slide.id}
+            >
               <Image
                 src={slide.src}
                 alt={slide.alt}
