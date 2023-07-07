@@ -19,7 +19,7 @@ export default function Hero() {
   ]);
 
   return (
-    <div className="px-8 p-2">
+    <section className="px-8 p-2">
       <div
         className="embla overflow-hidden relative max-w-6xl mx-auto"
         ref={emblaRef}
@@ -57,6 +57,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

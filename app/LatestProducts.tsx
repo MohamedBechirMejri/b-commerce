@@ -63,7 +63,7 @@ export default function LatestProducts() {
   );
 
   return (
-    <div className="mx-auto py-8 w-ful flex flex-col items-center">
+    <section className="mx-auto py-8 w-ful flex flex-col items-center">
       <h1 className="font-bold text-3xl">Fresh Products</h1>
       <p className="text-lg text-opacity-70">Our Latest Additions</p>
 
@@ -83,6 +83,6 @@ export default function LatestProducts() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
