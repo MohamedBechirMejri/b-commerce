@@ -8,12 +8,10 @@ export default function Services() {
       <h1 className="font-bold text-3xl">Our Services and Garantees</h1>
       <p className="text-lg text-opacity-70">Our Latest Additions</p>
 
-      <div className="pt-12 flex gap-8 text-5xl text-center font-semibold">
+      <div className="pt-8 flex gap-8 text-5xl text-center font-semibold">
         <div className="flex flex-col items-center gap-4">
           <TbTruckDelivery />
-          <p className="text-lg">
-            Deliveries in 48h <br /> (in France)
-          </p>
+          <p className="text-lg">Deliveries in 48h</p>
         </div>
         <div className="flex flex-col items-center gap-4">
           <TbMoodHappy />
