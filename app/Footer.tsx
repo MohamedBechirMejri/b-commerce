@@ -38,7 +38,6 @@ export default function Footer() {
 
       <div>
         <h2 className="font-bold text-xl">Contact Us</h2>
-
         <h3 className="font-semibold pt-2">Follow us on:</h3>
         <div className="py-2 flex items-center gap-2 text-2xl">
           <Link href={"/"}>
@@ -54,12 +53,7 @@ export default function Footer() {
             <TbBrandTwitter />
           </Link>
         </div>
-
         <h3 className="font-semibold pt-2">Newsletter</h3>
-        <h4 className="font-medium pt-2 text-sm text-gray-600">
-          Subscribe to our Newsletter and access the best offers of the moment
-        </h4>
-
         <form className="flex pt-2">
           <input
             type="email"
@@ -73,6 +67,9 @@ export default function Footer() {
             Subscribe
           </button>
         </form>
+        <h4 className="font-medium pt-2 text-sm text-gray-600 max-w-[95%]">
+          Subscribe to our Newsletter and access the best offers of the moment
+        </h4>
       </div>
 
       <hr className="w-full col-span-2 h-[2px] bg-yellow-600 mt-8" />
