@@ -5,56 +5,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Link from "next/link";
 import Image from "next/image";
-
-const products = [
-  { id: 1, name: "Honey", price: 10, image: "https://picsum.photos/4000/2000" },
-  {
-    id: 2,
-    name: "Harissa",
-    price: 20,
-    image: "https://picsum.photos/2200/1100",
-  },
-  {
-    id: 3,
-    name: "Olive Oil",
-    price: 30,
-    image: "https://picsum.photos/3000/1500",
-  },
-  { id: 4, name: "Honey", price: 10, image: "https://picsum.photos/4000/2000" },
-  {
-    id: 5,
-    name: "Harissa",
-    price: 20,
-    image: "https://picsum.photos/2200/1100",
-  },
-  {
-    id: 6,
-    name: "Olive Oil",
-    price: 30,
-    image: "https://picsum.photos/3000/1500",
-  },
-  { id: 7, name: "Honey", price: 10, image: "https://picsum.photos/4000/2000" },
-  {
-    id: 8,
-    name: "Harissa",
-    price: 20,
-    image: "https://picsum.photos/2200/1100",
-  },
-  {
-    id: 9,
-    name: "Olive Oil",
-    price: 30,
-    image: "https://picsum.photos/3000/1500",
-  },
-  {
-    id: 10,
-    name: "Honey",
-    price: 10,
-    image: "https://picsum.photos/4000/2000",
-  },
-];
+import { useEffect, useState } from "react";
 
 export default function LatestProducts() {
+  const [products, setProducts] = useState<any[]>([]);
+
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
@@ -62,6 +17,22 @@ export default function LatestProducts() {
     },
     [Autoplay({ delay: 5000 }), WheelGesturesPlugin()]
   );
+
+  useEffect(() => {
+    async function fetchData() {
+      await fetch("/api/products?latest=true")
+        .then(res => res.json())
+        .then(res =>
+          res.data.map((product: { images: string }) => ({
+            ...product,
+            image: JSON.parse(product.images)[0],
+          }))
+        )
+        .then(data => (data.length < 10 ? [...data, ...data] : data)) // duplicate data if less than 10
+        .then(data => setProducts(data));
+    }
+    fetchData();
+  }, []);
 
   return (
     <section className="mx-auto py-8 w-ful flex flex-col items-center overflow-hidden">
@@ -72,11 +43,11 @@ export default function LatestProducts() {
         <div className="embla__container flex gap-8 pl-8">
           {products.map(product => (
             <div
-              className="embla__slide min-w-0 xl:flex-[0_0_25%] md:flex-[0_0_50%] flex-[0_0_100%] h-[32rem] max-w-[min(90svw,20rem)] shadow border group transition-all overflow-hidden relative"
+              className="embla__slide min-w-0 xl:flex-[0_0_25%] md:flex-[0_0_50%] flex-[0_0_100%] h-[32rem] max-w-[min(90svw,20rem)] w -[20rem] shadow border group overflow-hidden relative"
               key={"productid" + product.id}
             >
               <Image
-                src={product.image}
+                src={product.image || "https://via.placeholder.com/2000"}
                 alt={product.name}
                 className="object-cover object-center h-full"
                 width={4000}
