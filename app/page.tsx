@@ -1,3 +1,9 @@
+import Hero from "./Hero";
+
 export default function Home() {
-  return <main className=""></main>;
+  return (
+    <main className="">
+      <Hero />
+    </main>
+  );
 }
