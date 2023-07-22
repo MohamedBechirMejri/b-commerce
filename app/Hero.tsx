@@ -20,11 +20,11 @@ const slides = [
   },
   {
     id: 2,
-    image: "/slide-1.webp",
+    image: "/slide-2.png",
     title1: "Best Ear2",
     title2: "Headphones2",
-    subtitle1: "Music To2",
-    subtitle2: "Fill Your Heart2",
+    subtitle1: "Find your",
+    subtitle2: "Beats Studio.",
   },
 ];
 
