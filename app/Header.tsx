@@ -60,13 +60,13 @@ export default function Header() {
           </button>
           <button className="relative">
             <TbHeart />
-            <span className="absolute top-0 -right-1 text-xs bg-pink-600 text-[#f0f2ee] rounded-full w-4 h-4 flex items-center justify-center font-bold ring ring-[#f0f2ee]">
+            <span className="absolute top-2 -right-1 text-xs bg-pink-600 text-[#f0f2ee] rounded-full w-4 h-4 flex items-center justify-center font-bold ring ring-[#f0f2ee]">
               0
             </span>
           </button>
           <button className="relative">
             <TbShoppingCart />
-            <span className="absolute top-0 -right-1 text-xs bg-pink-600 text-[#f0f2ee] rounded-full w-4 h-4 flex items-center justify-center font-bold ring ring-[#f0f2ee]">
+            <span className="absolute top-2 -right-1 text-xs bg-pink-600 text-[#f0f2ee] rounded-full w-4 h-4 flex items-center justify-center font-bold ring ring-[#f0f2ee]">
               0
             </span>
           </button>
