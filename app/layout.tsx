@@ -1,10 +1,10 @@
 import "./globals.css";
 
-import { Lato } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 import Header from "./Header";
 
-const lato = Lato({ weight: ["400", "700"], subsets: ["latin"] });
+const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
 
 export const metadata = {
   title: "B-Commerce",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={lato.className}>
+      <body className={roboto.className}>
         <Header />
         {children}
       </body>
