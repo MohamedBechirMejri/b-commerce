@@ -6,7 +6,7 @@ export default function Products() {
   const [tab, setTab] = useState("top-rated");
 
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto mt-8">
       <div className="flex justify-between items-center">
         <h1 className="font-bold text-3xl pl-4 border-l-[3px] border-[#f50963]">
           Products Products

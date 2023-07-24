@@ -58,7 +58,7 @@ const slides = [
 
 export default function Categories() {
   return (
-    <div className="h-80 max-w-6xl mx-auto py-8">
+    <div className="h-80 max-w-6xl mx-auto py-8 my-8">
       {/* @ts-ignore */}
       <swiper-container
         autoplay
