@@ -60,7 +60,17 @@ export default function Categories() {
   return (
     <div className="h-80 max-w-6xl mx-auto py-8">
       {/* @ts-ignore */}
-      <swiper-container slides-per-view="4" autoplay loop>
+      <swiper-container
+        autoplay
+        loop
+        // @ts-ignore
+        breakpoints={JSON.stringify({
+          "0": { slidesPerView: 1 },
+          "350": { slidesPerView: 2 },
+          "720": { slidesPerView: 3 },
+          "960": { slidesPerView: 4 },
+        })}
+      >
         {slides.map((slide, i) => {
           return (
             <swiper-slide key={"slide" + i}>
