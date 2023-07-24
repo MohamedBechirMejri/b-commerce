@@ -72,16 +72,20 @@ export default function Hero() {
 
         <div className="grid place-items-center h-[45rem] w-[45rem] relative">
           <div className="relative w-full h-full">
-            {Array.from({ length: 2 }).map((_, i) => {
+            {Array.from({ length: 3 }).map((_, i) => {
               return (
                 <motion.div
                   key={"circle" + i}
-                  initial={{ opacity: 1, scale: 0 }}
-                  animate={{ opacity: 0, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0],
+                    scale: [0, (0.7 + i / 10) / 2, 0.7 + i / 10],
+                  }}
                   transition={{
                     duration: 2.5,
-                    repeatDelay: i,
+                    delay: 1 * i,
                     repeat: Infinity,
+                    ease: "linear",
                   }}
                   className="bg-white rounded-full absolute inset-0"
                 />
