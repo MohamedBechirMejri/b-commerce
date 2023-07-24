@@ -95,10 +95,9 @@ export default function Hero() {
 
           {slides.map((slide, i) => {
             return (
-              <AnimatePresence>
+              <AnimatePresence key={"slideimage" + i}>
                 {i === currentSlide ? (
                   <MotionImage
-                    key={"slideimage" + i}
                     initial={{ opacity: 0, x: "60%" }}
                     animate={{ opacity: 1, x: "50%" }}
                     transition={{ delay: 0.3, duration: 0.8 }}
