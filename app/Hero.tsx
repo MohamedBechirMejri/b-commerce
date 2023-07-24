@@ -11,7 +11,6 @@ const MotionImage = motion(Image);
 
 const slides = [
   {
-    id: 1,
     image: "/slide-1.webp",
     title1: "Best Ear",
     title2: "Headphones",
@@ -19,7 +18,6 @@ const slides = [
     subtitle2: "Fill Your Heart",
   },
   {
-    id: 2,
     image: "/slide-2.png",
     title1: "Best Ear2",
     title2: "Headphones2",
@@ -32,14 +30,8 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const nextSlide = () => {
-      setCurrentSlide((currentSlide + 1) % slides.length);
-    };
-
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 7000);
-
+    const nextSlide = () => setCurrentSlide((currentSlide + 1) % slides.length);
+    const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
   }, [currentSlide]);
 
