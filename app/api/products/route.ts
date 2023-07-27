@@ -7,11 +7,15 @@ export async function GET({ nextUrl }: NextRequest) {
   const getParam = (key: string) => nextUrl.searchParams.get(key);
 
   if (getParam("latest")) {
+    const limit = Number(getParam("limit"));
+
     const data = await prisma.product.findMany({
       orderBy: { createdAt: "desc" },
-      take: 10,
+      take: limit || 10,
     });
-    return NextResponse.json({ data });
+    return NextResponse.json({
+      data: data.map(p => ({ ...p, images: JSON.parse(p.images) })),
+    });
   }
 
   // if (getParam("top_rated")) {
