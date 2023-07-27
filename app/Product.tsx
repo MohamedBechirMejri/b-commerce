@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { TbEye, TbHeart, TbLink, TbShoppingCart } from "react-icons/tb";
 
 const imageVariants = { initial: { scale: 1 }, hover: { scale: 1.1 } };
@@ -13,6 +14,7 @@ const quickActionVariants = {
 };
 
 const MotionImage = motion(Image);
+const MotionLink = motion(Link);
 
 export default function Product({ product, i }) {
   return (
@@ -40,7 +42,7 @@ export default function Product({ product, i }) {
         </div>
 
         <div className="absolute top-0 right-0 h-full w-12 pt-10 flex flex-col gap-2 items-center text-xl pr-2">
-          <motion.button
+          <motion.button // TODO: add wishlist state
             variants={quickActionVariants}
             transition={{ delay: 0 }}
             className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms]"
@@ -54,13 +56,14 @@ export default function Product({ product, i }) {
           >
             <TbEye />
           </motion.button>
-          <motion.button
+          <MotionLink
+            href={`/product/${product.id}`}
             variants={quickActionVariants}
             transition={{ delay: 0.1 }}
             className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms]"
           >
             <TbLink />
-          </motion.button>
+          </MotionLink>
         </div>
 
         <motion.button
@@ -75,8 +78,10 @@ export default function Product({ product, i }) {
       <h1 className="font-normal tracking-wider mt-2">{product.name}</h1>
 
       <div className="flex gap-2">
+        <span className="line-through">
+          ${product.price + product.price * 0.12}
+        </span>
         <span className="text-[#f50963] font-normal">${product.price}</span>
-        <span className="line-through">${product.price * 1.5}</span>
       </div>
     </motion.div>
   );
