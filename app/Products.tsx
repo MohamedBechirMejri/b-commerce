@@ -1,9 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useProducts from "~/lib/hooks/useProducts";
+import Product from "./Product";
 
 export default function Products() {
-  const [tab, setTab] = useState("top-rated");
+  const [tab, setTab] = useState("latest");
+  const products = useProducts({
+    latest: true,
+    limit: 12,
+  });
+
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
 
   return (
     <section className="max-w-7xl mx-auto mt-8">
@@ -38,6 +48,12 @@ export default function Products() {
             Latest Products
           </button>
         </nav>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
+        {products.map((product, i) => {
+          return <Product product={product} i={i} />;
+        })}
       </div>
     </section>
   );
