@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { TbEye, TbHeart, TbLink, TbShoppingCart } from "react-icons/tb";
+import { Product } from "~/types";
 
 const imageVariants = { initial: { scale: 1 }, hover: { scale: 1.1 } };
 const buttonVariants = {
@@ -16,7 +17,13 @@ const quickActionVariants = {
 const MotionImage = motion(Image);
 const MotionLink = motion(Link);
 
-export default function Product({ product, i }) {
+export default function Product({
+  product,
+  i,
+}: {
+  product: Product;
+  i: number;
+}) {
   return (
     <motion.div
       key={"product" + i}
@@ -30,7 +37,7 @@ export default function Product({ product, i }) {
           variants={imageVariants}
           transition={{ duration: 0.3 }}
           src={product.images[0]}
-          alt={product.title}
+          alt={product.name}
           height={1125}
           width={960}
           className="w-full h-full object-contain"
