@@ -75,9 +75,14 @@ export default function Product({ product, i }) {
         </motion.button>
       </div>
 
-      <h1 className="font-normal tracking-wider mt-2">{product.name}</h1>
+      <Link
+        href={`/product/${product.id}`}
+        className="mt-2 hover:text-[#f50963] transition-all font-normal duration-300 text-sm"
+      >
+        {product.name}
+      </Link>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 -mt-1 text-sm">
         <span className="line-through">
           ${product.price + product.price * 0.12}
         </span>
