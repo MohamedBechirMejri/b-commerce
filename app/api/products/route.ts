@@ -12,6 +12,7 @@ export async function GET({ nextUrl }: NextRequest) {
     const data = await prisma.product.findMany({
       orderBy: { createdAt: "desc" },
       take: limit || 10,
+      include: { categories: true },
     });
     return NextResponse.json({
       data: data.map(p => ({ ...p, images: JSON.parse(p.images) })),
