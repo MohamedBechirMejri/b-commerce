@@ -17,7 +17,9 @@ export default function Products() {
 
   useEffect(() => {
     console.log(products);
-  }, [products]);
+
+    document.body.style.overflow = quickView ? "hidden" : "auto";
+  }, [products, quickView]);
 
   return (
     <section className="max-w-7xl mx-auto mt-8">
@@ -53,7 +55,6 @@ export default function Products() {
           </button>
         </nav>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
         {products.map((product, i) => {
           return (
