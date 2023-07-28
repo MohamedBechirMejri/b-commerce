@@ -11,7 +11,7 @@ export default function Home() {
       <Hero />
       <Categories />
       <Products />
-      <div className="h-screen"></div>
+      <div className="h-screen"></div> {/* TODO: remove this */}
     </main>
   );
 }
