@@ -122,7 +122,7 @@ const ActionButton = ({
 
 const Tooltip = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="absolute top-1/2 right-full bg-black text-white text-xs px-2 py-[1px] -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-x-2 w-max">
+    <div className="absolute top-1/2 right-full bg-black text-white text-xs px-2 py-[1px] -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-x-2 w-max pointer-events-none">
       {children}
       <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[7.5px] border-b-[5px] border-b-transparent absolute border-black left-full top-1/2 -translate-y-1/2"></div>
     </div>
