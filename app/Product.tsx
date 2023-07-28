@@ -42,27 +42,25 @@ export default function Product({ product, i }) {
         </div>
 
         <div className="absolute top-0 right-0 h-full w-12 pt-10 flex flex-col gap-2 items-center text-xl pr-2">
-          <motion.button // TODO: add wishlist state
-            variants={quickActionVariants}
-            transition={{ delay: 0 }}
-            className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms]"
-          >
+          <ActionButton handleClick={() => {}} delay={0}>
+            {/* // TODO: add wishlist state */}
             <TbHeart />
-          </motion.button>
-          <motion.button
-            variants={quickActionVariants}
-            transition={{ delay: 0.05 }}
-            className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms]"
-          >
+            <Tooltip>Add To Wishlist</Tooltip>
+          </ActionButton>
+
+          <ActionButton handleClick={() => {}} delay={0.05}>
             <TbEye />
-          </motion.button>
+            <Tooltip>Quick View</Tooltip>
+          </ActionButton>
+
           <MotionLink
             href={`/product/${product.id}`}
             variants={quickActionVariants}
             transition={{ delay: 0.1 }}
-            className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms]"
+            className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms] relative group"
           >
             <TbLink />
+            <Tooltip>View Details</Tooltip>
           </MotionLink>
         </div>
 
@@ -91,3 +89,33 @@ export default function Product({ product, i }) {
     </motion.div>
   );
 }
+
+const ActionButton = ({
+  children,
+  handleClick,
+  delay,
+}: {
+  children: React.ReactNode;
+  handleClick: () => void;
+  delay: number;
+}) => {
+  return (
+    <motion.button
+      variants={quickActionVariants}
+      transition={{ delay }}
+      className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms] relative group"
+      onClick={handleClick}
+    >
+      {children}
+    </motion.button>
+  );
+};
+
+const Tooltip = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="absolute top-1/2 right-full bg-black text-white text-xs px-2 py-[1px] -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-x-2 w-max">
+      {children}
+      <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[7.5px] border-b-[5px] border-b-transparent absolute border-black left-full top-1/2 -translate-y-1/2"></div>
+    </div>
+  );
+};
