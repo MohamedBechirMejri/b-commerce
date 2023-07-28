@@ -20,9 +20,11 @@ const MotionLink = motion(Link);
 export default function Product({
   product,
   i,
+  setQuickView,
 }: {
   product: Product;
   i: number;
+  setQuickView: (product: Product) => void;
 }) {
   return (
     <motion.div
@@ -55,7 +57,7 @@ export default function Product({
             <Tooltip>Add To Wishlist</Tooltip>
           </ActionButton>
 
-          <ActionButton handleClick={() => {}} delay={0.05}>
+          <ActionButton handleClick={() => setQuickView(product)} delay={0.05}>
             <TbEye />
             <Tooltip>Quick View</Tooltip>
           </ActionButton>

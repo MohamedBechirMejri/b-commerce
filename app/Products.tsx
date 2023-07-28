@@ -3,9 +3,13 @@
 import { useEffect, useState } from "react";
 import useProducts from "~/lib/hooks/useProducts";
 import Product from "./Product";
+import ProductQuickView from "./ProductQuickView";
+import type { Product as ProductType } from "~/types";
+import { AnimatePresence } from "framer-motion";
 
 export default function Products() {
   const [tab, setTab] = useState("latest");
+  const [quickView, setQuickView] = useState<null | ProductType>(null);
   const products = useProducts({
     latest: true,
     limit: 12,
@@ -52,9 +56,21 @@ export default function Products() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
         {products.map((product, i) => {
-          return <Product product={product} i={i} />;
+          return (
+            <Product
+              key={"home_product#" + i}
+              product={product}
+              i={i}
+              setQuickView={setQuickView}
+            />
+          );
         })}
       </div>
+      <AnimatePresence>
+        {quickView && (
+          <ProductQuickView product={quickView} setQuickView={setQuickView} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
