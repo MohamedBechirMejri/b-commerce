@@ -76,3 +76,35 @@ input[type="search"]::-webkit-search-results-decoration {
   transform-origin: bottom left;
   transform: scaleX(1);
 }
+
+.voucher-border {
+  background: linear-gradient(
+    #eaeaef,
+    #eaeaef 12px,
+    transparent 3px,
+    transparent 9px
+  );
+  background-size: 100% 15px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    transform: translate(-45%, -50%);
+    @apply border;
+  }
+  &::after {
+    top: auto;
+    bottom: 0;
+    transform: translate(-45%, 50%);
+  }
+}
