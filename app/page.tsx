@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 
-const Categories = dynamic(() => import("./Categories"), { ssr: false });
-
 import Hero from "./Hero";
-import Products from "./Products";
+import Products from "./(Products)";
+
+const Categories = dynamic(() => import("./Categories"), { ssr: false });
 
 export default function Home() {
   return (
