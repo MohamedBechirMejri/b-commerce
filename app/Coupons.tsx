@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import Countdown from "react-countdown";
 
 const coupons = [
   {
@@ -6,7 +9,7 @@ const coupons = [
     title: "August Gift Voucher",
     subtitle: "50%",
     note: "Valid till 31st August",
-    endDate: Date.now(),
+    endDate: new Date("2024-08-31T00:00:00"),
     code: "AUG50",
     status: "active",
   },
@@ -15,7 +18,7 @@ const coupons = [
     title: "August Gift Voucher",
     subtitle: "50%",
     note: "Valid till 31st August",
-    endDate: Date.now(),
+    endDate: new Date("2023-08-31T00:00:00"),
     code: "AUG50",
     status: "active",
   },
@@ -24,7 +27,7 @@ const coupons = [
     title: "August Gift Voucher",
     subtitle: "50%",
     note: "Valid till 31st August",
-    endDate: Date.now(),
+    endDate: new Date("2023-08-31T00:00:00"),
     code: "AUG50",
     status: "active",
   },
@@ -33,7 +36,7 @@ const coupons = [
     title: "August Gift Voucher",
     subtitle: "50%",
     note: "Valid till 31st August",
-    endDate: Date.now(),
+    endDate: new Date("2024-08-31T00:00:00"),
     code: "AUG50",
     status: "active",
   },
@@ -55,7 +58,7 @@ export default function Coupons() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 grid-rows-2 p-4 gap-6">
+      <div className="grid grid-cols-2 grid-rows-2 p-4 pt-8 gap-6">
         {coupons.map((voucher, i) => {
           return <Voucher key={"voucher#" + i} voucher={voucher} />;
         })}
@@ -75,18 +78,36 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="font-semibold flex flex-col gap-1 py-2">
+        <div className="font-semibold flex flex-col gap-1 py-2 justify-between">
           <h1>{voucher.title}</h1>
           <p>
             <span className="text-[#f50963]">{voucher.subtitle}</span> Off
           </p>{" "}
           <p className="text-sm text-[#727275]">
-            Valid till{" "}
-            {new Date(voucher.endDate).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
+            <Countdown
+              date={voucher.endDate}
+              autoStart
+              renderer={({ days, hours, minutes, seconds }) => (
+                <div className="grid grid-cols-4 font-normal text-xs gap-2">
+                  <p className="flex flex-col items-start">
+                    <span>{days}</span>
+                    <span>DAYS</span>
+                  </p>
+                  <p className="flex flex-col items-start">
+                    <span>{hours}</span>
+                    <span>HRS</span>
+                  </p>
+                  <p className="flex flex-col items-start">
+                    <span>{minutes}</span>
+                    <span>MIN</span>
+                  </p>
+                  <p className="flex flex-col items-start">
+                    <span>{seconds}</span>
+                    <span>SEC</span>
+                  </p>
+                </div>
+              )}
+            />
           </p>
         </div>
       </div>
@@ -94,9 +115,24 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
       <div className="voucher-border" />
 
       <div className="flex flex-col justify-center items-center gap-4 border p-4 px-6 border-l-0">
-        <p className="text-sm text-[#727275]">Coupon: {voucher.status}</p>
+        <p className="text-sm text-[#727275] capitalize">
+          Status: {voucher.status}
+        </p>
 
-        <button className="border-2 border-dashed p-1 px-8 border-teal-500 font-semibold text-teal-600 bg-teal-100 bg-opacity-50 tracking-widest">
+        <button
+          className="border-2 border-dashed p-1 px-8 border-teal-500 font-semibold text-teal-600 bg-teal-100 bg-opacity-50 tracking-widest"
+          onClick={e => {
+            navigator.clipboard.writeText(voucher.code);
+
+            // @ts-ignore
+            e.target.innerText = "Copied!";
+
+            setTimeout(() => {
+              // @ts-ignore
+              e.target.innerText = voucher.code;
+            }, 1000);
+          }}
+        >
           {voucher.code}
         </button>
       </div>
