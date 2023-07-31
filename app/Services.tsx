@@ -35,7 +35,7 @@ const icons = {
   TbCreditCard: <TbCreditCard />,
 } as any;
 
-export default function Featured() {
+export default function Services() {
   return (
     <section className="w-screen max-w-7xl my-[4.25rem] mx-auto flex justify-between">
       {servies.map((service, i) => (
