@@ -20,6 +20,7 @@ export default function Header() {
             width={50}
             height={50}
             className="h-14 w-[115px] mr-[6rem]"
+            priority
           />
         </Link>
         <nav className="w-full tracking-wide text-sm font-semibold">
