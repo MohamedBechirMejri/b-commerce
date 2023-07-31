@@ -108,3 +108,7 @@ input[type="search"]::-webkit-search-results-decoration {
     transform: translate(-45%, 50%);
   }
 }
+
+* {
+  scroll-behavior: smooth;
+}
