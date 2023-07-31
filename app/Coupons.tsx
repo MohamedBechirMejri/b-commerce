@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Countdown from "react-countdown";
+import { TbInfoSquareRounded } from "react-icons/tb";
 
 const coupons = [
   {
@@ -115,9 +116,14 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
       <div className="voucher-border" />
 
       <div className="flex flex-col justify-center items-center gap-4 border p-4 px-6 border-l-0">
-        <p className="text-sm text-[#727275] capitalize">
-          Status: {voucher.status}
-        </p>
+        <div className="text-sm text-[#727275] capitalize flex items-center gap-2">
+          <span> Status: {voucher.status}</span>
+
+          <div className="group relative">
+            <TbInfoSquareRounded className="hover:text-[#585858] cursor-help" />
+            <Tooltip>{voucher.note}</Tooltip>
+          </div>
+        </div>
 
         <button
           className="border-2 border-dashed p-1 px-8 border-teal-500 font-semibold text-teal-600 bg-teal-100 bg-opacity-50 tracking-widest"
@@ -136,6 +142,15 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
           {voucher.code}
         </button>
       </div>
+    </div>
+  );
+};
+
+const Tooltip = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="absolute right-4 -top-2 bg-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 w-52 pointer-events-none shadow-lg group-hover:-translate-x-2 p-1 px-2 border">
+      {children}
+      <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[7.5px] border-b-[5px] border-b-transparent absolute border-[#d3d3d3] shadow-sm left-full top-2" />
     </div>
   );
 };
