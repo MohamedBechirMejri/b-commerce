@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Countdown from "react-countdown";
+import dynamic from "next/dynamic";
 import { TbInfoSquareRounded } from "react-icons/tb";
+
+// @ts-ignore
+const Countdown = dynamic(() => import("react-countdown"), { ssr: false });
 
 const coupons = [
   {
@@ -84,7 +87,7 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
           <p>
             <span className="text-[#f50963]">{voucher.subtitle}</span> Off
           </p>{" "}
-          <p className="text-sm text-[#727275]">
+          <div className="text-sm text-[#727275]">
             <Countdown
               date={voucher.endDate}
               autoStart
@@ -109,7 +112,7 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
                 </div>
               )}
             />
-          </p>
+          </div>
         </div>
       </div>
 
@@ -132,7 +135,6 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
 
             // @ts-ignore
             e.target.innerText = "Copied!";
-
             setTimeout(() => {
               // @ts-ignore
               e.target.innerText = voucher.code;
