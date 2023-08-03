@@ -42,6 +42,7 @@ export default function Hero() {
           <div className="relative">
             <AnimatePresence>
               {slides.map((slide, i) => {
+                // TODO: tweak delay on first render and animate the button and border
                 return i === currentSlide ? (
                   <Slide key={"slide" + i} slide={slide} />
                 ) : null;
