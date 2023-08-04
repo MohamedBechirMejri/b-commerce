@@ -36,9 +36,9 @@ export default function Hero() {
   }, [currentSlide]);
 
   return (
-    <section className="h-[45rem] bg-[#f0f2ee]">
-      <div className="grid grid-cols-2 relative max-w-[100rem] mx-auto">
-        <div className="pt-[12.5rem] pl-24">
+    <section className="sm:h-[45rem] bg-[#f0f2ee] overflow-hidden">
+      <div className="flex justify-between relative max-w-[100rem] mx-auto flex-col p-8 sm:p-0 sm:flex-row">
+        <div className="sm:pt-[12.5rem] sm:pl-24 py-12">
           <div className="relative">
             <AnimatePresence>
               {slides.map((slide, i) => {
@@ -56,7 +56,7 @@ export default function Hero() {
                 <br />
                 slide.title2
               </p>
-              <h1 className="font-semibold text-7xl pt-4 pl-1 tracking-wide leading-[1.1] pb-14">
+              <h1 className="font-semibold text-3xl sm:text-7xl pt-4 pl-1 tracking-wide leading-[1.1] sm:pb-16 pb-4">
                 slide.subtitle1
                 <br />
                 slide.subtitle2
@@ -71,7 +71,7 @@ export default function Hero() {
           </Link>
         </div>
 
-        <div className="grid place-items-center h-[45rem] w-[45rem] relative">
+        <div className="grid place-items-center sm:h-[45rem] sm:w-[45rem] relative w-[5rem] h-[5rem] opacity-0 lg:opacity-100">
           <div className="relative w-full h-full">
             {Array.from({ length: 3 }).map((_, i) => {
               return (
@@ -111,7 +111,7 @@ export default function Hero() {
                     alt={`slide-${i}`}
                     width={460}
                     height={525}
-                    className="h-[32rem] w-max absolute bottom-0 right-1/2"
+                    className="sm:h-[32rem] w-max absolute bottom-0 right-1/2"
                   />
                 ) : null}
               </AnimatePresence>
@@ -147,7 +147,7 @@ const Slide = ({ slide }: { slide: any }) => {
           {slide.title2}
         </motion.span>
       </motion.p>
-      <h1 className="font-semibold text-7xl pt-4 pl-1 tracking-wide leading-[1.1] pb-14">
+      <h1 className="font-semibold text-3xl sm:text-7xl pt-4 pl-1 tracking-wide leading-[1.1] pb-14">
         <motion.span
           initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
