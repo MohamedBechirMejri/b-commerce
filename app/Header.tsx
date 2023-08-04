@@ -25,21 +25,21 @@ export default function Header() {
         </Link>
         <nav className="w-full tracking-wide text-sm font-semibold">
           <ul className="flex gap-8">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/about">About Us</Link>
-            </li>
-            <li>
-              <Link href="/products">Shop</Link>
-            </li>
-            <li>
-              <Link href="/products">Products</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact Us</Link>
-            </li>
+            <Link href="/" className="w-max">
+              Home
+            </Link>
+            <Link href="/about" className="w-max">
+              About Us
+            </Link>
+            <Link href="/products" className="w-max">
+              Shop
+            </Link>
+            <Link href="/products" className="w-max">
+              Products
+            </Link>
+            <Link href="/contact" className="w-max">
+              Contact Us
+            </Link>
           </ul>
         </nav>
         <div className="w-full flex justify-end text-2xl gap-4 pr-8">
