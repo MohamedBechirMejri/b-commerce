@@ -57,7 +57,7 @@ export default function ProductQuickView({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -50 }}
         transition={{}}
-        className="bg-white min-h-[min(42rem,90svh)] max-w-[76rem] w-[94svw] relative z-50 grid grid-cols-[auto,1fr]"
+        className="bg-white h-[min(42rem,90svh)] max-w-[76rem] w-[94svw] relative z-50 sm:grid grid-cols-[auto,1fr] flex flex-col overflow-y-scroll"
       >
         <button
           className="absolute top-4 right-4 text-2xl hover:text-[#f50963] transition-all duration-300"
@@ -66,14 +66,14 @@ export default function ProductQuickView({
           <TbX />
         </button>
 
-        <div className="w-[38rem] h-full grid grid-rows-[1fr,auto] gap-4 p-10">
+        <div className="sm:w-[38rem] sm:h-full flex flex-col sm:grid sm:grid-rows-[1fr,auto] gap-4 p-10">
           <div className="bg-[#f6f8fa] h-full relative">
             <Image
               src={activeImage}
               alt={product.name}
               height={1125}
               width={960}
-              className="absolute h-full w-full object-contain"
+              className="sm:absolute h-full w-full object-contain"
             />
           </div>
           <div className="h-[6rem] flex gap-12">
