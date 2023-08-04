@@ -51,7 +51,7 @@ export default function Hero() {
 
             {/* placeholder */}
             <div className="h-full opacity-0 ">
-              <p className="pl-2 border-l-2 border-rose-500 leading-[1.05] tracking-wide text-[#525258]">
+              <p className="pl-2 border-l-2leading-[1.05] tracking-wide">
                 slide.title1
                 <br />
                 slide.title2
