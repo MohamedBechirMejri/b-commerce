@@ -37,16 +37,16 @@ const icons = {
 
 export default function Services() {
   return (
-    <section className="w-screen max-w-7xl my-[4.25rem] mx-auto flex justify-between">
+    <section className="w-screen max-w-7xl my-[4.25rem] mx-auto sm:flex justify-between grid grid-cols-2">
       {servies.map((service, i) => (
         <div
           key={"service#" + i}
-          className="flex justify-center items-center gap-4"
+          className="flex justify-center items-center gap-4 flex-col sm:flex-row sm:w-[25%] w-full p-4"
         >
           <div className="bg-white rounded-full border p-4 text-2xl text-gray-700">
             {icons[service.icon]}
           </div>
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col sm:items-start items-center text-center sm:text-left gap-1 sm:gap-0">
             <h1 className="font-semibold text-lg text-center tracking-wide">
               {service.title}
             </h1>
