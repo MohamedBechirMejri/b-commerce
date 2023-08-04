@@ -43,9 +43,9 @@ export default function Footer() {
   return pathname.split("/")[1] === "admin" ? (
     <></>
   ) : (
-    <header className="w-full max-w-7xl mx-auto mt-24 pb-8 text-[#525258]">
-      <div className="grid grid-cols-5">
-        <div className="">
+    <footer className="w-full max-w-7xl mx-auto mt-24 pb-8 text-[#525258] p-4">
+      <div className="grid sm:grid-cols-5 gap-8">
+        <div className="flex flex-wrap items-start justify-start gap-4">
           <Link href={"/"} className="w-max block">
             <Image
               src={"/logo.svg"}
@@ -57,7 +57,7 @@ export default function Footer() {
             />
           </Link>
 
-          <p className="pt-4 max-w-[12rem] leading-snug font-medium text-[#7d7f82]">
+          <p className="sm:pt-4 max-w-[12rem] leading-snug font-medium text-[#7d7f82]">
             The home and elements needed to create beautiful products.
           </p>
 
@@ -97,34 +97,33 @@ export default function Footer() {
 
         <div>
           <h5 className="font-bold text-xl">Talk To Us</h5>
-          <ul className="mt-8">
-            <p className="tracking-wide">
-              Find a location nearest you.
-              <br />
-              See{" "}
-              <a href="/stores" className="text-[#f50963] underline">
-                Our Stores
-              </a>{" "}
-            </p>
-            <a
-              href="phone:+6222446622"
-              className="hover:underline pt-4 inline-block font-semibold text-xl"
-            >
-              +622 244 66 22
-            </a>
-            <a
-              href="mailto:bechir@mejri.dev"
-              className="hover:underline pt-1 inline-block"
-            >
-              bechir@mejri.dev
-            </a>
-          </ul>
+          <p className="tracking-wide mt-8">
+            Find a location nearest you.
+            <br />
+            See{" "}
+            <a href="/stores" className="text-[#f50963] underline">
+              Our Stores
+            </a>{" "}
+          </p>
+          <a
+            href="phone:+6222446622"
+            className="hover:underline pt-4 inline-block font-semibold text-xl"
+          >
+            +622 244 66 22
+          </a>
+          <br />
+          <a
+            href="mailto:bechir@mejri.dev"
+            className="hover:underline pt-1 inline-block"
+          >
+            bechir@mejri.dev
+          </a>
         </div>
       </div>
 
-      <hr className="my-7 mt-28" />
+      <hr className="my-7 sm:mt-28" />
 
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-col gap-8 items-center p-4 text-center sm:flex-row">
         <p className="text-sm tracking-wide">
           Copyright © 2023 by{" "}
           <a
@@ -132,8 +131,9 @@ export default function Footer() {
             target="_blank"
             className="text-[#f50963]"
           >
-            Mohamed Bechir Mejri
+            MBM
           </a>{" "}
+          <br className="sm:hidden" />
           All rights reserved.
         </p>
         <Image
@@ -143,6 +143,6 @@ export default function Footer() {
           height={30}
         />
       </div>
-    </header>
+    </footer>
   );
 }
