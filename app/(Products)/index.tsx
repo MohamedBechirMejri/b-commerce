@@ -16,14 +16,12 @@ export default function Products() {
   });
 
   useEffect(() => {
-    console.log(products);
-
     document.body.style.overflow = quickView ? "hidden" : "auto";
   }, [products, quickView]);
 
   return (
-    <section className="max-w-7xl mx-auto mt-8">
-      <div className="flex justify-between items-center">
+    <section className="max-w-7xl mx-auto mt-8 p-4">
+      <div className="flex justify-between items-center flex-wrap gap-4">
         <h1 className="font-bold text-3xl pl-4 border-l-[3px] border-[#f50963]">
           Products Products
         </h1>
@@ -55,7 +53,7 @@ export default function Products() {
           </button>
         </nav>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8 place-items-center">
         {products.map((product, i) => {
           return (
             <Product
