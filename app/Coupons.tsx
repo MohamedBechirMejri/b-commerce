@@ -48,21 +48,21 @@ const coupons = [
 
 export default function Coupons() {
   return (
-    <section className="max-w-7xl mx-auto mt-28">
+    <section className="max-w-7xl mx-auto mt-28 p-4">
       <div className="flex justify-between items-center">
-        <h1 className="font-bold text-3xl pl-4 border-l-[3px] border-[#f50963]">
+        <h1 className="font-bold text-2xl sm:text-3xl pl-4 border-l-[3px] border-[#f50963]">
           Deals of The Day
         </h1>
 
         <Link
           href="/products"
-          className="bg-[#f50963] text-white px-6 py-[11px] font-semibold hover:bg-[#00000000] transition-all duration-300 border border-current hover:text-[#f50963]"
+          className="bg-[#f50963] text-white sm:px-6 sm:py-[11px] font-semibold hover:bg-[#00000000] transition-all duration-300 border border-current hover:text-[#f50963] p-2 px-3"
         >
           View All Products
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 grid-rows-2 p-4 pt-8 gap-6">
+      <div className="grid sm:grid-cols-2 sm:grid-rows-2 pt-8 gap-6">
         {coupons.map((voucher, i) => {
           return <Voucher key={"voucher#" + i} voucher={voucher} />;
         })}
@@ -74,7 +74,7 @@ export default function Coupons() {
 const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
   return (
     <div className="grid grid-cols-[2fr,2px,1fr] overflow-hidden">
-      <div className="flex gap-4 border p-4 border-r-0">
+      <div className="flex gap-4 border sm:p-4 p-2 border-r-0">
         <div className="w-[7rem] h-[7rem] bg-[#f6f8fa] rounded-lg relative">
           <img
             src={voucher.image}
@@ -83,11 +83,11 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
           />
         </div>
         <div className="font-semibold flex flex-col gap-1 py-2 justify-between">
-          <h1>{voucher.title}</h1>
-          <p>
+          <h1 className="text-xs sm:text-base">{voucher.title}</h1>
+          <p className="text-xs sm:text-base">
             <span className="text-[#f50963]">{voucher.subtitle}</span> Off
           </p>{" "}
-          <div className="text-sm text-[#727275]">
+          <div className="text-[#727275]">
             <Countdown
               date={voucher.endDate}
               autoStart
@@ -118,7 +118,7 @@ const Voucher = ({ voucher }: { voucher: (typeof coupons)[0] }) => {
 
       <div className="voucher-border" />
 
-      <div className="flex flex-col justify-center items-center gap-4 border p-4 px-6 border-l-0">
+      <div className="flex flex-col justify-center items-center gap-4 border sm:p-4 sm:px-6 border-l-0 p-2">
         <div className="text-sm text-[#727275] capitalize flex items-center gap-2">
           <span> Status: {voucher.status}</span>
 
