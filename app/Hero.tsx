@@ -56,7 +56,7 @@ export default function Hero() {
                 <br />
                 slide.title2
               </p>
-              <h1 className="font-semibold text-3xl sm:text-7xl pt-4 pl-1 tracking-wide leading-[1.1] sm:pb-16 pb-4">
+              <h1 className="font-semibold text-3xl sm:text-7xl pt-4 pl-1 tracking-wide leading-[1.1] sm:pb-20 pb-4">
                 slide.subtitle1
                 <br />
                 slide.subtitle2
