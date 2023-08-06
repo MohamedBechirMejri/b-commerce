@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { Roboto } from "next/font/google";
 
-import Header from "./Header";
+import Header from "./(Header)";
 import Footer from "./Footer";
 
 const roboto = Roboto({
