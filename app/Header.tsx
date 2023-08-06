@@ -11,7 +11,6 @@ import {
   TbUser,
   TbX,
 } from "react-icons/tb";
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useStore from "~/lib/hooks/useStore";
 
@@ -26,12 +25,8 @@ const links = [
 export default function Header() {
   const pathname = usePathname();
 
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const { isMenuVisible, setIsMenuVisible } = useStore();
   const { cart } = useStore();
-
-  useEffect(() => {
-    console.log(cart.length);
-  }, [cart]);
 
   return pathname.split("/")[1] !== "admin" ? (
     <header className="w-full h-[4.75rem] border-b bg-[#f0f2ee] sticky top-0 left-0 z-50">
@@ -159,7 +154,7 @@ export default function Header() {
                 </nav>
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 items-center justify-center">
                 <div className="w-full justify-evenly text-2xl gap-4 flex p-4">
                   <button children={<TbUser />} />
                   <button className="relative">
