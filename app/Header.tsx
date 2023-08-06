@@ -11,8 +11,9 @@ import {
   TbUser,
   TbX,
 } from "react-icons/tb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import useStore from "~/lib/hooks/useStore";
 
 const links = [
   { name: "Home", href: "/", sublinks: null },
@@ -23,14 +24,17 @@ const links = [
 ];
 
 export default function Header() {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-
   const pathname = usePathname();
 
-  return pathname.split("/")[1] === "admin" ? (
-    <></>
-  ) : (
-    <header className="w-full h-[4.75rem] border-b bg-[#f0f2ee]">
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const { cart } = useStore();
+
+  useEffect(() => {
+    console.log(cart.length);
+  }, [cart]);
+
+  return pathname.split("/")[1] !== "admin" ? (
+    <header className="w-full h-[4.75rem] border-b bg-[#f0f2ee] sticky top-0 left-0 z-50">
       <div className="h-[5rem] w-full sm:grid sm:grid-cols-[auto,1fr,1fr] px-4 max-w-[101rem] m-auto items-center text-[#525258] flex justify-between">
         <Link href={"/"}>
           <Image
@@ -38,7 +42,7 @@ export default function Header() {
             alt="Logo"
             width={50}
             height={50}
-            className="sm:h-14 h-8 sm:mr-[6rem]"
+            className="sm:h-14 h-8 sm:mr-8 xl:mr-[6rem]"
             priority
           />
         </Link>
@@ -77,7 +81,7 @@ export default function Header() {
             children={
               <>
                 <TbShoppingCart />
-                <Counter value={0} />
+                <Counter value={cart.length} />
               </>
             }
           />
@@ -158,24 +162,15 @@ export default function Header() {
               <div className="flex flex-col gap-2">
                 <div className="w-full justify-evenly text-2xl gap-4 flex p-4">
                   <button children={<TbUser />} />
-                  <button
-                    className="relative"
-                    children={
-                      <>
-                        <TbHeart />
-                        <Counter value={0} />
-                      </>
-                    }
-                  />
-                  <button
-                    className="relative"
-                    children={
-                      <>
-                        <TbShoppingCart />
-                        <Counter value={0} />
-                      </>
-                    }
-                  />
+                  <button className="relative">
+                    <TbHeart />
+                    <Counter value={0} />
+                  </button>
+
+                  <button className="relative">
+                    <TbShoppingCart />
+                    <Counter value={cart.length} />
+                  </button>
                 </div>
 
                 <SearchBar className="border-[#f50963] placeholder:text-[#f50963] text-[#f50963] font-semibold border-2" />
@@ -185,6 +180,8 @@ export default function Header() {
         </AnimatePresence>
       </div>
     </header>
+  ) : (
+    <></>
   );
 }
 
@@ -211,7 +208,7 @@ const SearchBar = ({ className }: { className?: string }) => {
 const Counter = ({ value }: { value: number }) => {
   return (
     <span className="absolute top-2 -right-1 text-xs bg-[#f50963] text-[#f0f2ee] rounded-full w-4 h-4 flex items-center justify-center font-bold ring ring-[#f0f2ee]">
-      {value}
+      {value.toString()}
     </span>
   );
 };

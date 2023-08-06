@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { TbEye, TbHeart, TbLink, TbShoppingCart } from "react-icons/tb";
+import useStore from "~/lib/hooks/useStore";
 import { Product } from "~/types";
 
 const imageVariants = { initial: { scale: 1 }, hover: { scale: 1.1 } };
@@ -26,6 +27,8 @@ export default function Product({
   i: number;
   setQuickView: (product: Product) => void;
 }) {
+  const { addToCart } = useStore();
+
   return (
     <motion.div
       key={"product" + i}
@@ -77,6 +80,7 @@ export default function Product({
           variants={buttonVariants}
           transition={{ duration: 0.3 }}
           className="absolute bottom-0 left-0 h-10 bg-black w-full text-white font-semibold flex items-center justify-center gap-2 hover:bg-[#f50963] [transition-property:background-color] [transition-duration:300ms]"
+          onClick={() => addToCart(product)}
         >
           <TbShoppingCart /> Add to Cart
         </motion.button>
