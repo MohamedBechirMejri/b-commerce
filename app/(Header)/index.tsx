@@ -27,7 +27,7 @@ const links = [
 export default function Header() {
   const pathname = usePathname();
 
-  const { isMenuVisible, setIsMenuVisible, cart } = useStore();
+  const { menuStatus, setMenuStatus, cart } = useStore();
 
   return pathname.split("/")[1] !== "admin" ? (
     <header className="w-full h-[4.75rem] border-b bg-[#f0f2ee] sticky top-0 left-0 z-50">
@@ -63,50 +63,38 @@ export default function Header() {
 
           <button className="xl:hidden" children={<TbSearch />} />
           <button children={<TbUser />} />
-          <button
-            className="relative"
-            children={
-              <>
-                <TbHeart />
-                <Counter value={0} />
-              </>
-            }
-          />
-          <button
-            className="relative"
-            children={
-              <>
-                <TbShoppingCart />
-                <Counter value={cart.length} />
-              </>
-            }
-          />
+
+          <button className="relative">
+            <TbHeart />
+            <Counter value={0} />
+          </button>
+
+          <button className="relative" onClick={() => setMenuStatus("cart")}>
+            <TbShoppingCart />
+            <Counter value={cart.length} />
+          </button>
         </div>
 
         <button
           className="sm:hidden text-2xl hover:text-[#f50963] transition-all duration-300"
-          onClick={() => setIsMenuVisible(true)}
+          onClick={() => setMenuStatus("nav")}
           children={<TbMenu />}
         />
 
         <AnimatePresence>
-          {isMenuVisible && (
+          {menuStatus !== "closed" && (
             <motion.div
+              key="overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="h-[100svh] w-full fixed top-0 left-0 bg-black bg-opacity-70"
+              onClick={() => setMenuStatus("closed")}
             />
           )}
-        </AnimatePresence>
 
-        <AnimatePresence>
-          {isMenuVisible && (
-            <MobileMenu
-              cart={cart}
-              setIsMenuVisible={setIsMenuVisible}
-              links={links}
-            />
+          {menuStatus === "nav" && (
+            <MobileMenu key="mobilemenu" cart={cart} links={links} />
           )}
         </AnimatePresence>
       </div>
