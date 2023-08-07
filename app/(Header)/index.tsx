@@ -1,8 +1,12 @@
 "use client";
 
+import useStore from "~/lib/hooks/useStore";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   TbHeart,
   TbMenu,
@@ -10,11 +14,11 @@ import {
   TbShoppingCart,
   TbUser,
 } from "react-icons/tb";
-import { AnimatePresence, motion } from "framer-motion";
-import useStore from "~/lib/hooks/useStore";
+
 import MobileMenu from "./MobileMenu";
 import Counter from "./Counter";
 import SearchBar from "./SearchBar";
+import CartOverlay from "./CartOverlay";
 
 const links = [
   { name: "Home", href: "/", sublinks: null },
@@ -26,8 +30,11 @@ const links = [
 
 export default function Header() {
   const pathname = usePathname();
-
   const { menuStatus, setMenuStatus, cart } = useStore();
+
+  useEffect(() => {
+    document.body.style.overflow = menuStatus !== "closed" ? "hidden" : "auto";
+  }, [menuStatus]);
 
   return pathname.split("/")[1] !== "admin" ? (
     <header className="w-full h-[4.75rem] border-b bg-[#f0f2ee] sticky top-0 left-0 z-50">
@@ -94,7 +101,11 @@ export default function Header() {
           )}
 
           {menuStatus === "nav" && (
-            <MobileMenu key="mobilemenu" cart={cart} links={links} />
+            <MobileMenu key="mobile-menu" cart={cart} links={links} />
+          )}
+
+          {menuStatus === "cart" && (
+            <CartOverlay key="cart-overlay" cart={cart} links={links} />
           )}
         </AnimatePresence>
       </div>
