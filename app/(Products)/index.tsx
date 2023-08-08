@@ -23,7 +23,7 @@ export default function Products() {
     <section className="max-w-7xl mx-auto mt-8 p-4">
       <div className="flex justify-between items-center flex-wrap gap-4">
         <h1 className="font-bold text-3xl pl-4 border-l-[3px] border-[#f50963]">
-          Products Products
+          Products
         </h1>
 
         <nav className="flex gap-8 font-medium text-[#727275]">
