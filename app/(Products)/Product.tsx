@@ -1,15 +1,19 @@
-import { motion } from "framer-motion";
+import type { Product } from "~/types";
+
+import useStore from "~/lib/hooks/useStore";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { TbEye, TbHeart, TbLink, TbShoppingCart } from "react-icons/tb";
-import useStore from "~/lib/hooks/useStore";
-import { Product } from "~/types";
 
 const imageVariants = { initial: { scale: 1 }, hover: { scale: 1.1 } };
+
 const buttonVariants = {
   initial: { y: "100%", opacity: 0 },
   hover: { y: "0%", opacity: 1 },
 };
+
 const quickActionVariants = {
   initial: { x: "100%", opacity: 0 },
   hover: { x: "0%", opacity: 1 },
@@ -27,7 +31,7 @@ export default function Product({
   i: number;
   setQuickView: (product: Product) => void;
 }) {
-  const { addToCart } = useStore();
+  const { addToCart, cart, setMenuStatus } = useStore();
 
   return (
     <motion.div
@@ -80,9 +84,17 @@ export default function Product({
           variants={buttonVariants}
           transition={{ duration: 0.3 }}
           className="absolute bottom-0 left-0 h-10 bg-black w-full text-white font-semibold flex items-center justify-center gap-2 hover:bg-[#f50963] [transition-property:background-color] [transition-duration:300ms]"
-          onClick={() => addToCart(product, product.minBuy)}
+          onClick={() =>
+            cart.map(x => x.product.id).includes(product.id)
+              ? setMenuStatus("cart")
+              : addToCart(product, product.minBuy)
+          }
         >
-          <TbShoppingCart /> Add to Cart
+          <TbShoppingCart />
+          {cart.map(x => x.product.id).includes(product.id)
+            ? "View "
+            : "Add to "}
+          Cart
         </motion.button>
       </div>
 
