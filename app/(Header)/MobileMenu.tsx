@@ -57,6 +57,7 @@ const MobileMenu = ({ links }: { links: { name: string; href: string }[] }) => {
                     className={`inline-block w-full py-3 ${
                       i > 0 ? "border-t" : ""
                     }`}
+                    onClick={() => setMenuStatus("closed")}
                   >
                     {link.name}
                   </Link>
