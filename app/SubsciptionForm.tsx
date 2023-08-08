@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { TbArrowRight } from "react-icons/tb";
 
 export default function SubscriptionForm() {
