@@ -4,7 +4,7 @@ import { TbArrowRight } from "react-icons/tb";
 export default function SubscriptionForm() {
   return (
     <section
-      className="bg-[#f0f2ed] w-screen sm:p-[3.25rem] p-4"
+      className="bg-[#f0f2ed] w-full sm:p-[3.25rem] p-4"
       style={{
         backgroundImage: "url('/images/home/sub-banner.jpg')",
         backgroundSize: "cover",
