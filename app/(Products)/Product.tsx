@@ -80,7 +80,7 @@ export default function Product({
           variants={buttonVariants}
           transition={{ duration: 0.3 }}
           className="absolute bottom-0 left-0 h-10 bg-black w-full text-white font-semibold flex items-center justify-center gap-2 hover:bg-[#f50963] [transition-property:background-color] [transition-duration:300ms]"
-          onClick={() => addToCart(product)}
+          onClick={() => addToCart(product, product.minBuy)}
         >
           <TbShoppingCart /> Add to Cart
         </motion.button>

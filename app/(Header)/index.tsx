@@ -101,12 +101,10 @@ export default function Header() {
           )}
 
           {menuStatus === "nav" && (
-            <MobileMenu key="mobile-menu" cart={cart} links={links} />
+            <MobileMenu key="mobile-menu" links={links} />
           )}
 
-          {menuStatus === "cart" && (
-            <CartOverlay key="cart-overlay" cart={cart} links={links} />
-          )}
+          {menuStatus === "cart" && <CartOverlay key="cart-overlay" />}
         </AnimatePresence>
       </div>
     </header>
