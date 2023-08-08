@@ -10,14 +10,8 @@ import { TbHeart, TbShoppingCart, TbUser, TbX } from "react-icons/tb";
 import SearchBar from "./SearchBar";
 import Counter from "./Counter";
 
-const MobileMenu = ({
-  cart,
-  links,
-}: {
-  cart: Product[];
-  links: { name: string; href: string }[];
-}) => {
-  const { setMenuStatus } = useStore();
+const MobileMenu = ({ links }: { links: { name: string; href: string }[] }) => {
+  const { setMenuStatus, cart } = useStore();
 
   return (
     <motion.div
