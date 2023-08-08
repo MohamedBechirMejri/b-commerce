@@ -30,7 +30,7 @@ const links = [
 
 export default function Header() {
   const pathname = usePathname();
-  const { menuStatus, setMenuStatus, cart } = useStore();
+  const { menuStatus, setMenuStatus, cart, wishlist } = useStore();
 
   useEffect(() => {
     document.body.style.overflow = menuStatus !== "closed" ? "hidden" : "auto";
@@ -73,7 +73,7 @@ export default function Header() {
 
           <button className="relative">
             <TbHeart />
-            <Counter value={0} />
+            <Counter value={wishlist.length} />
           </button>
 
           <button className="relative" onClick={() => setMenuStatus("cart")}>

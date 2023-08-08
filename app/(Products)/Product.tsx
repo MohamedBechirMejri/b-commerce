@@ -5,7 +5,13 @@ import useStore from "~/lib/hooks/useStore";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { TbEye, TbHeart, TbLink, TbShoppingCart } from "react-icons/tb";
+import {
+  TbEye,
+  TbHeart,
+  TbHeartFilled,
+  TbLink,
+  TbShoppingCart,
+} from "react-icons/tb";
 
 const imageVariants = { initial: { scale: 1 }, hover: { scale: 1.1 } };
 
@@ -31,7 +37,8 @@ export default function Product({
   i: number;
   setQuickView: (product: Product) => void;
 }) {
-  const { addToCart, cart, setMenuStatus } = useStore();
+  const { addToCart, cart, setMenuStatus, wishlist, toggleWishlistItem } =
+    useStore();
 
   return (
     <motion.div
@@ -58,9 +65,15 @@ export default function Product({
         </div>
 
         <div className="absolute top-0 right-0 h-full w-12 pt-10 flex flex-col gap-2 items-center text-xl pr-2">
-          <ActionButton handleClick={() => {}} delay={0}>
-            {/* // TODO: add wishlist state */}
-            <TbHeart />
+          <ActionButton
+            handleClick={() => toggleWishlistItem(product)}
+            delay={0}
+          >
+            {wishlist.map(p => p.id).includes(product.id) ? (
+              <TbHeartFilled className="text-[#f50963] group-hover:text-white transition-all duration-300" />
+            ) : (
+              <TbHeart />
+            )}
             <Tooltip>Add To Wishlist</Tooltip>
           </ActionButton>
 
@@ -128,7 +141,7 @@ const ActionButton = ({
     <motion.button
       variants={quickActionVariants}
       transition={{ delay }}
-      className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color] [transition-duration:150ms] relative group"
+      className="bg-white shadow p-2 hover:bg-[#f50963] hover:text-white [transition-property:background-color,color] [transition-duration:200ms] relative group"
       onClick={handleClick}
     >
       {children}

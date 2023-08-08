@@ -13,6 +13,9 @@ type Store = {
   addToCart: (product: Product, quantity?: number) => void;
   reduceItem: (productId: string) => void;
   removeItem: (productId: string) => void;
+
+  wishlist: Product[];
+  toggleWishlistItem: (product: Product) => void;
 };
 
 const useStore = create<Store>()(set => ({
@@ -58,6 +61,18 @@ const useStore = create<Store>()(set => ({
       cart.splice(index, 1);
 
       return { cart };
+    }),
+
+  wishlist: [],
+  toggleWishlistItem: product =>
+    set(state => {
+      const wishlist = [...state.wishlist];
+      const index = wishlist.findIndex(item => item.id === product.id);
+
+      if (index === -1) wishlist.push(product);
+      else wishlist.splice(index, 1);
+
+      return { wishlist };
     }),
 }));
 
