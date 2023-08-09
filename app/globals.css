@@ -100,7 +100,7 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 1.5rem;
     border-radius: 50%;
     transform: translate(-45%, -50%);
-    @apply border;
+    border-width: 1px;
   }
   &::after {
     top: auto;
@@ -111,4 +111,20 @@ input[type="search"]::-webkit-search-results-decoration {
 
 * {
   scroll-behavior: smooth;
+}
+
+.pill {
+  position: relative;
+}
+
+.pill::before {
+  content: "";
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f50963;
+  height: 0.5rem;
+  width: 2rem;
+  border-radius: 999vh;
 }
