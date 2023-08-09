@@ -43,7 +43,7 @@ export default function Footer() {
   return pathname.split("/")[1] === "admin" ? (
     <></>
   ) : (
-    <footer className="w-full max-w-7xl mx-auto mt-24 pb-8 text-[#525258] p-4">
+    <footer className="w-full max-w-7xl mx-auto sm:mt-24 pb-8 text-[#525258] p-4">
       <div className="grid sm:grid-cols-5 gap-8">
         <div className="flex flex-wrap items-start justify-start gap-4">
           <Link href={"/"} className="w-max block">
