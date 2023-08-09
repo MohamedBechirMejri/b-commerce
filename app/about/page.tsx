@@ -30,9 +30,10 @@ export default function About() {
         />
       </div>
 
-      <h2 className="px-4 font-semibold text-xl sm:text-3xl text-[#f50963] mt-16 max-w-6xl mx-auto">
+      <h1 className="font-semibold text-2xl text-center pill mt-16">
         The Team
-      </h2>
+      </h1>
+
       <Team />
 
       <SubscriptionForm />
