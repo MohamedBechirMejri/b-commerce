@@ -13,6 +13,9 @@ const roboto = Roboto({
 export const metadata = {
   title: "B-Commerce",
   description: "The best e-commerce site for all your needs",
+  icons: {
+    icon: "/logo.svg",
+  }
 };
 
 export default function RootLayout({
