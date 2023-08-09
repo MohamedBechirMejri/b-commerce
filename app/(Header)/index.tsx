@@ -37,8 +37,13 @@ export default function Header() {
   }, [menuStatus]);
 
   return pathname.split("/")[1] !== "admin" ? (
-    <header className="w-full h-[4.75rem] border-b bg-[#f0f2ee] sticky top-0 left-0 z-50">
-      <div className="h-[5rem] w-full sm:grid sm:grid-cols-[auto,1fr,1fr] px-4 max-w-[101rem] m-auto items-center text-[#525258] flex justify-between">
+    <header
+      className="w-full md:h -[4.75rem] backdrop-blur-lg border-b sticky top-0 left-0 z-50"
+      style={{
+        backgroundColor: pathname === "/" ? "#f0f2eecc" : "#ffffffcc",
+      }}
+    >
+      <div className="sm:h-[5rem] h-16 w-full sm:grid sm:grid-cols-[auto,1fr,1fr] px-4 max-w-[101rem] m-auto items-center text-[#525258] flex justify-between">
         <Link href={"/"}>
           <Image
             src={"/logo.svg"}
