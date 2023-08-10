@@ -4,6 +4,7 @@ import { Roboto } from "next/font/google";
 
 import Header from "./(Header)";
 import Footer from "./Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -15,7 +16,7 @@ export const metadata = {
   description: "The best e-commerce site for all your needs",
   icons: {
     icon: "/logo.svg",
-  }
+  },
 };
 
 export default function RootLayout({
@@ -24,12 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={roboto.className}>
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
