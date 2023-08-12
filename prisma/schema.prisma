@@ -47,16 +47,6 @@ model Category {
   products  Product[]
 }
 
-model Author {
-  id        String    @id @default(cuid())
-  name      String
-  email     String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  products  Product[]
-}
-
 model Product {
   id          String   @id @default(cuid())
   name        String
@@ -67,7 +57,6 @@ model Product {
 
   brand       Brand?     @relation(fields: [brandId], references: [id])
   categories  Category[]
-  author      Author?    @relation(fields: [authorId], references: [id])
   isPublished Boolean    @default(false)
   images      String     @db.VarChar(5000)
   tags        String
@@ -83,12 +72,10 @@ model Product {
   minBuy       Int  @default(1)
   maxBuy       Int  @default(10)
 
-  brandId  String?
-  authorId String?
-  Order    Order[]
+  brandId String?
+  Order   Order[]
 
   @@index([brandId])
-  @@index([authorId])
 }
 
 model Order {

@@ -32,7 +32,6 @@ export const createProduct = async (body: any) => {
     price,
     stock,
     brandId,
-    // authorId,
   } = body;
 
   return await prisma.product.create({
@@ -46,7 +45,6 @@ export const createProduct = async (body: any) => {
       price,
       stock,
       brandId,
-      // author: { connect: { id: authorId } },
       categories: { connect: categories.map((id: string) => ({ id })) },
     },
   });
