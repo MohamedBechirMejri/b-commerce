@@ -54,7 +54,7 @@ export default function Products() {
         </nav>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8 place-items-center">
-        {products.map((product, i) => {
+        {products.map((product: ProductType, i: number) => {
           return (
             <Product
               key={"home_product#" + i}

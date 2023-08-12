@@ -59,10 +59,23 @@ export default function Product({
           className="w-full h-full object-contain"
         />
 
-        <div className="absolute top-0 left-0 h-max w-max pt-4 flex flex-col gap-1 items-stretch text-sm text-white text-center">
-          <p className="bg-[#f50963] px-3 p-[1px]">Sale</p>
-          <p className="bg-black px-3 p-[1px]">-12%</p>
-        </div>
+        {product.onSale && product.salePrice && (
+          <motion.div
+            initial={{ opacity: 0, x: "-100%" }}
+            animate={{ opacity: 1, x: "0%" }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-0 left-0 h-max w-max pt-4 flex flex-col gap-1 items-stretch text-sm text-white text-center"
+          >
+            <p className="bg-[#f50963] px-3 p-[1px]">Sale</p>
+            <p className="bg-black px-3 p-[1px]">
+              -
+              {Math.round(
+                ((product.price - product.salePrice) / product.price) * 100
+              )}
+              %
+            </p>
+          </motion.div>
+        )}
 
         <div className="absolute top-0 right-0 h-full w-12 pt-10 flex flex-col gap-2 items-center text-xl pr-2">
           <ActionButton
@@ -119,10 +132,12 @@ export default function Product({
       </Link>
 
       <div className="flex gap-2 -mt-1 text-sm">
-        <span className="line-through">
-          ${product.price + product.price * 0.12}
+        {product.salePrice && (
+          <span className="line-through">${product.price}</span>
+        )}
+        <span className="text-[#f50963] font-normal">
+          ${product.salePrice ? product.salePrice : product.price}
         </span>
-        <span className="text-[#f50963] font-normal">${product.price}</span>
       </div>
     </motion.div>
   );
