@@ -7,13 +7,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  TbHeart,
-  TbMenu,
-  TbSearch,
-  TbShoppingCart,
-  TbUser,
-} from "react-icons/tb";
+import { TbHeart, TbMenu, TbSearch, TbShoppingCart } from "react-icons/tb";
 
 import MobileMenu from "./MobileMenu";
 import Counter from "./Counter";
