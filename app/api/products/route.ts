@@ -6,16 +6,16 @@ import { createProduct } from "~/lib/db/product";
 export async function GET({ nextUrl }: NextRequest) {
   const getParam = (key: string) => nextUrl.searchParams.get(key);
 
-  if (getParam("latest")) {
-    const limit = Number(getParam("limit"));
+  const limit = Number(getParam("limit"));
 
+  if (getParam("latest")) {
     const data = await prisma.product.findMany({
       orderBy: { createdAt: "desc" },
       take: limit || 10,
       include: { categories: true },
     });
     return NextResponse.json({
-      data: data.map(p => ({ ...p, images: JSON.parse(p.images) })),
+      data: parseData(data),
     });
   }
 
@@ -35,9 +35,11 @@ export async function GET({ nextUrl }: NextRequest) {
   //   return NextResponse.json({ data });
   // }
 
-  const data = await prisma.product.findMany();
+  const data = await prisma.product.findMany({
+    take: limit || 10,
+  });
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ data: parseData(data) });
 }
 
 export async function POST(request: Request) {
@@ -47,3 +49,10 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ data });
 }
+
+const parseData = (data: any) => {
+  return data.map((p: { images: string }) => ({
+    ...p,
+    images: JSON.parse(p.images),
+  }));
+};
