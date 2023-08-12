@@ -24,5 +24,5 @@ export default function useProducts(filters: {
     fetchProducts();
   }, []);
 
-  return [...products, ...products, ...products, ...products];
+  return products;
 }
