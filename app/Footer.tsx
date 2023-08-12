@@ -40,9 +40,7 @@ const links = [
 export default function Footer() {
   const pathname = usePathname();
 
-  return pathname.split("/")[1] === "admin" ? (
-    <></>
-  ) : (
+  return /admin|sign-(up|in)/.test(pathname) ? null : (
     <footer className="w-full max-w-7xl mx-auto sm:mt-24 pb-8 text-[#525258] p-4">
       <div className="grid sm:grid-cols-5 gap-8">
         <div className="flex flex-wrap items-start justify-start gap-4">
