@@ -19,6 +19,7 @@ import MobileMenu from "./MobileMenu";
 import Counter from "./Counter";
 import SearchBar from "./SearchBar";
 import CartOverlay from "./CartOverlay";
+import { UserButton } from "@clerk/nextjs";
 
 const links = [
   { name: "Home", href: "/", sublinks: null },
@@ -36,7 +37,7 @@ export default function Header() {
     document.body.style.overflow = menuStatus !== "closed" ? "hidden" : "auto";
   }, [menuStatus]);
 
-  return pathname.split("/")[1] !== "admin" ? (
+  return /admin|sign-(up|in)/.test(pathname) ? null : (
     <header
       className="w-full md:h -[4.75rem] backdrop-blur-lg border-b sticky top-0 left-0 z-50"
       style={{
@@ -74,7 +75,6 @@ export default function Header() {
           <SearchBar className="xl:mr-8 xl:block hidden" />
 
           <button className="xl:hidden" children={<TbSearch />} />
-          <button children={<TbUser />} />
 
           <button className="relative">
             <TbHeart />
@@ -85,6 +85,10 @@ export default function Header() {
             <TbShoppingCart />
             <Counter value={cart.length} />
           </button>
+
+          <div className="grid place-items-center">
+            <UserButton afterSignOutUrl="/" />
+          </div>
         </div>
 
         <button
@@ -113,7 +117,5 @@ export default function Header() {
         </AnimatePresence>
       </div>
     </header>
-  ) : (
-    <></>
   );
 }
