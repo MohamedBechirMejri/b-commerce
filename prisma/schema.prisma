@@ -50,7 +50,7 @@ model Category {
 model Product {
   id          String   @id @default(cuid())
   name        String
-  description String
+  description String   @db.Text
   reference   String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -58,7 +58,7 @@ model Product {
   brand       Brand?     @relation(fields: [brandId], references: [id])
   categories  Category[]
   isPublished Boolean    @default(false)
-  images      String     @db.VarChar(5000)
+  images      String     @db.Text
   tags        String
 
   // pricing
