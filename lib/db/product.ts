@@ -30,6 +30,8 @@ export const createProduct = async (body: any) => {
     images,
     tags,
     price,
+    onSale,
+    salePrice,
     stock,
     brandId,
   } = body;
@@ -43,6 +45,8 @@ export const createProduct = async (body: any) => {
       images,
       tags,
       price,
+      onSale,
+      salePrice,
       stock,
       brandId,
       categories: { connect: categories.map((id: string) => ({ id })) },
