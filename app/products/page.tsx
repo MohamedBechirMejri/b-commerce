@@ -11,6 +11,7 @@ export default function Products() {
     id: "price_ascending",
     name: "Price: Low to High",
   });
+  const [view, setView] = useState("grid");
 
   return (
     <div className="max-w-7xl mx-auto ">
@@ -22,10 +23,22 @@ export default function Products() {
         </div>
 
         <div className="flex gap-4 items-center text-2xl">
-          <button>
-            <TbLayoutGrid className="text-[#f50963]" />
+          <button
+            className={
+              (view === "grid" ? "text-[#f50963]" : "") +
+              " transition-all duration-300"
+            }
+            onClick={() => setView("grid")}
+          >
+            <TbLayoutGrid />
           </button>
-          <button>
+          <button
+            className={
+              (view === "list" ? "text-[#f50963]" : "") +
+              " transition-all duration-300"
+            }
+            onClick={() => setView("list")}
+          >
             <TbListDetails />
           </button>
 
