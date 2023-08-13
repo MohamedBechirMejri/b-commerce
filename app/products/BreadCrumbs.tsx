@@ -9,7 +9,7 @@ const BreadCrumbs = () => {
   const paths = pathname.split("/");
 
   return (
-    <div className="flex items-center gap-1 text-sm text-gray-500 w-full max-w-7xl mx-auto p-5 capitalize">
+    <div className="flex items-center gap-1 text-sm text-gray-500 w-full p-5 capitalize">
       {paths.map((path, i) => {
         const isLast = i === paths.length - 1;
         const link = paths.slice(0, i + 1).join("/") || "/";
