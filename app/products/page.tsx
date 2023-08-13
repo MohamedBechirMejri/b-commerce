@@ -1,10 +1,14 @@
 "use client";
 
+import type { Product as ProductType } from "~/types";
+
 import { useState } from "react";
 import { TbLayoutGrid, TbListDetails } from "react-icons/tb";
 
 import BreadCrumbs from "./BreadCrumbs";
 import Sorting from "./Sorting";
+import useProducts from "~/lib/hooks/useProducts";
+import Product from "../(Products)/Product";
 
 export default function Products() {
   const [sorting, setSorting] = useState({
@@ -12,6 +16,8 @@ export default function Products() {
     name: "Price: Low to High",
   });
   const [view, setView] = useState("grid");
+  const [quickView, setQuickView] = useState<null | ProductType>(null);
+  const products = useProducts({ limit: 999999 });
 
   return (
     <div className="max-w-7xl mx-auto ">
@@ -43,6 +49,22 @@ export default function Products() {
           </button>
 
           <Sorting sorting={sorting} setSorting={setSorting} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-[auto,1fr] mt-8 gap-4">
+        <div className="w-72 border"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
+          {products.map((product: ProductType, i: number) => {
+            return (
+              <Product
+                key={"browse_product#" + i}
+                product={product}
+                i={i}
+                setQuickView={setQuickView}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
